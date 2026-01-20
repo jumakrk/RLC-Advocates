@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | RLC Advocates</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Dependencies for Modern Effects -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        /* Specific Styles for About Page */
+        .page-header {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: linear-gradient(rgba(5, 8, 10, 0.9), rgba(5, 8, 10, 0.9)), url('Images/lady_justice_1-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .about-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .about-text-block h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .about-text-block p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            background: var(--bg-card);
+            padding: 30px;
+            text-align: center;
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .value-card h4 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .value-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 3D Scroll Canvas -->
+    <div id="webgl-container"></div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><img src="Images/rlc-white-logo.png" alt="RLC Logo"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active" style="color: var(--primary-color);">About</a></li>
+                    <li><a href="practice.html">Practice Areas</a></li>
+                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="index.html#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="section-title">About Our Firm</h1>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Dedicated to excellence, integrity,
+                and the pursuit of justice for our diverse clientele.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="section-bg-alt">
+        <div class="container">
+
+            <!-- Story Section -->
+            <div class="about-detail-grid" data-aos="fade-right">
+                <div class="about-text-block">
+                    <h3>Our Story</h3>
+                    <p>RLC Advocates LLP was founded with a singular vision: to provide world-class legal services with
+                        a deep understanding of the local landscape. Over the years, we have grown into a premier law
+                        firm in Nairobi, trusted by corporations, individuals, and international entities.</p>
+                    <p>Our journey is defined by our unwavering commitment to our clients. We believe that every case
+                        requires a unique strategy, and we leverage our collective expertise to deliver results that
+                        matter.</p>
+                </div>
+                <div>
+                    <img src="Images/lady_justice_1-scaled.jpg" style="border-radius: 8px; opacity: 0.8; width: 100%;"
+                        class="glass-card">
+                </div>
+            </div>
+
+            <!-- Vision/Mission Section -->
+            <div class="about-detail-grid" style="direction: rtl;" data-aos="fade-left">
+                <!-- Reverse layout visually -->
+                <div class="about-text-block" style="direction: ltr;">
+                    <h3>Our Philosophy</h3>
+                    <p>We believe in the power of law to transform businesses and lives. Our philosophy is rooted in
+                        integrity, transparency, and responsiveness. We don't just act as legal advisors; we are
+                        strategic partners in our clients' success.</p>
+                    <p>Whether navigating complex corporate mergers or resolving intricate disputes, our team approaches
+                        every challenge with tenacity and precision.</p>
+                </div>
+                <div>
+                    <img src="Images/owl-ci.png" style="border-radius: 8px; opacity: 0.8; width: 100%;"
+                        class="glass-card">
+                </div>
+            </div>
+
+            <!-- Core Values -->
+            <div style="text-align: center; margin-top: 80px;" data-aos="fade-up">
+                <h2 class="section-title">Our Core Values</h2>
+            </div>
+            <div class="values-grid">
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="0">
+                    <h4 style="color: white; margin-bottom: 15px; font-size: 1.2rem;">Integrity</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Uncompromising ethical standards in
+                        everything we do.</p>
+                </div>
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                    <h4 style="color: white; margin-bottom: 15px; font-size: 1.2rem;">Excellence</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">A relentless pursuit of the highest quality
+                        legal representation.</p>
+                </div>
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+                    <h4 style="color: white; margin-bottom: 15px; font-size: 1.2rem;">Client Focus</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Placing our clients' interests at the heart
+                        of our practice.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid-5">
+                <div class="footer-col">
+                    <img src="Images/rlc-white-logo.png" style="height: 30px; margin-bottom: 20px;">
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">RLC Advocates LLP is a premier legal
+                        services firm offering top-tier consultancy.</p>
+                </div>
+                <!-- Links simplified for subpage -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#practice">Practice Areas</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="#">info@rlcadvocates.co.ke</a></li>
+                        <li><a href="#">+254 700 000000</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px; color: #444; font-size: 0.8rem;">
+                &copy; 2026 RLC Advocates LLP. All Rights Reserved.
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </footer>
+
+</body>
+
+</html>

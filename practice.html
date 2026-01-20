@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Areas | RLC Advocates</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Dependencies for Modern Effects -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        .page-header {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: linear-gradient(rgba(5, 8, 10, 0.9), rgba(5, 8, 10, 0.9)), url('Images/owl-ci.png');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+        }
+
+        .practice-grid-expanded {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 cols for density */
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        /* Reusing and extending practice-card styles */
+        .practice-card-lg {
+            background-color: var(--bg-card);
+            border-radius: 0;
+            overflow: hidden;
+            transition: transform 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .practice-card-lg:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .practice-card-lg img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .practice-card-lg .content {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .practice-card-lg h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .practice-card-lg p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .practice-card-lg ul {
+            list-style: disc;
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .practice-card-lg ul li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .practice-grid-expanded {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 3D Scroll Canvas -->
+    <div id="webgl-container"></div>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><img src="Images/rlc-white-logo.png" alt="RLC Logo"></a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="practice.html" class="active" style="color: var(--primary-color);">Practice Areas</a>
+                    </li>
+                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="index.html#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="section-title">Our Practice Areas</h1>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Comprehensive legal solutions
+                tailored to the complex needs of modern businesses and individuals.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="section-bg-alt">
+        <div class="container">
+
+            <div class="practice-grid-expanded">
+                <!-- 1. Corporate -->
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="0">
+                    <img src="Images/lady_justice_1-scaled.jpg" alt="Corporate Law"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                    <div class="content">
+                        <h3 style="color: var(--primary-color);">Corporate & Commercial</h3>
+                        <p style="color: var(--text-muted);">We provide end-to-end legal support for businesses,
+                            ensuring compliance and strategic growth.</p>
+                        <ul style="color: var(--text-muted); padding-left: 20px;">
+                            <li>Mergers & Acquisitions</li>
+                            <li>Company Formation</li>
+                            <li>Commercial Contracts</li>
+                            <li>Corporate Governance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. Dispute Resolution -->
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="Images/owl-ci.png" alt="Litigation"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                    <div class="content">
+                        <h3 style="color: var(--primary-color);">Dispute Resolution</h3>
+                        <p style="color: var(--text-muted);">Our litigation team is renowned for handling high-stakes
+                            commercial disputes with precision.</p>
+                        <ul style="color: var(--text-muted); padding-left: 20px;">
+                            <li>Civil Litigation</li>
+                            <li>Arbitration & Mediation</li>
+                            <li>Debt Recovery</li>
+                            <li>Constitutional Petitions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. Real Estate -->
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="Images/lady-justice-ULVY2VY-1.png" alt="Real Estate"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                    <div class="content">
+                        <h3 style="color: var(--primary-color);">Real Estate & Conveyancing</h3>
+                        <p style="color: var(--text-muted);">Expert guidance through the complexities of property
+                            transactions and land law.</p>
+                        <ul style="color: var(--text-muted); padding-left: 20px;">
+                            <li>Property Transfers</li>
+                            <li>Real Estate Development</li>
+                            <li>Banking Securities</li>
+                            <li>Land Use & Planning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 4. Intellectual Property -->
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="0">
+                    <img src="Images/lady_justice_1-scaled.jpg" alt="IP Law"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                    <div class="content">
+                        <h3 style="color: var(--primary-color);">Intellectual Property</h3>
+                        <p style="color: var(--text-muted);">Protecting your creative and industrial assets in a
+                            digital-first world.</p>
+                        <ul style="color: var(--text-muted); padding-left: 20px;">
+                            <li>Trademark Registration</li>
+                            <li>Patent Prosecution</li>
+                            <li>Copyright Infringement</li>
+                            <li>IP Audits & Valuation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5. Employment -->
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="Images/owl-ci.png" alt="Employment"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                    <div class="content">
+                        <h3 style="color: var(--primary-color);">Employment & Labour</h3>
+                        <p style="color: var(--text-muted);">Navigating the intricate landscape of employer-employee
+                            relationships.</p>
+                        <ul style="color: var(--text-muted); padding-left: 20px;">
+                            <li>Employment Contracts</li>
+                            <li>Industrial Disputes</li>
+                            <li>Workplace Restructuring</li>
+                            <li>Immigration & Permits</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 6. Banking & Finance -->
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="Images/lady-justice-ULVY2VY-1.png" alt="Finance"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                    <div class="content">
+                        <h3 style="color: var(--primary-color);">Banking & Finance</h3>
+                        <p style="color: var(--text-muted);">Advisory services for financial institutions and borrowers
+                            in complex transactions.</p>
+                        <ul style="color: var(--text-muted); padding-left: 20px;">
+                            <li>Loan Syndication</li>
+                            <li>Project Finance</li>
+                            <li>Regulatory Compliance</li>
+                            <li>Fintech Advisory</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 7. Family Law -->
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="0">
+                    <img src="Images/lady_justice_1-scaled.jpg" alt="Family Law"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                    <div class="content">
+                        <h3 style="color: var(--primary-color);">Family Law & Succession</h3>
+                        <p style="color: var(--text-muted);">Compassionate legal support for personal and family
+                            matters.</p>
+                        <ul style="color: var(--text-muted); padding-left: 20px;">
+                            <li>Divorce & Separation</li>
+                            <li>Child Custody</li>
+                            <li>Wills & Trusts</li>
+                            <li>Estate Administration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 8. Tax Law -->
+                <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="Images/owl-ci.png" alt="Tax Law"
+                        style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+                    <div class="content">
+                        <h3 style="color: var(--primary-color);">Tax Law</h3>
+                        <p style="color: var(--text-muted);">Strategic tax planning and dispute resolution with revenue
+                            authorities.</p>
+                        <ul style="color: var(--text-muted); padding-left: 20px;">
+                            <li>Tax Advisory & Planning</li>
+                            <li>KRA Dispute Resolution</li>
+                            <li>International Tax</li>
+                            <li>VAT & Customs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid-5">
+                <div class="footer-col">
+                    <img src="Images/rlc-white-logo.png" style="height: 30px; margin-bottom: 20px;">
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">RLC Advocates LLP is a premier legal
+                        services firm offering top-tier consultancy.</p>
+                </div>
+                <!-- Links simplified -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="#">info@rlcadvocates.co.ke</a></li>
+                        <li><a href="#">+254 700 000000</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px; color: #444; font-size: 0.8rem;">
+                &copy; 2026 RLC Advocates LLP. All Rights Reserved.
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </footer>
+
+</body>
+
+</html>
