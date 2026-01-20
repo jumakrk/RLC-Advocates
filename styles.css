@@ -931,6 +931,16 @@ section {
 
 /* Extra Small Screens (e.g., iPhone SE, older Androids) */
 @media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+        /* Reduce side padding to give more room */
+    }
+
+    .hero-text h1 {
+        font-size: 2.8rem;
+        /* Reduce huge heading size */
+    }
+
     .team-grid {
         grid-template-columns: 1fr;
     }
