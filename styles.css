@@ -759,6 +759,19 @@ section {
         grid-template-columns: 1fr;
     }
 
+    /* About Page Mobile Fixes */
+    .about-detail-grid {
+        grid-template-columns: 1fr !important;
+        direction: ltr !important;
+        /* Reset RTL layout */
+        gap: 30px !important;
+        text-align: center;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr !important;
+    }
+
     .hero-owl {
         max-width: 320px;
         /* Smaller limit for mobile */
@@ -913,5 +926,12 @@ section {
     /* Button specific alignment in menu */
     .main-nav .btn {
         margin-top: 20px;
+    }
+}
+
+/* Extra Small Screens (e.g., iPhone SE, older Androids) */
+@media (max-width: 480px) {
+    .team-grid {
+        grid-template-columns: 1fr;
     }
 }
