@@ -237,7 +237,7 @@ section {
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: 3.75rem;
     margin-bottom: 20px;
     color: var(--text-light);
     /* Changed to white as requested */
@@ -690,6 +690,14 @@ section {
 }
 
 /* Footer (Columns) */
+.site-footer {
+    background-color: var(--bg-dark);
+    /* Solid dark background */
+    position: relative;
+    z-index: 10;
+}
+
+/* Footer Grid */
 .footer-grid-5 {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
@@ -734,6 +742,11 @@ section {
     .container {
         width: 95%;
         padding: 0 20px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        /* Scale down for tablet/mobile */
     }
 
     .hero-grid,
@@ -940,4 +953,15 @@ section {
     .team-grid {
         grid-template-columns: 1fr;
     }
+
+    .section-title {
+        font-size: 2rem;
+        /* Further reduce for small screens */
+    }
+}
+
+.footer-logo {
+    height: 60px;
+    /* 2x original 30px */
+    margin-bottom: 20px;
 }
