@@ -352,10 +352,6 @@ section {
     transition: transform 0.5s ease;
 }
 
-.hero-owl:hover {
-    transform: scale(1.02) rotate(2deg);
-}
-
 /* About Us (Split: Collage Left, Text Right) */
 .about-grid {
     display: grid;
