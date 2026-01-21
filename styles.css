@@ -652,21 +652,41 @@ section {
     gap: 60px;
 }
 
+.contact-form-dark {
+    padding: 40px;
+}
+
 .contact-form-dark input,
 .contact-form-dark textarea {
-    background: transparent;
-    border: 1px solid #333;
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px 4px 0 0;
     color: white;
-    padding: 15px;
+    padding: 15px 20px;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
 }
 
 .contact-form-dark input:focus,
 .contact-form-dark textarea:focus {
-    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom-color: var(--primary-color);
     outline: none;
+}
+
+.contact-form-dark input::placeholder,
+.contact-form-dark textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-form-dark button {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 1rem;
+    padding: 15px;
 }
 
 .contact-info-panel h3 {
