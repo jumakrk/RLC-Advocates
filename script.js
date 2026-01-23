@@ -112,6 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
 
+    // --- WhatsApp Floating Widget (Dynamic Injection) ---
+    const waFloat = document.createElement('a');
+    waFloat.href = "https://wa.me/254104800800?text=Hello%20RLC%20Advocates%2C%20I%20would%20like%20to%20inquire%20about%20your%20services.";
+    waFloat.className = "whatsapp-float";
+    waFloat.target = "_blank";
+    waFloat.innerHTML = '<i class="fab fa-whatsapp"></i>';
+    document.body.appendChild(waFloat);
+
     // --- Advanced Three.js: Connected Constellation (Modern/Fancy) ---
     const canvasContainer = document.getElementById('webgl-container');
     if (canvasContainer) {

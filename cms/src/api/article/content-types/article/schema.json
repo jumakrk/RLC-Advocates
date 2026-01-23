@@ -1,0 +1,49 @@
+{
+    "kind": "collectionType",
+    "collectionName": "articles",
+    "info": {
+        "singularName": "article",
+        "pluralName": "articles",
+        "displayName": "Article",
+        "description": "Blog posts and legal insights"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "slug": {
+            "type": "uid",
+            "targetField": "title",
+            "required": true
+        },
+        "category": {
+            "type": "string",
+            "default": "Legal Insight"
+        },
+        "date": {
+            "type": "date",
+            "required": true
+        },
+        "summary": {
+            "type": "text",
+            "required": true,
+            "maxLength": 300
+        },
+        "content": {
+            "type": "richtext"
+        },
+        "cover": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images"
+            ]
+        }
+    }
+}
