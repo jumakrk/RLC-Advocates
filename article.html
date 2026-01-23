@@ -318,7 +318,8 @@
                 const data = await response.json();
 
                 if (data.data.length === 0) {
-                    document.getElementById('loading').innerText = 'Article not found.';
+                    // Redirect to custom 404 page
+                    window.location.href = '404.html';
                     return;
                 }
 
