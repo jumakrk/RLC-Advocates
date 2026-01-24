@@ -25,6 +25,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "strapi-advanced-uuid": "^2.1.1",
+    "strapi-plugin-admin-users-import": "^1.0.3",
     "strapi-plugin-auto-slug-manager-a-mi13": "^1.1.0",
     "styled-components": "^6.0.0"
   },

@@ -1,19 +1,30 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const blogGrid = document.querySelector('.blog-grid');
-    if (!blogGrid) return; // Exit if not on homepage
+    if (!blogGrid) return; // Exit if no grid found
 
-    const API_URL = 'http://localhost:1337/api/articles?populate=*';
+    // Check if we are on the full listing page
+    const isFullPage = window.location.pathname.includes('blog.html') || document.getElementById('full-blog-grid');
+    
+    const API_URL = 'http://localhost:1337/api/articles?populate=*&sort=date:desc'; // Sort newest first
 
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
-        const articles = data.data;
+        let articles = data.data;
 
         if (articles.length > 0) {
-            blogGrid.innerHTML = ''; // Clear hardcoded content
+            blogGrid.innerHTML = ''; // Clear loading/static content
+
+            // Limit to 3 on Homepage, Show All on Blog Page
+            if (!isFullPage) {
+                articles = articles.slice(0, 3);
+            }
 
             articles.forEach((article, index) => {
-                const attrs = article; // Strapi v5 structure
+                const attrs = article; // Strapi v5 logic might differ, assuming flat or .attributes
+                // Strapi v5 often returns data as flat objects directly in data array or data[i]
+                // If using Strapi 4, it's article.attributes. Let's assume v5/flat based on previous code.
+                
                 const imageUrl = attrs.cover?.url
                     ? `http://localhost:1337${attrs.cover.url}`
                     : 'Images/owl-ci.png'; // Fallback
@@ -40,9 +51,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `;
                 blogGrid.innerHTML += cardHtml;
             });
+        } else {
+             blogGrid.innerHTML = '<p style="color:white; text-align:center; grid-column:1/-1;">No articles found.</p>';
         }
     } catch (error) {
         console.error('Error fetching insights:', error);
-        // Fallback: keep hardcoded content if API fails
+        // Keep fallback content if any
     }
 });
