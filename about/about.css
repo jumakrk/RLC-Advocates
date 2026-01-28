@@ -1,0 +1,53 @@
+/* Specific Styles for About Page */
+.page-header {
+    padding-top: 150px;
+    padding-bottom: 80px;
+    background: linear-gradient(rgba(5, 8, 10, 0.9), rgba(5, 8, 10, 0.9)), url('../Images/lady_justice_1-scaled.jpg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.about-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.about-text-block h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.about-text-block p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.value-card {
+    background: var(--bg-card);
+    padding: 30px;
+    text-align: center;
+    border-top: 3px solid var(--primary-color);
+}
+
+.value-card h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.value-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}

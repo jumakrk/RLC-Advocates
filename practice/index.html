@@ -16,15 +16,16 @@
     <meta property="og:title" content="Practice Areas | RLC Advocates">
     <meta property="og:description"
         content="Explore our legal expertise in Corporate Law, Real Estate, Intellectual Property, and more.">
-    <meta property="og:image" content="Images/lady_justice_1-scaled.jpg">
+    <meta property="og:image" content="../Images/lady_justice_1-scaled.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="Practice Areas | RLC Advocates">
     <meta property="twitter:description"
         content="Explore our legal expertise in Corporate Law, Real Estate, Intellectual Property, and more.">
-    <meta property="twitter:image" content="Images/lady_justice_1-scaled.jpg">
-    <link rel="stylesheet" href="styles.css">
+    <meta property="twitter:image" content="../Images/lady_justice_1-scaled.jpg">
+    <link rel="stylesheet" href="../shared/css/global.css">
+    <link rel="stylesheet" href="practice.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -33,81 +34,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <style>
-        .page-header {
-            padding-top: 150px;
-            padding-bottom: 80px;
-            background: linear-gradient(rgba(5, 8, 10, 0.9), rgba(5, 8, 10, 0.9)), url('Images/owl-ci.png');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-        }
-
-        .practice-grid-expanded {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            /* 3 cols for density */
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        /* Reusing and extending practice-card styles */
-        .practice-card-lg {
-            background-color: var(--bg-card);
-            border-radius: 0;
-            overflow: hidden;
-            transition: transform 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .practice-card-lg:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .practice-card-lg img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-
-        .practice-card-lg .content {
-            padding: 30px;
-            flex-grow: 1;
-        }
-
-        .practice-card-lg h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        .practice-card-lg p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
-        .practice-card-lg ul {
-            list-style: disc;
-            padding-left: 20px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .practice-card-lg ul li {
-            margin-bottom: 8px;
-        }
-
-        @media (max-width: 900px) {
-            .practice-grid-expanded {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <!-- Specific Styles moved to practice.css -->
 </head>
 
 <body>
@@ -118,16 +45,16 @@
     <header class="site-header">
         <div class="container header-container">
             <div class="logo">
-                <a href="/"><img src="Images/rlc-white-logo.png" alt="RLC Logo"></a>
+                <a href="../homepage/index.html"><img src="../Images/rlc-white-logo.png" alt="RLC Logo"></a>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/#about">About</a></li>
-                    <li><a href="/#practice" class="active" style="color: var(--primary-color);">Practice Areas</a>
+                    <li><a href="../homepage/index.html">Home</a></li>
+                    <li><a href="../homepage/index.html#about">About</a></li>
+                    <li><a href="../homepage/index.html#practice" class="active" style="color: var(--primary-color);">Practice Areas</a>
                     </li>
-                    <li><a href="/#team">Team</a></li>
-                    <li><a href="/#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
+                    <li><a href="../homepage/index.html#team">Team</a></li>
+                    <li><a href="../homepage/index.html#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
                 </ul>
             </nav>
 
@@ -155,7 +82,7 @@
             <div class="practice-grid-expanded">
                 <!-- 1. Corporate -->
                 <div class="glass-card" data-aos="fade-up" data-aos-delay="0">
-                    <img src="Images/lady_justice_1-scaled.jpg" alt="Corporate Law"
+                    <img src="../Images/lady_justice_1-scaled.jpg" alt="Corporate Law"
                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
                     <div class="content">
                         <h3 style="color: var(--primary-color);">Corporate & Commercial</h3>
@@ -172,7 +99,7 @@
 
                 <!-- 2. Dispute Resolution -->
                 <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <img src="Images/owl-ci.png" alt="Litigation"
+                    <img src="../Images/owl-ci.png" alt="Litigation"
                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
                     <div class="content">
                         <h3 style="color: var(--primary-color);">Dispute Resolution</h3>
@@ -189,7 +116,7 @@
 
                 <!-- 3. Real Estate -->
                 <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="Images/lady-justice-ULVY2VY-1.png" alt="Real Estate"
+                    <img src="../Images/lady-justice-ULVY2VY-1.png" alt="Real Estate"
                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
                     <div class="content">
                         <h3 style="color: var(--primary-color);">Real Estate & Conveyancing</h3>
@@ -206,7 +133,7 @@
 
                 <!-- 4. Intellectual Property -->
                 <div class="glass-card" data-aos="fade-up" data-aos-delay="0">
-                    <img src="Images/lady_justice_1-scaled.jpg" alt="IP Law"
+                    <img src="../Images/lady_justice_1-scaled.jpg" alt="IP Law"
                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
                     <div class="content">
                         <h3 style="color: var(--primary-color);">Intellectual Property</h3>
@@ -223,7 +150,7 @@
 
                 <!-- 5. Employment -->
                 <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <img src="Images/owl-ci.png" alt="Employment"
+                    <img src="../Images/owl-ci.png" alt="Employment"
                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
                     <div class="content">
                         <h3 style="color: var(--primary-color);">Employment & Labour</h3>
@@ -240,7 +167,7 @@
 
                 <!-- 6. Banking & Finance -->
                 <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="Images/lady-justice-ULVY2VY-1.png" alt="Finance"
+                    <img src="../Images/lady-justice-ULVY2VY-1.png" alt="Finance"
                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
                     <div class="content">
                         <h3 style="color: var(--primary-color);">Banking & Finance</h3>
@@ -257,7 +184,7 @@
 
                 <!-- 7. Family Law -->
                 <div class="glass-card" data-aos="fade-up" data-aos-delay="0">
-                    <img src="Images/lady_justice_1-scaled.jpg" alt="Family Law"
+                    <img src="../Images/lady_justice_1-scaled.jpg" alt="Family Law"
                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
                     <div class="content">
                         <h3 style="color: var(--primary-color);">Family Law & Succession</h3>
@@ -274,7 +201,7 @@
 
                 <!-- 8. Tax Law -->
                 <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <img src="Images/owl-ci.png" alt="Tax Law"
+                    <img src="../Images/owl-ci.png" alt="Tax Law"
                         style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
                     <div class="content">
                         <h3 style="color: var(--primary-color);">Tax Law</h3>
@@ -298,7 +225,7 @@
         <div class="container">
             <div class="footer-grid-5">
                 <div class="footer-col">
-                    <img src="Images/rlc-white-logo.png" class="footer-logo">
+                    <img src="../Images/rlc-white-logo.png" class="footer-logo">
                     <p style="color: var(--text-muted); font-size: 0.85rem;">RLC Advocates LLP is a premier legal
                         services firm offering top-tier consultancy.</p>
                 </div>
@@ -330,7 +257,7 @@
                 &copy; <span id="current-year">2026</span> RLC Advocates LLP. All Rights Reserved.
             </div>
         </div>
-        <script src="script.js"></script>
+        <script src="../shared/js/global.js"></script>
     </footer>
 
 </body>

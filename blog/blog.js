@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!blogGrid) return; // Exit if no grid found
 
     // Check if we are on the full listing page
-    const isFullPage = window.location.pathname.includes('blog.html') || document.getElementById('full-blog-grid');
+    // Check if we are in the blog directory/page
+    const isFullPage = window.location.pathname.includes('/blog/') || window.location.pathname.includes('blog/index.html') || document.getElementById('full-blog-grid');
     
     const API_URL = 'http://localhost:1337/api/articles?populate=*&sort=date:desc'; // Sort newest first
 
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 
                 const imageUrl = attrs.cover?.url
                     ? `http://localhost:1337${attrs.cover.url}`
-                    : 'Images/owl-ci.png'; // Fallback
+                    : '../Images/owl-ci.png'; // Fallback
 
                 const date = new Date(attrs.date).toLocaleDateString('en-US', {
                     month: 'short', day: 'numeric', year: 'numeric'
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const delay = index * 100; // Stagger animation
 
                 const cardHtml = `
-                    <div class="blog-card glass-card" data-aos="fade-up" data-aos-delay="${delay}" onclick="window.location.href='article.html?slug=${attrs.slug}'" style="cursor: pointer;">
+                    <div class="blog-card glass-card" data-aos="fade-up" data-aos-delay="${delay}" onclick="window.location.href='../article/index.html?slug=${attrs.slug}'" style="cursor: pointer;">
                         <div class="blog-img-wrapper">
                             <img src="${imageUrl}" alt="${attrs.title}">
                             <div class="blog-date">${date}</div>
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <div class="blog-category">${attrs.category}</div>
                             <h3>${attrs.title}</h3>
                             <p>${attrs.summary}</p>
-                            <a href="article.html?slug=${attrs.slug}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                            <a href="../article/index.html?slug=${attrs.slug}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 `;

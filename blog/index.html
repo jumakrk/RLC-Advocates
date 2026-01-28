@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insights | RLC Advocates</title>
     <meta name="description" content="Read our latest legal insights, news, and updates from RLC Advocates.">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../shared/css/global.css">
+    <link rel="stylesheet" href="blog.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
@@ -15,36 +16,7 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <style>
-        /* Page Header */
-        .page-header {
-            background: linear-gradient(to bottom, rgba(13, 30, 30, 0.9), rgba(13, 30, 30, 0.8)), url('Images/legal-bg.jpg'); /* You might need a generic bg or reuse one */
-            background-size: cover;
-            background-position: center;
-            padding: 180px 0 80px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .page-header h1 {
-            font-size: 3.5rem;
-            color: white;
-            margin-bottom: 20px;
-        }
-
-        .page-header p {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-
-        /* Blog Grid Customization for Full Page */
-        .blog-section {
-            padding: 80px 0;
-            background-color: var(--bg-dark);
-        }
-    </style>
+    <!-- Specific Styles moved to blog.css -->
 </head>
 
 <body>
@@ -52,16 +24,16 @@
     <header class="site-header">
         <div class="container header-container">
             <div class="logo">
-                <a href="index.html"><img src="Images/rlc-white-logo.png" alt="RLC Logo"></a>
+                <a href="../homepage/index.html"><img src="../Images/rlc-white-logo.png" alt="RLC Logo"></a>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#about">About</a></li>
-                    <li><a href="index.html#practice">Practice Areas</a></li>
-                    <li><a href="index.html#team">Team</a></li>
+                    <li><a href="../homepage/index.html">Home</a></li>
+                    <li><a href="../homepage/index.html#about">About</a></li>
+                    <li><a href="../homepage/index.html#practice">Practice Areas</a></li>
+                    <li><a href="../homepage/index.html#team">Team</a></li>
                     <li><a href="blog.html" class="active" style="color: var(--primary-color);">Insights</a></li>
-                    <li><a href="index.html#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
+                    <li><a href="../homepage/index.html#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
                 </ul>
             </nav>
 
@@ -96,7 +68,7 @@
         <div class="container">
             <div class="footer-grid-5">
                 <div class="footer-col">
-                    <img src="Images/rlc-white-logo.png" class="footer-logo">
+                    <img src="../Images/rlc-white-logo.png" class="footer-logo">
                     <p style="color: var(--text-muted); font-size: 0.85rem;">RLC Advocates LLP is a premier legal
                         services firm offering top-tier consultancy.</p>
                 </div>
@@ -130,8 +102,8 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
-    <script src="js/load-insights.js"></script>
+    <script src="../shared/js/global.js"></script>
+    <script src="blog.js"></script>
 </body>
 
 </html>

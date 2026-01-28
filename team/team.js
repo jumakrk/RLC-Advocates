@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Determine where we are
     const teamGrid = document.querySelector('.team-grid');
     const tempTeamContainer = document.querySelector('#team-container-dynamic'); // Helper if we want to replace the list
-    const isProfilePage = window.location.pathname.includes('team-member.html');
+    // Check if we are in the team directory/page
+    const isProfilePage = window.location.pathname.includes('/team/') || window.location.pathname.includes('team/index.html');
 
     // Determine environment
     // If opening file directly (hostname is empty), assume localhost for testing
@@ -38,24 +39,35 @@ async function loadTeamGrid(container, url, baseUrl) {
         container.innerHTML = '';
 
         members.forEach(member => {
-            // Get Image
-            const imgUrl = member.photo ? `${baseUrl}${member.photo.url}` : 'Images/owl-ci.png'; // Fallback
+            // Get Image or Placeholder
+            const hasPhoto = member.photo && member.photo.url;
+            let imgContent;
+            
+            if (hasPhoto) {
+                imgContent = `<img src="${baseUrl}${member.photo.url}" class="team-img" alt="${member.name}">`;
+            } else {
+                imgContent = `<div class="team-avatar-placeholder"><i class="fas fa-user"></i></div>`;
+            }
             
             const card = document.createElement('div');
             card.className = 'team-card';
             card.setAttribute('data-aos', 'fade-up');
-            card.onclick = () => window.location.href = `team-member.html?slug=${member.slug}`;
+            // Navigate to ../team/index.html from homepage
+            card.onclick = () => window.location.href = `../team/index.html?slug=${member.slug}`;
             card.style.cursor = 'pointer';
 
             card.innerHTML = `
                 <div class="team-img-wrapper">
-                    <img src="${imgUrl}" class="team-img" alt="${member.name}">
+                    ${imgContent}
                 </div>
                 <div class="team-name">${member.name}</div>
                 <div class="team-role">${member.role}</div>
             `;
             container.appendChild(card);
         });
+
+        // Preload images for smoother transition to profile page
+        preloadTeamImages(members, baseUrl);
 
     } catch (error) {
         console.error('Error loading team:', error);
@@ -72,7 +84,7 @@ async function loadTeamProfile(baseUrl) {
     const slug = params.get('slug');
 
     if (!slug) {
-        window.location.href = 'index.html'; // Redirect if no slug
+        window.location.href = '../homepage/index.html'; // Redirect to home
         return;
     }
 
@@ -115,8 +127,12 @@ async function loadTeamProfile(baseUrl) {
         }
 
         // Image
-        const imgUrl = member.photo ? `${baseUrl}${member.photo.url}` : 'Images/owl-ci.png';
-        document.getElementById('member-img').src = imgUrl;
+        const imgWrapper = document.querySelector('.profile-img-wrapper');
+        if (member.photo && member.photo.url) {
+            imgWrapper.innerHTML = `<img id="member-img" src="${baseUrl}${member.photo.url}" class="profile-img" alt="${member.name}">`;
+        } else {
+            imgWrapper.innerHTML = `<div class="profile-avatar-placeholder"><i class="fas fa-user"></i></div>`;
+        }
 
         // Socials
         const socialContainer = document.querySelector('.member-socials');
@@ -143,4 +159,24 @@ async function loadTeamProfile(baseUrl) {
     } catch (error) {
         console.error('Error loading profile:', error);
     }
+}
+
+/**
+ * Preload images to browser cache so they appear instantly on the profile page
+ */
+function preloadTeamImages(members, baseUrl) {
+    if (!members || members.length === 0) return;
+
+    // Use requestIdleCallback if available to not block main thread
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 2000));
+
+    idleCallback(() => {
+        console.log('RLC Debug: Preloading team images via JS Cache...');
+        members.forEach(member => {
+            if (member.photo && member.photo.url) {
+                const img = new Image();
+                img.src = `${baseUrl}${member.photo.url}`;
+            }
+        });
+    });
 }

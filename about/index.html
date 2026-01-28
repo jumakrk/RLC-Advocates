@@ -15,15 +15,16 @@
     <meta property="og:title" content="About Us | RLC Advocates">
     <meta property="og:description"
         content="Learn about RLC Advocates LLP, a leading law firm in Nairobi dedicated to integrity, excellence, and client focus.">
-    <meta property="og:image" content="Images/lady_justice_1-scaled.jpg">
+    <meta property="og:image" content="../Images/lady_justice_1-scaled.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:title" content="About Us | RLC Advocates">
     <meta property="twitter:description"
         content="Learn about RLC Advocates LLP, a leading law firm in Nairobi dedicated to integrity, excellence, and client focus.">
-    <meta property="twitter:image" content="Images/lady_justice_1-scaled.jpg">
-    <link rel="stylesheet" href="styles.css">
+    <meta property="twitter:image" content="../Images/lady_justice_1-scaled.jpg">
+    <link rel="stylesheet" href="../shared/css/global.css">
+    <link rel="stylesheet" href="about.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -33,61 +34,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <style>
-        /* Specific Styles for About Page */
-        .page-header {
-            padding-top: 150px;
-            padding-bottom: 80px;
-            background: linear-gradient(rgba(5, 8, 10, 0.9), rgba(5, 8, 10, 0.9)), url('Images/lady_justice_1-scaled.jpg');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-        }
-
-        .about-detail-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            margin-bottom: 80px;
-        }
-
-        .about-text-block h3 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        .about-text-block p {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .value-card {
-            background: var(--bg-card);
-            padding: 30px;
-            text-align: center;
-            border-top: 3px solid var(--primary-color);
-        }
-
-        .value-card h4 {
-            color: white;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .value-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-    </style>
+    <!-- Specific Styles moved to about.css -->
 </head>
 
 <body>
@@ -98,15 +45,15 @@
     <header class="site-header">
         <div class="container header-container">
             <div class="logo">
-                <a href="/"><img src="Images/rlc-white-logo.png" alt="RLC Logo"></a>
+                <a href="../homepage/index.html"><img src="../Images/rlc-white-logo.png" alt="RLC Logo"></a>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/#about" class="active" style="color: var(--primary-color);">About</a></li>
-                    <li><a href="/#practice">Practice Areas</a></li>
-                    <li><a href="/#team">Team</a></li>
-                    <li><a href="/#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
+                    <li><a href="../homepage/index.html">Home</a></li>
+                    <li><a href="../homepage/index.html#about" class="active" style="color: var(--primary-color);">About</a></li>
+                    <li><a href="../homepage/index.html#practice">Practice Areas</a></li>
+                    <li><a href="../homepage/index.html#team">Team</a></li>
+                    <li><a href="../homepage/index.html#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
                 </ul>
             </nav>
 
@@ -143,7 +90,7 @@
                         matter.</p>
                 </div>
                 <div>
-                    <img src="Images/lady_justice_1-scaled.jpg" style="border-radius: 8px; opacity: 0.8; width: 100%;"
+                    <img src="../Images/lady_justice_1-scaled.jpg" style="border-radius: 8px; opacity: 0.8; width: 100%;"
                         class="glass-card">
                 </div>
             </div>
@@ -160,7 +107,7 @@
                         every challenge with tenacity and precision.</p>
                 </div>
                 <div>
-                    <img src="Images/owl-ci.png" style="border-radius: 8px; opacity: 0.8; width: 100%;"
+                    <img src="../Images/owl-ci.png" style="border-radius: 8px; opacity: 0.8; width: 100%;"
                         class="glass-card">
                 </div>
             </div>
@@ -195,7 +142,7 @@
         <div class="container">
             <div class="footer-grid-5">
                 <div class="footer-col">
-                    <img src="Images/rlc-white-logo.png" class="footer-logo">
+                    <img src="../Images/rlc-white-logo.png" class="footer-logo">
                     <p style="color: var(--text-muted); font-size: 0.85rem;">RLC Advocates LLP is a premier legal
                         services firm offering top-tier consultancy.</p>
                 </div>
@@ -227,7 +174,7 @@
                 &copy; <span id="current-year">2026</span> RLC Advocates LLP. All Rights Reserved.
             </div>
         </div>
-        <script src="script.js"></script>
+        <script src="../shared/js/global.js"></script>
     </footer>
 
 </body>
