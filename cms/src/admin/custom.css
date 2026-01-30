@@ -1,0 +1,20 @@
+/* Global Override for Input Borders */
+/* Force an orange border on all standard inputs, even when not focused */
+
+:where(input[type="text"]),
+:where(input[type="email"]),
+:where(input[type="password"]),
+:where(input[type="number"]),
+:where(input[type="tel"]),
+:where(input[type="url"]),
+:where(input[type="search"]),
+:where(textarea) {
+    border: 1px solid #e36414 !important; /* RLC Primary Orange */
+}
+
+/* Optional: Slight glow or stronger border on focus */
+:where(input:focus),
+:where(textarea:focus) {
+    border-color: #e36414 !important;
+    box-shadow: 0 0 0 2px rgba(227, 100, 20, 0.2) !important;
+}

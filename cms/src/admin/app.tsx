@@ -1,5 +1,6 @@
 import type { StrapiApp } from '@strapi/strapi/admin';
 import Logo from './extensions/logo.png';
+import './custom.css';
 
 export default {
     config: {

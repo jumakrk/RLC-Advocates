@@ -24,16 +24,16 @@
     <header class="site-header">
         <div class="container header-container">
             <div class="logo">
-                <a href="../homepage/index.html"><img src="../Images/rlc-white-logo.png" alt="RLC Logo"></a>
+                <a href="../index.html"><img src="../Images/rlc-white-logo.png" alt="RLC Logo"></a>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="../homepage/index.html">Home</a></li>
-                    <li><a href="../homepage/index.html#about">About</a></li>
-                    <li><a href="../homepage/index.html#practice">Practice Areas</a></li>
-                    <li><a href="../homepage/index.html#team">Team</a></li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#practice">Practice Areas</a></li>
+                    <li><a href="../index.html#team">Team</a></li>
                     <li><a href="blog.html" class="active" style="color: var(--primary-color);">Insights</a></li>
-                    <li><a href="../homepage/index.html#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
+                    <li><a href="../index.html#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
                 </ul>
             </nav>
 
@@ -54,11 +54,48 @@
         </div>
     </header>
 
+    <!-- Featured Article Section -->
+    <section class="featured-section">
+        <div class="container">
+            <div id="featured-article-container">
+                <!-- Injected via JS -->
+                 <div class="skeleton-featured">Loading Featured Insight...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <section class="filter-section" data-aos="fade-up">
+        <div class="container">
+            <div class="filter-bar">
+                <button class="filter-btn active" data-category="all">All Insights</button>
+                <button class="filter-btn" data-category="Corporate">Corporate</button>
+                <button class="filter-btn" data-category="Real Estate">Real Estate</button>
+                <button class="filter-btn" data-category="Intellectual Property">Intellectual Property</button>
+                <button class="filter-btn" data-category="Litigation">Litigation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Blog Grid -->
     <section class="blog-section">
         <div class="container">
             <div class="blog-grid" id="full-blog-grid">
                 <!-- Javascript will inject articles here -->
-                 <div style="text-align:center; grid-column: 1/-1; color: white;">Loading articles...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section" data-aos="fade-up">
+        <div class="container newsletter-container">
+            <div class="newsletter-content">
+                <h2>Stay Ahead of the Curve</h2>
+                <p>Subscribe to our newsletter for the latest legal updates, firm news, and expert analysis delivered straight to your inbox.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
             </div>
         </div>
     </section>

@@ -84,7 +84,7 @@ async function loadTeamProfile(baseUrl) {
     const slug = params.get('slug');
 
     if (!slug) {
-        window.location.href = '../homepage/index.html'; // Redirect to home
+        window.location.href = '../index.html'; // Redirect to home
         return;
     }
 

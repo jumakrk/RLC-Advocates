@@ -1,62 +1,139 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const blogGrid = document.querySelector('.blog-grid');
-    if (!blogGrid) return; // Exit if no grid found
+    const featuredContainer = document.getElementById('featured-article-container');
+    const blogGrid = document.getElementById('full-blog-grid');
+    const filterBtns = document.querySelectorAll('.filter-btn');
 
-    // Check if we are on the full listing page
-    // Check if we are in the blog directory/page
-    const isFullPage = window.location.pathname.includes('/blog/') || window.location.pathname.includes('blog/index.html') || document.getElementById('full-blog-grid');
-    
-    const API_URL = 'http://localhost:1337/api/articles?populate=*&sort=date:desc'; // Sort newest first
+    const API_URL = 'http://localhost:1337/api/articles?populate=*&sort=date:desc'; 
 
+    let allArticles = [];
+
+    // Helper: Format Date
+    const formatDate = (dateString) => {
+        return new Date(dateString).toLocaleDateString('en-US', {
+            month: 'short', day: 'numeric', year: 'numeric'
+        });
+    };
+
+    // Helper: Get Image URL
+    const getImageUrl = (article) => {
+        const url = article.cover?.url;
+        return url ? `http://localhost:1337${url}` : '../Images/owl-ci.png';
+    };
+
+    // Function: Render Featured Article
+    const renderFeatured = (article) => {
+        if (!article) return;
+        
+        const html = `
+            <div class="featured-card" onclick="window.location.href='../article/index.html?slug=${article.slug}'" style="cursor: pointer;">
+                <img src="${getImageUrl(article)}" alt="${article.title}" class="featured-img">
+                <div class="featured-content">
+                    <span class="featured-badge">${article.category}</span>
+                    <h2>${article.title}</h2>
+                    <div class="featured-meta"><i class="far fa-calendar"></i> ${formatDate(article.date)}</div>
+                    <p>${article.summary}</p>
+                    <a href="../article/index.html?slug=${article.slug}" class="btn btn-primary" style="align-self: flex-start; margin-top: auto;">Read Full Article</a>
+                </div>
+            </div>
+        `;
+        featuredContainer.innerHTML = html;
+    };
+
+    // Function: Render Grid
+    const renderGrid = (articles) => {
+        blogGrid.innerHTML = '';
+
+        if (articles.length === 0) {
+            blogGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-size: 1.2rem;">No insights found in this category.</p>';
+            return;
+        }
+
+        articles.forEach((article, index) => {
+            const delay = index * 100;
+            const cardHtml = `
+                    <div class="blog-card glass-card" data-aos="fade-up" data-aos-delay="${delay}" onclick="window.location.href='../article/index.html?slug=${article.slug}'" style="cursor: pointer;">
+                        <div class="blog-img-wrapper">
+                            <img src="${getImageUrl(article)}" alt="${article.title}">
+                            <div class="blog-date">${formatDate(article.date)}</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-category">${article.category}</div>
+                            <h3>${article.title}</h3>
+                            <p>${article.summary}</p>
+                            <a href="../article/index.html?slug=${article.slug}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+            `;
+            blogGrid.innerHTML += cardHtml;
+        });
+    };
+
+    // Init: Fetch and Render
     try {
         const response = await fetch(API_URL);
         const data = await response.json();
-        let articles = data.data;
+        const articles = data.data; // Strapi v5: data is array of objects directly
 
         if (articles.length > 0) {
-            blogGrid.innerHTML = ''; // Clear loading/static content
+            allArticles = articles;
+            
+            // 1. Render Featured (First one)
+            renderFeatured(articles[0]);
 
-            // Limit to 3 on Homepage, Show All on Blog Page
-            if (!isFullPage) {
-                articles = articles.slice(0, 3);
-            }
-
-            articles.forEach((article, index) => {
-                const attrs = article; // Strapi v5 logic might differ, assuming flat or .attributes
-                // Strapi v5 often returns data as flat objects directly in data array or data[i]
-                // If using Strapi 4, it's article.attributes. Let's assume v5/flat based on previous code.
-                
-                const imageUrl = attrs.cover?.url
-                    ? `http://localhost:1337${attrs.cover.url}`
-                    : '../Images/owl-ci.png'; // Fallback
-
-                const date = new Date(attrs.date).toLocaleDateString('en-US', {
-                    month: 'short', day: 'numeric', year: 'numeric'
-                });
-
-                const delay = index * 100; // Stagger animation
-
-                const cardHtml = `
-                    <div class="blog-card glass-card" data-aos="fade-up" data-aos-delay="${delay}" onclick="window.location.href='../article/index.html?slug=${attrs.slug}'" style="cursor: pointer;">
-                        <div class="blog-img-wrapper">
-                            <img src="${imageUrl}" alt="${attrs.title}">
-                            <div class="blog-date">${date}</div>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-category">${attrs.category}</div>
-                            <h3>${attrs.title}</h3>
-                            <p>${attrs.summary}</p>
-                            <a href="../article/index.html?slug=${attrs.slug}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                `;
-                blogGrid.innerHTML += cardHtml;
-            });
+            // 2. Render Grid (Rest of them)
+            renderGrid(articles.slice(1));
         } else {
-             blogGrid.innerHTML = '<p style="color:white; text-align:center; grid-column:1/-1;">No articles found.</p>';
+            featuredContainer.innerHTML = '<p style="color:white;">No insights available yet.</p>';
+            blogGrid.innerHTML = '';
         }
     } catch (error) {
-        console.error('Error fetching insights:', error);
-        // Keep fallback content if any
+        console.error('Error fetching articles:', error);
+        featuredContainer.innerHTML = '<p style="color: #ff6b6b;">Unable to load insights.</p>';
+        blogGrid.innerHTML = '';
     }
+
+    // Filter Logic
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add to clicked
+            btn.classList.add('active');
+
+            const category = btn.getAttribute('data-category');
+
+            if (category === 'all') {
+                // Determine if we should show featured + grid slice again?
+                // UX Choice: When filtering "All", let's restore the view: 1 featured, rest in grid.
+                if (allArticles.length > 0) {
+                     // Note: We don't re-render featured here because it never disappears, 
+                     // but if we want consistent filtering behavior (where "All" = everything), 
+                     // maybe "All" just resets to default state.
+                     renderGrid(allArticles.slice(1));
+                }
+            } else {
+                // Filter content
+                // UX Decision: Should filtering include the Featured article in the grid if it matches?
+                // Or just filter the "Grid" part? 
+                // Better UX: Filter EVERYTHING and show in Grid (ignore separate featured block? Or keep featured static?)
+                // Let's keep Featured static for visual stability, and only filter the Grid items from the FULL list (excluding featured or including?)
+                
+                // My Logic: "Real Estate" filter -> Show only Real Estate articles in the grid.
+                const filtered = allArticles.slice(1).filter(art => art.category === category);
+                // Also check if the featured one is NOT in this category, maybe we should swap it? Too complex.
+                // Simple: Just filter the grid list (excluding the 1st article which is featured).
+                
+                // OR: Filter ALL articles and replace the grid with ALL matches.
+                // This allows seeing the featured one in the grid if it matches.
+                // Let's try: Filter allArticles (skipping index 0 to avoid duplicates if we kept featured?)
+                
+                // Current Approach: Static Featured (stays latest), Grid filters the *rest*.
+                renderGrid(allArticles.slice(1).filter(art => {
+                    // Normalize checking (case insensitive if needed, but Strapi is usually consistent)
+                    return art.category === category;
+                }));
+            }
+        });
+    });
+
 });
