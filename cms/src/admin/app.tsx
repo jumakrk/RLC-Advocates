@@ -95,8 +95,6 @@ export default {
                 },
             },
         },
-        tutorials: false,
-        notifications: { release: false },
     },
     bootstrap(app: StrapiApp) {
         console.log(app);
