@@ -98,5 +98,22 @@ export default {
     },
     bootstrap(app: StrapiApp) {
         console.log(app);
+        
+        // Force Orange Outlines via JS Injection (Bulletproof)
+        const style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = `
+            :where(input[type="text"]),
+            :where(input[type="email"]),
+            :where(input[type="password"]),
+            :where(input[type="number"]),
+            :where(textarea) {
+                border: 1px solid #e36414 !important;
+            }
+            :where(input:focus), :where(textarea:focus) {
+                box-shadow: 0 0 0 2px rgba(227, 100, 20, 0.2) !important;
+            }
+        `;
+        document.head.appendChild(style);
     },
 };
