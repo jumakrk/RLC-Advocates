@@ -46,56 +46,35 @@
     </header>
 
     <!-- Page Content -->
-    <header class="page-header">
-        <div class="container" data-aos="fade-up">
-            <span class="section-label">RLC Knowledge Hub</span>
-            <h1>Latest Legal Insights</h1>
-            <p>Stay informed with expert analysis, regulatory updates, and firm news from our team of legal professionals.</p>
-        </div>
-    </header>
-
-    <!-- Featured Article Section -->
-    <section class="featured-section">
+    <!-- Page Content -->
+    <!-- 1. HERO SECTION (Latest Blog) -->
+    <section class="blog-hero-section">
         <div class="container">
-            <div id="featured-article-container">
-                <!-- Injected via JS -->
-                 <div class="skeleton-featured">Loading Featured Insight...</div>
+            <div id="hero-article-container">
+                <!-- Javascript injects Hero here -->
+                <div class="skeleton-featured" style="height: 400px; border-radius: 20px;">Loading Latest Insight...</div>
             </div>
         </div>
     </section>
 
-    <!-- Filter Bar -->
-    <section class="filter-section" data-aos="fade-up">
+    <!-- 2. RECENT ARTICLES (Paginated) -->
+    <section class="recent-articles-section">
         <div class="container">
-            <div class="filter-bar">
-                <button class="filter-btn active" data-category="all">All Insights</button>
-                <button class="filter-btn" data-category="Corporate">Corporate</button>
-                <button class="filter-btn" data-category="Real Estate">Real Estate</button>
-                <button class="filter-btn" data-category="Intellectual Property">Intellectual Property</button>
-                <button class="filter-btn" data-category="Litigation">Litigation</button>
+            <!-- Section Header with Arrows -->
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Our Recent Articles</h2>
+                    <p class="section-subtitle">Stay Informed with Our Latest Insights</p>
+                </div>
+                <div class="nav-arrows">
+                    <button id="prev-btn" class="arrow-btn" disabled><i class="fas fa-arrow-left"></i></button>
+                    <button id="next-btn" class="arrow-btn"><i class="fas fa-arrow-right"></i></button>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Main Blog Grid -->
-    <section class="blog-section">
-        <div class="container">
-            <div class="blog-grid" id="full-blog-grid">
-                <!-- Javascript will inject articles here -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter-section" data-aos="fade-up">
-        <div class="container newsletter-container">
-            <div class="newsletter-content">
-                <h2>Stay Ahead of the Curve</h2>
-                <p>Subscribe to our newsletter for the latest legal updates, firm news, and expert analysis delivered straight to your inbox.</p>
-                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
-                    <input type="email" placeholder="Enter your email address" required>
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
+            <!-- Grid -->
+            <div class="recent-articles-grid" id="recent-articles-grid">
+                 <!-- Javascript injects 3 articles here -->
             </div>
         </div>
     </section>

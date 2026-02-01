@@ -17,11 +17,13 @@
   "dependencies": {
     "@strapi/plugin-cloud": "5.34.0",
     "@strapi/plugin-users-permissions": "5.34.0",
+    "@strapi/provider-email-nodemailer": "^5.34.0",
     "@strapi/strapi": "5.34.0",
     "better-sqlite3": "12.4.1",
     "co-body": "^6.2.0",
     "inflation": "^2.1.0",
     "mysql2": "^3.16.1",
+    "nodemailer": "^7.0.13",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",

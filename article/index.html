@@ -38,7 +38,7 @@
         </div>
     </header>
 
-    <div id="loading">Loading Article...</div>
+
 
     <div id="article-container" style="display: none;">
         <article class="article-container">
@@ -93,8 +93,42 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
+             // --- LOADER HELPERS ---
+            function showGlobalLoader() {
+                // We don't need to target a container anymore with fixed positioning, just append to body
+                let loader = document.querySelector('.loader-container');
+                if (!loader) {
+                    loader = document.createElement('div');
+                    loader.className = 'loader-container';
+                    loader.innerHTML = '<div class="loader"></div>';
+                    document.body.appendChild(loader);
+                }
+                loader.classList.remove('hidden');
+                return Date.now();
+            }
+
+            async function hideGlobalLoader(startTime) {
+                const elapsed = Date.now() - startTime;
+                const minimumDuration = 3000; 
+                const remaining = minimumDuration - elapsed;
+                
+                if (remaining > 0) {
+                    await new Promise(r => setTimeout(r, remaining));
+                }
+                
+                const loader = document.querySelector('.loader-container');
+                if (loader) loader.classList.add('hidden');
+            }
+
+            // Start loader
+            const loaderStartTime = showGlobalLoader();
+
             const params = new URLSearchParams(window.location.search);
             const slug = params.get('slug');
+
+            // Determine environment
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '';
+            const API_BASE = isLocalhost ? 'http://127.0.0.1:1337' : 'https://cms.rlcadvocates.co.ke'; 
 
             if (!slug) {
                 window.location.href = '../blog/index.html';
@@ -102,12 +136,16 @@
             }
 
             try {
-                const response = await fetch(`http://localhost:1337/api/articles?filters[slug][$eq]=${slug}&populate=*`);
+                // Ensure article-container is hidden initially (except header/footer are outside)
+                const container = document.getElementById('article-container');
+                if(container) container.style.display = 'none';
+
+                const response = await fetch(`${API_BASE}/api/articles?filters[slug][$eq]=${slug}&populate=*`);
                 const data = await response.json();
 
-                if (data.data.length === 0) {
-                    document.getElementById('loading').innerText = 'Article not found.';
-                    return;
+                if (!data.data || data.data.length === 0) {
+                     document.body.innerHTML += '<p style="text-align:center; padding-top: 150px;">Article not found or unpublished.</p>';
+                     return;
                 }
 
                 const article = data.data[0];
@@ -116,13 +154,15 @@
                 document.title = `${article.title} | RLC Advocates`;
                 document.getElementById('article-title').innerText = article.title;
                 document.getElementById('article-category').innerText = article.category;
-                document.getElementById('article-date').innerText = new Date(article.date).toLocaleDateString();
+                // Use publishedAt if date is missing, fallback to current date
+                const dateStr = article.date || article.publishedAt || new Date().toISOString();
+                document.getElementById('article-date').innerText = new Date(dateStr).toLocaleDateString();
 
                 if (article.cover?.url) {
-                    document.getElementById('article-cover').src = `http://localhost:1337${article.cover.url}`;
+                    document.getElementById('article-cover').src = `${API_BASE}${article.cover.url}`;
                     document.getElementById('article-cover').alt = article.title;
                 } else {
-                    document.querySelector('.featured-image-wrapper').style.display = 'none'; // Hide if no image
+                    document.querySelector('.featured-image-wrapper').style.display = 'none'; 
                 }
 
                 // Render Content
@@ -142,13 +182,17 @@
                     }).join('');
                     document.getElementById('article-body').innerHTML = html;
                 }
-
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('article-container').style.display = 'block';
+                
+                if(container) container.style.display = 'block';
 
             } catch (error) {
                 console.error(error);
-                document.getElementById('loading').innerText = 'Error loading article.';
+            } finally {
+                // Remove the old simple loader if it exists
+                const simpleLoader = document.getElementById('loading');
+                if(simpleLoader) simpleLoader.style.display = 'none';
+                
+                await hideGlobalLoader(loaderStartTime);
             }
         });
     </script>

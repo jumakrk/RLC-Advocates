@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Sticky Header on Scroll ---
+    // --- Sticky Header on Scroll ---
     const header = document.querySelector('.site-header');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 1) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
@@ -98,13 +99,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    AOS.init({
-        duration: 800,
-        offset: 100,
-        easing: 'ease-out-cubic',
-        once: false, /* Animate every time it comes into view */
-        mirror: true /* Animate out while scrolling past */
-    });
+    // --- AOS Animation Logic (Session Based) ---
+    const currentPath = window.location.pathname;
+    const hasVisited = sessionStorage.getItem(`visited_${currentPath}`);
+
+    if (hasVisited) {
+        // If visited, disable AOS by removing attributes or initializing with disable: true
+        // Removing attributes is safer to prevent any flicker
+        document.querySelectorAll('[data-aos]').forEach(el => {
+            el.removeAttribute('data-aos');
+        });
+    } else {
+        // First visit: Init AOS and set flag
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            easing: 'ease-out-cubic',
+            once: true, 
+            mirror: false
+        });
+        sessionStorage.setItem(`visited_${currentPath}`, 'true');
+    }
 
     // --- Auto Update Year ---
     const yearSpan = document.getElementById('current-year');

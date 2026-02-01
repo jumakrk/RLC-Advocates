@@ -15,12 +15,74 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     console.log(`RLC Debug: Loading team from ${API_URL}`);
 
-    if (teamGrid) {
-        await loadTeamGrid(teamGrid, API_URL, API_BASE);
+    // --- LOADER HELPERS ---
+    function showGlobalLoader() {
+        // 1. Check if Homepage - Abort if true
+        const path = window.location.pathname;
+        const isProfilePage = document.querySelector('.profile-section') !== null;
+        
+        // If not explicit team page AND not profile section, assume homepage widget and skip global loader
+        if (!path.includes('team') && !isProfilePage) {
+             return null; 
+        }
+
+        // 2. Find Content Container (to respect Header/Footer)
+        const targetContainer = document.querySelector('.profile-section') || document.querySelector('section#team .container') || document.querySelector('.team-grid') || document.body;
+        
+        // Ensure container is relative so absolute loader works
+        if(targetContainer !== document.body) {
+            targetContainer.style.position = 'relative';
+            if(targetContainer.offsetHeight < 300) {
+                 targetContainer.style.minHeight = '60vh'; // Force space
+            }
+        }
+
+        let loader = targetContainer.querySelector('.loader-container');
+        if (!loader) {
+            loader = document.createElement('div');
+            loader.className = 'loader-container';
+            loader.innerHTML = '<div class="loader"></div>';
+            targetContainer.appendChild(loader);
+        }
+        loader.classList.remove('hidden');
+        return Date.now();
     }
 
-    if (isProfilePage) {
-        await loadTeamProfile(API_BASE);
+    async function hideGlobalLoader(startTime) {
+        if (!startTime) return; // If loader was skipped
+
+        const elapsed = Date.now() - startTime;
+        const minimumDuration = 3000; 
+        const remaining = minimumDuration - elapsed;
+        
+        if (remaining > 0) {
+            await new Promise(r => setTimeout(r, remaining));
+        }
+        
+        // We need to find the loader again - searching broadly or storing ref?
+        // Searching broadly is safer
+        const loaders = document.querySelectorAll('.loader-container');
+        loaders.forEach(l => l.classList.add('hidden'));
+    }
+
+    // --- MAIN ---
+    
+    const loaderStartTime = showGlobalLoader();
+
+    try {
+        if (teamGrid) {
+            // No local loader, strictly global for now as per "middle of the page" request
+            // But we might want to keep the grid clean
+            await loadTeamGrid(teamGrid, API_URL, API_BASE);
+        }
+
+        if (isProfilePage) {
+            await loadTeamProfile(API_BASE);
+        }
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await hideGlobalLoader(loaderStartTime);
     }
 });
 
@@ -31,8 +93,9 @@ async function loadTeamGrid(container, url, baseUrl) {
         const members = data.data;
 
         if (!members || members.length === 0) {
-            container.innerHTML = '<p class="text-center" style="grid-column: 1/-1;">Team members loading...</p>'; 
-            return;
+            // Container empty state handled by hiding loader, maybe show "No members found" text if needed
+             // but strictly, we just return to avoid errors
+             return;
         }
 
         // Clear existing static content if any (optional, or we append)
@@ -51,7 +114,14 @@ async function loadTeamGrid(container, url, baseUrl) {
             
             const card = document.createElement('div');
             card.className = 'team-card';
-            card.setAttribute('data-aos', 'fade-up');
+            
+            // Check session for animation
+            const currentPath = window.location.pathname;
+            const hasVisited = sessionStorage.getItem(`visited_${currentPath}`);
+            if (!hasVisited) {
+                card.setAttribute('data-aos', 'fade-up');
+            }
+
             // Navigate to ../team/index.html from homepage
             card.onclick = () => window.location.href = `../team/index.html?slug=${member.slug}`;
             card.style.cursor = 'pointer';
@@ -65,6 +135,8 @@ async function loadTeamGrid(container, url, baseUrl) {
             `;
             container.appendChild(card);
         });
+        
+        if (typeof AOS !== 'undefined') setTimeout(() => AOS.refresh(), 100);
 
         // Preload images for smoother transition to profile page
         preloadTeamImages(members, baseUrl);

@@ -1,139 +1,196 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const featuredContainer = document.getElementById('featured-article-container');
-    const blogGrid = document.getElementById('full-blog-grid');
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    // --- DOM Elements ---
+    const heroContainer = document.getElementById('hero-article-container');
+    const recentGrid = document.getElementById('recent-articles-grid');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
 
-    const API_URL = 'http://localhost:1337/api/articles?populate=*&sort=date:desc'; 
-
-    let allArticles = [];
-
-    // Helper: Format Date
-    const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString('en-US', {
-            month: 'short', day: 'numeric', year: 'numeric'
-        });
+    // --- LOADER LOGIC ---
+    const showLoader = () => {
+        const loader = document.createElement('div');
+        loader.className = 'loader-container';
+        loader.innerHTML = '<div class="loader"></div>';
+        document.body.appendChild(loader);
+        return Date.now();
     };
 
-    // Helper: Get Image URL
-    const getImageUrl = (article) => {
-        const url = article.cover?.url;
-        return url ? `http://localhost:1337${url}` : '../Images/owl-ci.png';
-    };
-
-    // Function: Render Featured Article
-    const renderFeatured = (article) => {
-        if (!article) return;
+    const hideLoader = async (startTime) => {
+        const elapsed = Date.now() - startTime;
+        const minTime = 3000; // Minimum 3 seconds display time
+        const remaining = minTime - elapsed;
+        if (remaining > 0) await new Promise(r => setTimeout(r, remaining));
         
-        const html = `
-            <div class="featured-card" onclick="window.location.href='../article/index.html?slug=${article.slug}'" style="cursor: pointer;">
-                <img src="${getImageUrl(article)}" alt="${article.title}" class="featured-img">
-                <div class="featured-content">
-                    <span class="featured-badge">${article.category}</span>
-                    <h2>${article.title}</h2>
-                    <div class="featured-meta"><i class="far fa-calendar"></i> ${formatDate(article.date)}</div>
-                    <p>${article.summary}</p>
-                    <a href="../article/index.html?slug=${article.slug}" class="btn btn-primary" style="align-self: flex-start; margin-top: auto;">Read Full Article</a>
+        const loader = document.querySelector('.loader-container');
+        if(loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.remove(), 500);
+        }
+    };
+
+    // Start loader immediately
+    const loaderStartTime = showLoader();
+
+    // --- CONFIG ---
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '';
+    const API_BASE = isLocalhost ? 'http://127.0.0.1:1337' : 'https://cms.rlcadvocates.co.ke'; 
+    const API_URL = `${API_BASE}/api/articles?populate=*&sort=date:desc`; 
+
+    // --- STATE ---
+    let allArticles = [];
+    let recentArticles = []; 
+    let currentPage = 0;
+    const pageSize = 3;
+
+    // --- HELPERS ---
+    const formatDate = (dateString) => new Date(dateString).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    const getImageUrl = (article) => article.cover?.url ? `${API_BASE}${article.cover.url}` : '../Images/owl-ci.png';
+
+    // --- RENDER FUNCTIONS ---
+    
+    // 1. Hero (Latest Article)
+    const renderHero = (article) => {
+        if (!heroContainer) return;
+        
+        // Check session for animation
+        const currentPath = window.location.pathname;
+        const hasVisited = sessionStorage.getItem(`visited_${currentPath}`);
+        const aosAttr = hasVisited ? '' : 'data-aos="fade-right"';
+        const imgAosAttr = hasVisited ? '' : 'data-aos="zoom-in" data-aos-delay="200"';
+
+        heroContainer.innerHTML = `
+            <div class="blog-hero" onclick="window.location.href='../article/index.html?slug=${article.slug}'" style="cursor: pointer;">
+                <div class="blog-hero-img" ${imgAosAttr}>
+                    <img src="${getImageUrl(article)}" alt="${article.title}">
+                </div>
+                <div class="blog-hero-content" ${aosAttr}>
+                    <span class="news-badge">Latest Insight</span>
+                    <span class="hero-read-time"><i class="far fa-clock"></i> 5 min read</span>
+                    <h1>${article.title}</h1>
+                    <p>${article.summary || article.title}</p>
+                    <a href="../article/index.html?slug=${article.slug}" class="hero-link">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         `;
-        featuredContainer.innerHTML = html;
+        
+        if (typeof AOS !== 'undefined' && !hasVisited) {
+            setTimeout(() => AOS.refresh(), 100);
+        }
     };
 
-    // Function: Render Grid
-    const renderGrid = (articles) => {
-        blogGrid.innerHTML = '';
+    // 2. Recent Grid (Paginated)
+    const renderRecentGrid = () => {
+        if (!recentGrid) return;
+        recentGrid.innerHTML = '';
+        
+        const start = currentPage * pageSize;
+        const end = start + pageSize;
+        const pageArticles = recentArticles.slice(start, end);
 
-        if (articles.length === 0) {
-            blogGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); font-size: 1.2rem;">No insights found in this category.</p>';
+        // Check session for animation
+        const currentPath = window.location.pathname;
+        const hasVisited = sessionStorage.getItem(`visited_${currentPath}`);
+
+        if(pageArticles.length === 0) {
+            recentGrid.innerHTML = '<p>No more articles.</p>';
             return;
         }
 
-        articles.forEach((article, index) => {
+        pageArticles.forEach((article, index) => {
+            // Delay: 0, 100, 200
             const delay = index * 100;
-            const cardHtml = `
-                    <div class="blog-card glass-card" data-aos="fade-up" data-aos-delay="${delay}" onclick="window.location.href='../article/index.html?slug=${article.slug}'" style="cursor: pointer;">
-                        <div class="blog-img-wrapper">
-                            <img src="${getImageUrl(article)}" alt="${article.title}">
-                            <div class="blog-date">${formatDate(article.date)}</div>
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-category">${article.category}</div>
-                            <h3>${article.title}</h3>
-                            <p>${article.summary}</p>
-                            <a href="../article/index.html?slug=${article.slug}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                        </div>
+            const aosAttr = hasVisited ? '' : `data-aos="fade-up" data-aos-delay="${delay}"`;
+
+            const html = `
+                <div class="blog-card" ${aosAttr} onclick="window.location.href='../article/index.html?slug=${article.slug}'">
+                    <div class="blog-img-wrapper">
+                        <img src="${getImageUrl(article)}" alt="${article.title}">
                     </div>
+                    <div>
+                        <div class="author-meta">
+                            ${article.author || 'RLC Team'} 
+                            <span class="date-meta">${formatDate(article.date || article.publishedAt)}</span>
+                        </div>
+                        <h3>${article.title}</h3>
+                        <p>${article.summary || article.title}</p>
+                        <a href="../article/index.html?slug=${article.slug}" class="hero-link">
+                           Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             `;
-            blogGrid.innerHTML += cardHtml;
+            recentGrid.innerHTML += html;
         });
+
+        if (typeof AOS !== 'undefined' && !hasVisited) {
+            setTimeout(() => AOS.refresh(), 100);
+        }
+
+        updateControls();
     };
 
-    // Init: Fetch and Render
+    const updateControls = () => {
+        if(prevBtn) prevBtn.disabled = currentPage === 0;
+        if(nextBtn) {
+            const totalPages = Math.ceil(recentArticles.length / pageSize);
+            nextBtn.disabled = currentPage >= totalPages - 1;
+        }
+    };
+
+    // --- BUTTON LISTENERS ---
+    if(prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if(currentPage > 0) {
+                currentPage--;
+                renderRecentGrid();
+            }
+        });
+    }
+
+    if(nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(recentArticles.length / pageSize);
+            if(currentPage < totalPages - 1) {
+                currentPage++;
+                renderRecentGrid();
+            }
+        });
+    }
+
+
+    // --- INIT ---
     try {
         const response = await fetch(API_URL);
+        if(!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
         const data = await response.json();
-        const articles = data.data; // Strapi v5: data is array of objects directly
+        const articles = Array.isArray(data.data) ? data.data : [];
 
         if (articles.length > 0) {
             allArticles = articles;
             
-            // 1. Render Featured (First one)
-            renderFeatured(articles[0]);
+            // 1. Render Hero (Index 0)
+            renderHero(articles[0]);
 
-            // 2. Render Grid (Rest of them)
-            renderGrid(articles.slice(1));
+            // 2. Prepare and Render Recent (The rest)
+            if(articles.length > 1) {
+                recentArticles = articles.slice(1);
+                renderRecentGrid();
+            } else {
+                if(recentGrid) recentGrid.innerHTML = '<p style="color: grey; grid-column: 1/-1;">No additional articles yet.</p>';
+                // Disable next btn if no recent articles
+                if(nextBtn) nextBtn.disabled = true;
+            }
+            
         } else {
-            featuredContainer.innerHTML = '<p style="color:white;">No insights available yet.</p>';
-            blogGrid.innerHTML = '';
+            if(heroContainer) heroContainer.innerHTML = '<p>No insights found.</p>';
         }
+
     } catch (error) {
         console.error('Error fetching articles:', error);
-        featuredContainer.innerHTML = '<p style="color: #ff6b6b;">Unable to load insights.</p>';
-        blogGrid.innerHTML = '';
+        if(heroContainer) heroContainer.innerHTML = '<p style="color: #ff6b6b;">Unable to load insights. Please check connection.</p>';
+    } finally {
+        await hideLoader(loaderStartTime);
     }
-
-    // Filter Logic
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all
-            filterBtns.forEach(b => b.classList.remove('active'));
-            // Add to clicked
-            btn.classList.add('active');
-
-            const category = btn.getAttribute('data-category');
-
-            if (category === 'all') {
-                // Determine if we should show featured + grid slice again?
-                // UX Choice: When filtering "All", let's restore the view: 1 featured, rest in grid.
-                if (allArticles.length > 0) {
-                     // Note: We don't re-render featured here because it never disappears, 
-                     // but if we want consistent filtering behavior (where "All" = everything), 
-                     // maybe "All" just resets to default state.
-                     renderGrid(allArticles.slice(1));
-                }
-            } else {
-                // Filter content
-                // UX Decision: Should filtering include the Featured article in the grid if it matches?
-                // Or just filter the "Grid" part? 
-                // Better UX: Filter EVERYTHING and show in Grid (ignore separate featured block? Or keep featured static?)
-                // Let's keep Featured static for visual stability, and only filter the Grid items from the FULL list (excluding featured or including?)
-                
-                // My Logic: "Real Estate" filter -> Show only Real Estate articles in the grid.
-                const filtered = allArticles.slice(1).filter(art => art.category === category);
-                // Also check if the featured one is NOT in this category, maybe we should swap it? Too complex.
-                // Simple: Just filter the grid list (excluding the 1st article which is featured).
-                
-                // OR: Filter ALL articles and replace the grid with ALL matches.
-                // This allows seeing the featured one in the grid if it matches.
-                // Let's try: Filter allArticles (skipping index 0 to avoid duplicates if we kept featured?)
-                
-                // Current Approach: Static Featured (stays latest), Grid filters the *rest*.
-                renderGrid(allArticles.slice(1).filter(art => {
-                    // Normalize checking (case insensitive if needed, but Strapi is usually consistent)
-                    return art.category === category;
-                }));
-            }
-        });
-    });
-
 });
