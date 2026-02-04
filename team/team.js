@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const API_BASE = isLocalhost ? 'http://127.0.0.1:1337' : 'https://cms.rlcadvocates.co.ke'; 
     const API_URL = `${API_BASE}/api/team-members?populate=*&sort=order:asc`;
 
-    console.log(`RLC Debug: Loading team from ${API_URL}`);
+    console.log(`RLC Team JS Loaded (v2.1 - Bio Fix). Env: ${isLocalhost ? 'Local' : 'Prod'}`);
+    console.log(`Targeting API: ${API_URL}`);
 
     // --- LOADER HELPERS ---
     function showGlobalLoader() {
@@ -195,7 +196,15 @@ async function loadTeamProfile(baseUrl) {
                 return '';
              }).join('');
         } else {
-             bioContent.innerHTML = member.bio || 'No biography available.';
+             // Parse Markdown String
+             const rawBio = member.bio || 'No biography available.';
+             if (typeof marked !== 'undefined') {
+                 bioContent.innerHTML = marked.parse(rawBio);
+             } else {
+                 // Fallback: Convert all newline types to breaks
+                 console.warn('Marked.js not found. Using simple fallback.');
+                 bioContent.innerHTML = rawBio.replace(/(?:\r\n|\r|\n)/g, '<br>');
+             }
         }
 
         // Image

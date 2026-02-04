@@ -1,6 +1,6 @@
 :root {
     /* Color Palette - Premium Dark */
-    --primary-color: #e36414;
+    --primary-color: #FD641F;
     /* Neon Orange */
     --primary-glow: rgba(227, 100, 20, 0.4);
     --bg-dark: #0d1e1e;
@@ -53,7 +53,10 @@ a {
     transition: color var(--transition-speed);
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: var(--font-heading);
 }
 
@@ -175,9 +178,12 @@ section {
 }
 
 .site-header.scrolled {
-    background: var(--bg-dark); /* Solid background */
-    border-bottom: 1px solid var(--border-color); /* Distinct separation */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4); /* Stronger shadow for depth */
+    background: var(--bg-dark);
+    /* Solid background */
+    border-bottom: 1px solid var(--border-color);
+    /* Distinct separation */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    /* Stronger shadow for depth */
 }
 
 .header-container {
@@ -231,7 +237,8 @@ section {
     width: 100%;
 }
 
-.mobile-menu-toggle, .hamburger-menu {
+.mobile-menu-toggle,
+.hamburger-menu {
     display: none;
 }
 
@@ -264,7 +271,8 @@ section {
 }
 
 .footer-logo {
-    height: 60px; /* Adjusted based on recent responsive rule found */
+    height: 60px;
+    /* Adjusted based on recent responsive rule found */
     margin-bottom: 20px;
 }
 
@@ -314,7 +322,7 @@ section {
         width: 95%;
         padding: 0 20px;
     }
-    
+
     .section-title {
         font-size: 2.5rem;
     }
@@ -398,13 +406,27 @@ section {
         opacity: 1;
         transform: translateY(0);
     }
-    
+
     /* Staggered Delay for Menu Items */
-    .main-nav.active li:nth-child(1) a { transition-delay: 0.1s; }
-    .main-nav.active li:nth-child(2) a { transition-delay: 0.2s; }
-    .main-nav.active li:nth-child(3) a { transition-delay: 0.3s; }
-    .main-nav.active li:nth-child(4) a { transition-delay: 0.4s; }
-    .main-nav.active li:nth-child(5) a { transition-delay: 0.5s; }
+    .main-nav.active li:nth-child(1) a {
+        transition-delay: 0.1s;
+    }
+
+    .main-nav.active li:nth-child(2) a {
+        transition-delay: 0.2s;
+    }
+
+    .main-nav.active li:nth-child(3) a {
+        transition-delay: 0.3s;
+    }
+
+    .main-nav.active li:nth-child(4) a {
+        transition-delay: 0.4s;
+    }
+
+    .main-nav.active li:nth-child(5) a {
+        transition-delay: 0.5s;
+    }
 
     .main-nav .btn {
         margin-top: 20px;
@@ -413,8 +435,9 @@ section {
 
 @media (max-width: 480px) {
     .container {
-         padding: 0 15px; 
+        padding: 0 15px;
     }
+
     .section-title {
         font-size: 2rem;
     }
@@ -422,13 +445,17 @@ section {
 
 /* Custom Loader */
 .loader-container {
-    position: fixed; /* Fixed to viewport to ensure centering */
-    top: 90px; /* Offset for Header */
+    position: fixed;
+    /* Fixed to viewport to ensure centering */
+    top: 90px;
+    /* Offset for Header */
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--bg-dark); /* Matches background */
-    z-index: 900; /* Below Header (1000) */
+    background: var(--bg-dark);
+    /* Matches background */
+    z-index: 900;
+    /* Below Header (1000) */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -445,6 +472,7 @@ section {
     aspect-ratio: 1;
     display: grid;
 }
+
 .loader:before,
 .loader:after {
     content: "";
@@ -458,15 +486,34 @@ section {
     background-repeat: no-repeat;
     animation: l12 1s infinite linear;
 }
+
 .loader:after {
     margin: 15px 15px 0 0;
     transform: scale(-1, -1);
 }
+
 @keyframes l12 {
-    0% { background-position: 50% 0, 100% 100%, 0 100%, 0 0; }
-    25% { background-position: 0 0, 100% 50%, 0 100%, 0 0; }
-    50% { background-position: 0 0, 100% 0, 50% 100%, 0 0; }
-    75% { background-position: 0 0, 100% 0, 100% 100%, 0 50%; }
-    75.01% { background-position: 100% 0, 100% 0, 100% 100%, 0 50%; }
-    100% { background-position: 50% 0, 100% 0, 100% 100%, 0 100%; }
+    0% {
+        background-position: 50% 0, 100% 100%, 0 100%, 0 0;
+    }
+
+    25% {
+        background-position: 0 0, 100% 50%, 0 100%, 0 0;
+    }
+
+    50% {
+        background-position: 0 0, 100% 0, 50% 100%, 0 0;
+    }
+
+    75% {
+        background-position: 0 0, 100% 0, 100% 100%, 0 50%;
+    }
+
+    75.01% {
+        background-position: 100% 0, 100% 0, 100% 100%, 0 50%;
+    }
+
+    100% {
+        background-position: 50% 0, 100% 0, 100% 100%, 0 100%;
+    }
 }
