@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=http://localhost:1337/admin">
-    <title>Redirecting to Admin Panel...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to Admin...</title>
     <style>
         body {
             background-color: #0d1e1e;
-            color: white;
+            color: #e36414;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: sans-serif;
+            font-family: 'Satoshi', sans-serif;
+            text-align: center;
         }
+        .loader {
+            border: 4px solid rgba(227, 100, 20, 0.3);
+            border-left-color: #e36414;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
+    <script>
+        // Dynamic Redirect Logic
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const targetUrl = isLocal ? 'http://localhost:1337/admin' : 'https://cms.rlcadvocates.co.ke/admin';
+        
+        // Immediate Redirect
+        window.location.href = targetUrl;
+    </script>
 </head>
-
 <body>
-    <p>Redirecting to Strapi Admin Dashboard...</p>
+    <div class="loader"></div>
+    <p>Redirecting to Strapi Admin...</p>
 </body>
-
 </html>
