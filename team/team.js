@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!startTime) return; // If loader was skipped
 
         const elapsed = Date.now() - startTime;
-        const minimumDuration = 3000; 
+        const minimumDuration = 1000; 
         const remaining = minimumDuration - elapsed;
         
         if (remaining > 0) {

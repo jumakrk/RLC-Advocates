@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const hideLoader = async (startTime) => {
         const elapsed = Date.now() - startTime;
-        const minTime = 3000; // Minimum 3 seconds display time
+        const minTime = 1000; // Minimum 1 second display time
         const remaining = minTime - elapsed;
         if (remaining > 0) await new Promise(r => setTimeout(r, remaining));
         
