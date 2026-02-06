@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const teamGrid = document.querySelector('.team-grid');
     const tempTeamContainer = document.querySelector('#team-container-dynamic'); // Helper if we want to replace the list
     // Check if we are in the team directory/page
-    const isProfilePage = window.location.pathname.includes('/team/') || window.location.pathname.includes('team/index.html');
+    const isProfilePage = window.location.pathname.includes('/team/') || window.location.pathname.includes('/team/');
 
     // Determine environment
     // If opening file directly (hostname is empty), assume localhost for testing
@@ -124,7 +124,7 @@ async function loadTeamGrid(container, url, baseUrl) {
             }
 
             // Navigate to ../team/index.html from homepage
-            card.onclick = () => window.location.href = `../team/index.html?slug=${member.slug}`;
+            card.onclick = () => window.location.href = `/team/?slug=${member.slug}`;
             card.style.cursor = 'pointer';
 
             card.innerHTML = `
@@ -157,7 +157,7 @@ async function loadTeamProfile(baseUrl) {
     const slug = params.get('slug');
 
     if (!slug) {
-        window.location.href = '../index.html'; // Redirect to home
+        window.location.href = '/'; // Redirect to home
         return;
     }
 

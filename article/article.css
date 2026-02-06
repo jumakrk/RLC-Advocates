@@ -1,7 +1,5 @@
 /* Premium Article Layout */
-body {
-    background-color: #0d1e1e;
-}
+/* Body background handled by global.css */
 
 .article-container {
     max-width: 900px;

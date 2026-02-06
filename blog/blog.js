@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const imgAosAttr = hasVisited ? '' : 'data-aos="zoom-in" data-aos-delay="200"';
 
         heroContainer.innerHTML = `
-            <div class="blog-hero" onclick="window.location.href='../article/index.html?slug=${article.slug}'" style="cursor: pointer;">
+            <div class="blog-hero" onclick="window.location.href='/article/?slug=${article.slug}'" style="cursor: pointer;">
                 <div class="blog-hero-img" ${imgAosAttr}>
                     <img src="${getImageUrl(article)}" alt="${article.title}">
                 </div>
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <span class="hero-read-time"><i class="far fa-clock"></i> 5 min read</span>
                     <h1>${article.title}</h1>
                     <p>${article.summary || article.title}</p>
-                    <a href="../article/index.html?slug=${article.slug}" class="hero-link">
+                    <a href="/article/?slug=${article.slug}" class="hero-link">
                         Read More <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const aosAttr = hasVisited ? '' : `data-aos="fade-up" data-aos-delay="${delay}"`;
 
             const html = `
-                <div class="blog-card" ${aosAttr} onclick="window.location.href='../article/index.html?slug=${article.slug}'">
+                <div class="blog-card" ${aosAttr} onclick="window.location.href='/article/?slug=${article.slug}'">
                     <div class="blog-img-wrapper">
                         <img src="${getImageUrl(article)}" alt="${article.title}">
                     </div>
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                         <h3>${article.title}</h3>
                         <p>${article.summary || article.title}</p>
-                        <a href="../article/index.html?slug=${article.slug}" class="hero-link">
+                        <a href="/article/?slug=${article.slug}" class="hero-link">
                            Read More <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>

@@ -1,0 +1,80 @@
+/* Terms Page Styles */
+
+/* Header Fix */
+.page-header {
+    background-color: var(--bg-dark);
+    padding-top: 150px; /* Clear fixed header */
+    padding-bottom: 50px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+}
+
+.terms-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terms-block {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.terms-block:last-child {
+    border-bottom: none;
+}
+
+.terms-block h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.terms-block p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.terms-block ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.terms-block ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    color: var(--text-muted);
+}
+
+.terms-block ul li::before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .terms-content {
+        padding: 1.5rem;
+    }
+    
+    .page-header {
+        padding-top: 120px;
+    }
+}

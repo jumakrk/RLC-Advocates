@@ -1,7 +1,6 @@
 /* --- 1. HERO SECTION --- */
 .blog-hero-section {
     padding: 120px 0 60px; /* Top padding for fixed header */
-    background: var(--bg-dark);
 }
 
 .blog-hero {
@@ -60,7 +59,7 @@
     font-size: 3rem;
     line-height: 1.2;
     margin-bottom: 20px;
-    font-family: 'Playfair Display', serif;
+    /* font-family: 'Playfair Display', serif; - Removed */
     color: white;
 }
 
@@ -90,7 +89,6 @@
 /* --- 2. RECENT ARTICLES SECTION --- */
 .recent-articles-section {
     padding: 40px 0 100px;
-    background: var(--bg-dark);
 }
 
 .section-header {
@@ -102,7 +100,7 @@
 
 .section-title {
     font-size: 2.5rem;
-    font-family: 'Playfair Display', serif;
+    /* font-family: 'Playfair Display', serif; - Removed */
     color: white;
     margin-bottom: 10px;
 }

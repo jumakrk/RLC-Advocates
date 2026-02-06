@@ -1,7 +1,7 @@
 /* Specific Styles for Team Profile Page */
 .profile-section {
     padding: 150px 0 100px;
-    background: radial-gradient(circle at top right, #1a2e2e 0%, var(--bg-dark) 60%);
+    /* background handled by global body */
     min-height: 100vh;
 }
 
@@ -70,7 +70,7 @@
     font-size: 3rem;
     color: white;
     margin-bottom: 10px;
-    font-family: 'Playfair Display', serif;
+    /* font-family: 'Playfair Display', serif; - Removed to enforce Satoshi */
 }
 
 .profile-role {

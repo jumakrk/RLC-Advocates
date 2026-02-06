@@ -1,0 +1,37 @@
+/* FAQ Page Specific Styles */
+
+/* Header Fix */
+/* Header Fix */
+.page-header {
+    background: linear-gradient(rgba(5, 8, 10, 0.7), rgba(5, 8, 10, 0.9)), url('../Images/faq.jpg');
+    background-size: cover;
+    background-position: center;
+    padding-top: 150px;
+    padding-bottom: 80px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* Specific list styles for FAQ page if needed, otherwise global handles it */
+.faq-answer ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+
+.faq-answer ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.faq-answer ul li::before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}

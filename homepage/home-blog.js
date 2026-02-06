@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const aosAttr = hasVisited ? '' : `data-aos="fade-up" data-aos-delay="${delay}"`;
             
             const cardHtml = `
-                <div class="blog-card glass-card" ${aosAttr} onclick="window.location.href='article/index.html?slug=${article.slug}'" style="cursor: pointer;">
+                <div class="blog-card glass-card" ${aosAttr} onclick="window.location.href='/article/?slug=${article.slug}'" style="cursor: pointer;">
                     <div class="blog-img-wrapper">
                         <img src="${getImageUrl(article)}" alt="${article.title}">
                         <div class="blog-date">${formatDate(article.date || article.publishedAt)}</div>
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="blog-category">${article.category}</span>
                         <h3>${article.title}</h3>
                         <p>${article.summary || article.title}</p>
-                        <a href="article/index.html?slug=${article.slug}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
+                        <a href="/article/?slug=${article.slug}" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             `;
