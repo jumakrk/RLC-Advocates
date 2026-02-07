@@ -1,6 +1,5 @@
-/* Terms Page Styles */
+/* Privacy Policy Page Styles */
 
-/* Header Fix */
 /* Header Fix */
 .page-header {
     background: linear-gradient(rgba(5, 8, 10, 0.7), rgba(5, 8, 10, 0.9)), url('../Images/terms-and-conditions.jpg');
@@ -13,13 +12,19 @@
     z-index: 10;
 }
 
+.page-header h1 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
 .page-header p {
     font-size: 1.1rem;
     color: var(--text-muted);
     margin-top: 10px;
 }
 
-.terms-content {
+/* Reusing terms-content structure for consistency */
+.privacy-content {
     max-width: 900px;
     margin: 0 auto;
     padding: 3rem;
@@ -27,49 +32,43 @@
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.terms-block {
+.privacy-block {
     margin-bottom: 2.5rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-.terms-block:last-child {
+.privacy-block:last-child {
     border-bottom: none;
 }
 
-.terms-block h3 {
+.privacy-block h3 {
     color: var(--primary-color);
     font-size: 1.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
 }
 
-/* Page Header Title */
-.page-header h1 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
-
-.terms-block p {
+.privacy-block p {
     color: var(--text-muted);
     line-height: 1.8;
     margin-bottom: 1rem;
     font-size: 1rem;
 }
 
-.terms-block ul {
+.privacy-block ul {
     list-style: none;
     padding-left: 1rem;
 }
 
-.terms-block ul li {
+.privacy-block ul li {
     position: relative;
     padding-left: 20px;
     margin-bottom: 10px;
     color: var(--text-muted);
 }
 
-.terms-block ul li::before {
+.privacy-block ul li::before {
     content: "•";
     color: var(--primary-color);
     position: absolute;
@@ -79,7 +78,7 @@
 }
 
 @media (max-width: 768px) {
-    .terms-content {
+    .privacy-content {
         padding: 1.5rem;
     }
     

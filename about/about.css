@@ -8,6 +8,11 @@
     text-align: center;
 }
 
+.page-header h1 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
 .about-detail-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;

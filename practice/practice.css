@@ -8,6 +8,11 @@
     text-align: center;
 }
 
+.page-header h1 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
 .practice-grid-expanded {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

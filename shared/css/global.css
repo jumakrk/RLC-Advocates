@@ -334,7 +334,7 @@ section {
 
 .whatsapp-float:hover {
     transform: scale(1.1);
-    background-color: #128c7e;
+    background-color: #FD641F;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
     color: white;
 }
@@ -553,7 +553,6 @@ section {
     }
 }
 
-/* --- Global Accordion Styles (Redesigned) --- */
 /* --- New FAQ Grid Design (Static, 2-Column, Blue Icons) --- */
 .faq-grid-section {
     max-width: 1100px;
@@ -587,8 +586,6 @@ section {
     margin-top: -5px; /* Slight optical adjustment */
 }
 
-/* Hover effect removed as requested */
-
 .faq-content h3 {
     font-size: 1.15rem;
     color: var(--text-light);
@@ -601,6 +598,22 @@ section {
 .faq-content p {
     color: var(--text-muted);
     font-size: 0.95rem;
+}
+
+/* Custom Read All Button for FAQ Section */
+#faq-preview .btn-outline {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px var(--primary-glow); /* Base glow */
+}
+
+#faq-preview .btn-outline:hover {
+    background-color: #ff7b29;
+    box-shadow: 0 0 40px var(--primary-glow); /* Stronger hover glow */
+    transform: translateY(-2px) scale(1.02);
+}
     line-height: 1.7;
     margin-bottom: 15px;
 }
