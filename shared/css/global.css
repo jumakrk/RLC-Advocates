@@ -30,7 +30,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Satoshi', sans-serif; /* Enforce site-wide */
+    font-family: 'Satoshi', sans-serif;
+    /* Enforce site-wide */
 }
 
 html {
@@ -41,7 +42,8 @@ html {
 
 body {
     font-family: var(--font-body);
-    background: var(--bg-dark); /* Fallback */
+    background: var(--bg-dark);
+    /* Fallback */
     background-image: var(--bg-gradient);
     background-attachment: fixed;
     color: var(--text-light);
@@ -90,10 +92,10 @@ img {
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid transparent;
-    border-image: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%) 1;
+    border-image: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%) 1;
     /* Fallback border for browsers that don't support border-image closely with radius */
-    border: 1px solid rgba(255, 255, 255, 0.05); 
-    
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
     border-radius: 16px;
     padding: 30px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -301,7 +303,8 @@ section {
 
 .footer-col ul li a:hover {
     color: var(--primary-color);
-    padding-left: 8px; /* Slide effect */
+    padding-left: 8px;
+    /* Slide effect */
     text-shadow: 0 0 10px rgba(253, 100, 31, 0.3);
 }
 
@@ -563,7 +566,8 @@ section {
 .faq-grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 50px; /* Generous spacing */
+    gap: 50px;
+    /* Generous spacing */
 }
 
 .faq-grid-item {
@@ -575,7 +579,8 @@ section {
 .faq-icon {
     flex-shrink: 0;
     font-size: 2rem;
-    color: #0047AB; /* Cobalt Blue */
+    color: #0047AB;
+    /* Cobalt Blue */
     background: rgba(0, 71, 171, 0.1);
     width: 50px;
     height: 50px;
@@ -583,7 +588,8 @@ section {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    margin-top: -5px; /* Slight optical adjustment */
+    margin-top: -5px;
+    /* Slight optical adjustment */
 }
 
 .faq-content h3 {
@@ -598,6 +604,8 @@ section {
 .faq-content p {
     color: var(--text-muted);
     font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
 }
 
 /* Custom Read All Button for FAQ Section */
@@ -606,16 +614,15 @@ section {
     color: white;
     border: none;
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px var(--primary-glow); /* Base glow */
+    box-shadow: 0 0 20px var(--primary-glow);
+    /* Base glow */
 }
 
 #faq-preview .btn-outline:hover {
     background-color: #ff7b29;
-    box-shadow: 0 0 40px var(--primary-glow); /* Stronger hover glow */
+    box-shadow: 0 0 40px var(--primary-glow);
+    /* Stronger hover glow */
     transform: translateY(-2px) scale(1.02);
-}
-    line-height: 1.7;
-    margin-bottom: 15px;
 }
 
 .faq-content ul {
@@ -633,7 +640,8 @@ section {
 
 .faq-content ul li::before {
     content: "•";
-    color: #0047AB; /* Cobalt Blue */
+    color: #0047AB;
+    /* Cobalt Blue */
     position: absolute;
     left: 0;
     font-weight: bold;
@@ -644,7 +652,7 @@ section {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
     .faq-grid-item {
         gap: 15px;
     }

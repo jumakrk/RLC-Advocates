@@ -2,7 +2,7 @@
 
 /* Header Fix */
 .page-header {
-    background: linear-gradient(rgba(5, 8, 10, 0.7), rgba(5, 8, 10, 0.9)), url('../Images/terms-and-conditions.jpg');
+    background: linear-gradient(rgba(5, 8, 10, 0.7), rgba(5, 8, 10, 0.9)), url('../Images/privacy-policy.jpg');
     background-size: cover;
     background-position: center;
     padding-top: 150px; /* Clear fixed header */
