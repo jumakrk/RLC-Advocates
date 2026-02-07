@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting to Admin...</title>
+    <link rel="stylesheet" href="../shared/css/global.css?v=2.2">
     <style>
         body {
             background-color: #0d1e1e;
@@ -15,29 +16,47 @@
             height: 100vh;
             font-family: 'Satoshi', sans-serif;
             text-align: center;
+            margin: 0;
+            overflow: hidden;
         }
-        .loader {
-            border: 4px solid rgba(227, 100, 20, 0.3);
-            border-left-color: #e36414;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
+        
+        .loader-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Override global loader color if needed, but global uses orange vars already */
+        
+        p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
     </style>
     <script>
         // Dynamic Redirect Logic
         const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         const targetUrl = isLocal ? 'http://localhost:1337/admin' : 'https://cms.rlcadvocates.co.ke/admin';
         
-        // Immediate Redirect
-        window.location.href = targetUrl;
+        // Redirect after 5 seconds
+        setTimeout(() => {
+            window.location.href = targetUrl;
+        }, 5000);
     </script>
 </head>
 <body>
-    <div class="loader"></div>
-    <p>Redirecting to Strapi Admin...</p>
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+        <p>Redirecting to Admin Panel...</p>
+    </div>
 </body>
 </html>
