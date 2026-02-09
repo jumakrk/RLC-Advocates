@@ -1,200 +1,339 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Insight | RLC Advocates</title>
-    <meta name="description" content="Legal insights and articles from RLC Advocates.">
-    <link rel="stylesheet" href="../shared/css/global.css?v=2.2">
-    <link rel="stylesheet" href="article.css?v=2.2">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Specific Styles moved to article.css -->
+    
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="../shared/js/tailwind-config.js?v=2.2"></script>
+    <link rel="stylesheet" href="../shared/css/global.css?v=2.2" />
+    <link rel="stylesheet" href="article.css?v=2.2" />
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="../Images/owl-ci.png">
 </head>
 
-<body>
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container header-container">
-            <div class="logo">
-                <a href="/"><img src="../Images/rlc-white-logo.png" alt="RLC Logo"></a>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about/">About</a></li>
-                    <li><a href="/practice/">Practice Areas</a></li>
-                    <li><a href="/team/">Team</a></li>
-                    <li><a href="/blog/">Insights</a></li>
-                    <li><a href="/#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
-                </ul>
-            </nav>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-display transition-colors duration-200">
+    <!-- Reading Progress Bar -->
+    <div id="progress-bar" class="fixed top-0 left-0 w-0 h-1 z-[60] bg-accent-blue transition-all duration-100"></div>
 
-            <div class="hamburger-menu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+    <div class="relative flex min-h-screen flex-col overflow-x-hidden pt-[80px]">
+    <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md">
+        <div class="max-w-[90%] mx-auto flex items-center justify-between">
+            <a href="/index.html" class="flex items-center">
+                <img src="/Images/rlc-small-logo.png" alt="RLC Logo" class="h-10">
+            </a>
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold">
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/index.html">Home</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/about/index.html">About</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/practice/index.html">Services</a>
+                <a class="text-accent-orange" href="/blog/index.html">Blog</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/team/index.html">Team</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/contact/index.html">Contact</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="/contact/index.html" class="hidden lg:block bg-accent-orange hover:bg-accent-blue text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-accent-orange/20">
+                    Free Consultation
+                </a>
+                <button class="mobile-toggle lg:hidden text-primary pt-1">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
             </div>
         </div>
     </header>
 
-
-
-    <div id="article-container" style="display: none;">
-        <article class="article-container">
-            <!-- Header -->
-            <header class="article-header">
-                <!-- Orange Badge for Category -->
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <span id="article-category"
-                        style="background-color: var(--primary-color); color: white; padding: 6px 16px; border-radius: 50px; text-transform: uppercase; font-size: 0.75rem; font-weight: 700; letter-spacing: 1px;">Category</span>
-                </div>
-
-                <h1 class="entry-title" id="article-title">Title Here</h1>
-
-                <div class="entry-meta">
-                    <span><i class="far fa-calendar"></i> <span id="article-date">Oct 12, 2025</span></span>
-                    <span><span style="opacity: 0.5; margin: 0 10px;">|</span> <i class="far fa-user"></i> RLC
-                        Advocates</span>
-                </div>
-            </header>
-
-            <!-- Featured Image -->
-            <div class="featured-image-wrapper">
-                <img id="article-cover" src="" alt="Cover Image">
-            </div>
-
-            <!-- Content -->
-            <div class="article-content" id="article-body">
-                <!-- Injected Content -->
-            </div>
-
-            <!-- Footer -->
-            <div class="article-footer">
-                <a href="/blog/" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Insights</a>
-                <div class="share-links">
-                    <span
-                        style="color:var(--text-muted); margin-right: 15px; align-self:center; font-size:0.9rem;">Share
-                        this article</span>
-                    <a href="#" class="share-icon"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="share-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="share-icon"><i class="fab fa-facebook-f"></i></a>
-                </div>
-            </div>
-        </article>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center gap-8 text-primary p-6">
+        <button class="mobile-toggle absolute top-6 right-6 text-primary font-bold">
+            <span class="material-symbols-outlined text-4xl">close</span>
+        </button>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/index.html">Home</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/about/index.html">About</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/practice/index.html">Services</a>
+        <a class="text-2xl font-bold text-accent-orange" href="/blog/index.html">Blog</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/team/index.html">Team</a>
+        <a class="text-2xl text-accent-orange font-black" href="/contact/index.html">Free Consultation</a>
     </div>
 
-    <footer
-        style="text-align: center; padding: 4rem 2rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 0.9rem;">
-        <p>&copy; 2026 RLC Advocates. All Rights Reserved.</p>
-    </footer>
+        <main class="flex-1 max-w-[90%] mx-auto w-full px-4 md:px-10 py-10 lg:py-16">
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8">
+                <a class="hover:text-accent-blue" href="/index.html">Home</a>
+                <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <a class="hover:text-accent-blue" href="/blog/index.html">Insights</a>
+                <span class="material-symbols-outlined text-xs">chevron_right</span>
+                <span id="breadcrumb-category" class="text-primary dark:text-white font-medium">Article</span>
+            </nav>
 
-    <script src="../shared/js/global.js?v=2.2"></script> <!-- Core Interactivity (Sticky Header, Mobile Menu) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12" id="article-view" style="opacity: 0;">
+                <!-- Article Section -->
+                <article class="lg:col-span-8">
+                    <h1 id="article-title" class="text-3xl md:text-5xl font-extrabold text-primary dark:text-white leading-tight mb-8">
+                        Loading Insight...
+                    </h1>
+
+                    <!-- Author & Info -->
+                    <div class="flex items-center gap-4 mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
+                        <div class="h-14 w-14 rounded-full overflow-hidden bg-gray-200 border-2 border-accent-blue flex items-center justify-center">
+                            <span class="material-symbols-outlined text-accent-blue text-3xl">person</span>
+                        </div>
+                        <div>
+                            <p id="article-author" class="text-lg font-bold text-primary dark:text-white leading-none">RLC Team</p>
+                            <p class="text-sm text-gray-500 mt-1"><span id="article-date">Oct 24, 2026</span> • <span id="read-time">5 min read</span></p>
+                            <div class="flex gap-2 mt-2">
+                                <span id="article-category-badge" class="bg-accent-blue/10 text-accent-blue text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">LEGAL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Featured Image -->
+                    <div class="mb-12" id="featured-image-wrapper">
+                        <img id="article-cover" alt="Insight Cover" class="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-lg" src="" />
+                    </div>
+
+                    <!-- Article Content -->
+                    <div id="article-body" class="article-content prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
+                        <!-- Content Injected Here -->
+                    </div>
+
+                    <!-- Share Section -->
+                    <div class="mt-16 flex items-center justify-between py-6 border-t border-b border-gray-200 dark:border-gray-800">
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm font-bold uppercase tracking-widest text-gray-400">Share This Article</span>
+                            <div class="flex gap-2">
+                                <a href="#" class="p-2 bg-gray-100 dark:bg-gray-800 hover:bg-accent-blue hover:text-white rounded-full transition-colors">
+                                    <span class="material-symbols-outlined text-sm">link</span>
+                                </a>
+                                <a href="#" class="p-2 bg-gray-100 dark:bg-gray-800 hover:bg-accent-blue hover:text-white rounded-full transition-colors">
+                                    <span class="material-symbols-outlined text-sm">mail</span>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="/blog/index.html" class="text-sm font-bold text-accent-orange flex items-center gap-2">
+                            <span class="material-symbols-outlined">arrow_back</span> Back to Blog
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Sidebar -->
+                <aside class="lg:col-span-4 space-y-12">
+                    <!-- Related Insights Card (Static Template for UI) -->
+                    <div class="bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                        <h4 class="text-xl font-bold text-primary dark:text-white mb-6 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-accent-blue">description</span>
+                            Latest Insights
+                        </h4>
+                        <div class="space-y-8" id="related-insights-container">
+                            <p class="text-xs text-gray-500">More insights loading shortly...</p>
+                        </div>
+                        <a href="/blog/index.html" class="block w-full mt-8 py-3 text-center border-2 border-primary text-primary dark:border-white dark:text-white font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
+                            View All Insights
+                        </a>
+                    </div>
+
+                    <!-- Newsletter CTA -->
+                    <div class="bg-primary text-white p-8 rounded-xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 opacity-10">
+                            <span class="material-symbols-outlined text-[160px]">mail</span>
+                        </div>
+                        <h4 class="text-2xl font-bold mb-4 relative z-10">Stay Informed</h4>
+                        <p class="text-gray-300 text-sm mb-6 relative z-10 leading-relaxed">
+                            Subscribe to the RLC Legal Brief for expert analysis and regulatory updates.
+                        </p>
+                        <form class="space-y-4 relative z-10">
+                            <input class="w-full bg-white/10 border-white/20 rounded-lg px-4 py-3 text-sm focus:ring-accent-orange focus:border-accent-orange placeholder:text-gray-400" placeholder="Your work email" type="email" />
+                            <button class="w-full bg-accent-orange hover:bg-orange-600 text-white font-bold py-3 rounded-lg shadow-lg transition-all">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </aside>
+            </div>
+        </main>
+
+    <footer class="bg-primary text-white pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-[90%] mx-auto px-6 md:px-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Branding -->
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="/Images/rlc-white-logo.png" alt="RLC Advocates Logo" class="h-10">
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Providing premier legal services since 2024. Your success and legal protection are our highest priorities.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="w-10 h-10 bg-white/5 flex items-center justify-center rounded-lg hover:bg-accent-blue transition-colors" href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                        </a>
+                        <a class="w-10 h-10 bg-white/5 flex items-center justify-center rounded-lg hover:bg-accent-blue transition-colors" href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- Practice Areas -->
+                <div>
+                    <h5 class="text-lg font-bold mb-6">Practice Areas</h5>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Corporate Law</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Criminal Defense</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Family Law</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Intellectual Property</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Real Estate</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Us -->
+                <div>
+                    <h5 class="text-lg font-bold mb-6">Contact Us</h5>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-accent-blue">location_on</span>
+                            <span>RLC Advocates LLP<br/>Nairobi, Kenya</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent-blue">call</span>
+                            <span>+254 207 800 800</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent-blue">mail</span>
+                            <span>office@rlcadvocates.co.ke</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Newsletter -->
+                <div>
+                    <h5 class="text-lg font-bold mb-6">Newsletter</h5>
+                    <p class="text-gray-400 text-sm mb-4">Stay updated with legal news and firm insights.</p>
+                    <div class="flex flex-col gap-2">
+                        <input class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-accent-blue transition-colors" placeholder="Your Email" type="email" />
+                        <button class="bg-accent-blue hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-sm transition-colors">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>&copy; <span id="current-year">2026</span> RLC Advocates. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="/privacy/index.html">Privacy Policy</a>
+                    <a class="hover:text-white transition-colors" href="/terms/index.html">Terms and Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../shared/js/global.js?v=2.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-             // --- LOADER HELPERS ---
-            function showGlobalLoader() {
-                // We don't need to target a container anymore with fixed positioning, just append to body
-                let loader = document.querySelector('.loader-container');
-                if (!loader) {
-                    loader = document.createElement('div');
-                    loader.className = 'loader-container';
-                    loader.innerHTML = '<div class="loader"></div>';
-                    document.body.appendChild(loader);
-                }
-                loader.classList.remove('hidden');
-                return Date.now();
-            }
-
-            async function hideGlobalLoader(startTime) {
-                const elapsed = Date.now() - startTime;
-                const minimumDuration = 1000; 
-                const remaining = minimumDuration - elapsed;
-                
-                if (remaining > 0) {
-                    await new Promise(r => setTimeout(r, remaining));
-                }
-                
-                const loader = document.querySelector('.loader-container');
-                if (loader) loader.classList.add('hidden');
-            }
-
-            // Start loader
-            const loaderStartTime = showGlobalLoader();
-
             const params = new URLSearchParams(window.location.search);
             const slug = params.get('slug');
 
-            // Determine environment
+            // --- LOADER ---
+            const progressBar = document.getElementById('progress-bar');
+            const viewContainer = document.getElementById('article-view');
+
+            // --- CONFIG ---
             const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '';
             const API_BASE = isLocalhost ? 'http://127.0.0.1:1337' : 'https://cms.rlcadvocates.co.ke'; 
 
             if (!slug) {
-                window.location.href = '/blog/';
+                window.location.href = '/blog/index.html';
                 return;
             }
 
-            try {
-                // Ensure article-container is hidden initially (except header/footer are outside)
-                const container = document.getElementById('article-container');
-                if(container) container.style.display = 'none';
+            // Scroll Progress Logic
+            window.onscroll = () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                progressBar.style.width = scrolled + "%";
+            };
 
+            try {
                 const response = await fetch(`${API_BASE}/api/articles?filters[slug][$eq]=${slug}&populate=*`);
                 const data = await response.json();
 
                 if (!data.data || data.data.length === 0) {
-                     document.body.innerHTML += '<p style="text-align:center; padding-top: 150px;">Article not found or unpublished.</p>';
+                     document.body.innerHTML += '<p style="text-align:center; padding-top: 150px;">Article not found.</p>';
                      return;
                 }
 
                 const article = data.data[0];
 
-                // Populate
+                // Populate Fields
                 document.title = `${article.title} | RLC Advocates`;
                 document.getElementById('article-title').innerText = article.title;
-                document.getElementById('article-category').innerText = article.category;
-                // Use publishedAt if date is missing, fallback to current date
+                document.getElementById('article-author').innerText = article.author || 'RLC Team';
+                
+                const cat = article.category || 'Legal Insight';
+                document.getElementById('breadcrumb-category').innerText = cat;
+                document.getElementById('article-category-badge').innerText = cat;
+
                 const dateStr = article.date || article.publishedAt || new Date().toISOString();
-                document.getElementById('article-date').innerText = new Date(dateStr).toLocaleDateString();
+                document.getElementById('article-date').innerText = new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
                 if (article.cover?.url) {
                     document.getElementById('article-cover').src = `${API_BASE}${article.cover.url}`;
                     document.getElementById('article-cover').alt = article.title;
                 } else {
-                    document.querySelector('.featured-image-wrapper').style.display = 'none'; 
+                    document.getElementById('featured-image-wrapper').style.display = 'none'; 
                 }
 
                 // Render Content
+                const bodyContainer = document.getElementById('article-body');
                 if (typeof article.content === 'string') {
-                    document.getElementById('article-body').innerHTML = marked.parse(article.content);
-                } else {
-                    // Block Renderer Fallback
-                    const html = article.content.map(block => {
-                        if (block.type === 'paragraph') return `<p>${block.children[0].text}</p>`;
-                        if (block.type === 'heading') return `<h3>${block.children[0].text}</h3>`;
+                    bodyContainer.innerHTML = marked.parse(article.content);
+                } else if (Array.isArray(article.content)) {
+                    bodyContainer.innerHTML = article.content.map(block => {
+                        if (block.type === 'paragraph') return `<p>${block.children.map(c => c.text).join('')}</p>`;
+                        if (block.type === 'heading') {
+                            const level = block.level || 3;
+                            return `<h${level}>${block.children.map(c => c.text).join('')}</h${level}>`;
+                        }
                         if (block.type === 'list') {
                             const tag = block.format === 'ordered' ? 'ol' : 'ul';
-                            const items = block.children.map(item => `<li>${item.children[0].text}</li>`).join('');
+                            const items = block.children.map(item => `<li>${item.children.map(c => c.text).join('')}</li>`).join('');
                             return `<${tag}>${items}</${tag}>`;
                         }
                         return '';
                     }).join('');
-                    document.getElementById('article-body').innerHTML = html;
                 }
                 
-                if(container) container.style.display = 'block';
+                // Show content with fade
+                viewContainer.style.transition = 'opacity 0.5s ease';
+                viewContainer.style.opacity = '1';
+
+                // Load sidebar articles (limited)
+                loadSidebarArticles(API_BASE);
 
             } catch (error) {
                 console.error(error);
-            } finally {
-                // Remove the old simple loader if it exists
-                const simpleLoader = document.getElementById('loading');
-                if(simpleLoader) simpleLoader.style.display = 'none';
-                
-                await hideGlobalLoader(loaderStartTime);
+                document.getElementById('article-title').innerText = "Unable to load article.";
             }
         });
+
+        async function loadSidebarArticles(apiBase) {
+            try {
+                const response = await fetch(`${apiBase}/api/articles?pagination[limit]=3&sort=publishedAt:desc`);
+                const data = await response.json();
+                const container = document.getElementById('related-insights-container');
+                
+                if (data.data && data.data.length > 0) {
+                    container.innerHTML = data.data.map(item => `
+                        <div class="group cursor-pointer" onclick="window.location.href='/article/?slug=${item.slug}'">
+                            <span class="text-[10px] font-bold text-accent-orange uppercase tracking-widest">${item.category || 'Insight'}</span>
+                            <h5 class="font-bold text-primary dark:text-white group-hover:text-accent-blue transition-colors mt-1 leading-tight">${item.title}</h5>
+                            <p class="text-xs text-gray-500 mt-2">5 min read • By ${item.author || 'RLC Team'}</p>
+                        </div>
+                    `).join('');
+                }
+            } catch (e) { console.error(e); }
+        }
     </script>
 </body>
 

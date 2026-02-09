@@ -1,0 +1,29 @@
+/* Contact Page Specific Styles */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.contact-hero {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.contact-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 30, 30, 0.7);
+}
+
+.contact-form-container {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.contact-detail-card:hover .icon-box {
+    transform: scale(1.1);
+}
+
+.icon-box {
+    transition: transform 0.3s ease;
+}

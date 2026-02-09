@@ -1,396 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RLC Advocates | Premier Legal Services Nairobi</title>
-    <meta name="description"
-        content="RLC Advocates LLP is a premier law firm in Nairobi, Kenya, offering expert legal counsel in Corporate Law, Real Estate, Intellectual Property, and Dispute Resolution.">
-    <meta name="keywords"
-        content="Law Firm Nairobi, Lawyers Kenya, Corporate Law, Real Estate Lawyers, IP Rights, Legal Services Nairobi, Advocates Kenya">
-    <meta name="author" content="RLC Advocates LLP">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rlcadvocates.co.ke/">
-    <meta property="og:title" content="RLC Advocates | Premier Legal Services Nairobi">
-    <meta property="og:description"
-        content="Discover world-class legal solutions with RLC Advocates. Trusted by corporations and individuals for integrity and precision.">
-    <meta property="og:image" content="Images/lady_justice_1-scaled.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://rlcadvocates.co.ke/">
-    <meta property="twitter:title" content="RLC Advocates | Premier Legal Services Nairobi">
-    <meta property="twitter:description"
-        content="Discover world-class legal solutions with RLC Advocates. Trusted by corporations and individuals for integrity and precision.">
-    <meta property="twitter:image" content="Images/lady_justice_1-scaled.jpg">
-    <link rel="stylesheet" href="shared/css/global.css?v=2.2">
-    <link rel="stylesheet" href="homepage/homepage.css?v=2.2">
-    <!-- Google Fonts: Playfair Display for Headings -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Fontshare: Satoshi Font -->
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS Scroll Library (Better for content animations) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- Three.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>RLC Advocates | Expert Legal Solutions</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="RLC Advocates LLP is a premier legal services firm offering top-tier consultancy and representation.">
+    
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="shared/js/tailwind-config.js?v=2.2"></script>
+    <link rel="stylesheet" href="shared/css/global.css?v=2.2" />
+    <link rel="stylesheet" href="homepage/homepage.css?v=2.2" />
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="Images/owl-ci.png">
 </head>
 
-<body>
-    <!-- 3D Scroll Canvas -->
-    <div id="webgl-container"></div>
-
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container header-container">
-            <div class="logo">
-                <a href="/"><img src="Images/rlc-white-logo.png" alt="RLC Logo"></a>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/about/index.html">About</a></li>
-                    <li><a href="/practice/index.html">Practice Areas</a></li>
-                    <li><a href="/team/index.html">Team</a></li>
-                    <li><a href="/blog/index.html">Insights</a></li>
-                    <li><a href="/index.html#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
-                </ul>
+<body class="bg-background-light dark:bg-background-dark text-primary dark:text-white font-display">
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md">
+        <div class="max-w-[90%] mx-auto flex items-center justify-between">
+            <a href="/index.html" class="flex items-center">
+                <img src="/Images/rlc-small-logo.png" alt="RLC Logo" class="h-10">
+            </a>
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold">
+                <a class="text-accent-orange" href="/index.html">Home</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/about/index.html">About</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/practice/index.html">Services</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/blog/index.html">Blog</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/team/index.html">Team</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/contact/index.html">Contact</a>
             </nav>
-
-            <div class="hamburger-menu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+            <div class="flex items-center gap-4">
+                <a href="/contact/index.html" class="hidden lg:block bg-accent-orange hover:bg-accent-blue text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-accent-orange/20">
+                    Free Consultation
+                </a>
+                <button class="mobile-toggle lg:hidden text-primary pt-1">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- split Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-text" data-aos="fade-right">
-                    <span class="section-label">TRUSTED LEGAL EXCELLENCE</span>
-                    <h1>Expert <span class="text-primary">Legal</span> <br>Counsel</h1>
-                    <p>RLC Advocates LLP is a premier law firm dedicated to delivering sophisticated legal solutions
-                        with integrity and precision.</p>
-                    <a href="https://calendly.com/" target="_blank" class="btn btn-primary">Schedule Consultation</a>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center gap-8 text-primary p-6">
+        <button class="mobile-toggle absolute top-6 right-6 text-primary">
+            <span class="material-symbols-outlined text-4xl">close</span>
+        </button>
+        <a class="text-2xl font-bold text-accent-orange" href="/index.html">Home</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/about/index.html">About</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/practice/index.html">Services</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/blog/index.html">Blog</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/team/index.html">Team</a>
+        <a class="text-2xl text-accent-orange font-black" href="/contact/index.html">Free Consultation</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative mt-[80px] min-h-[500px] lg:h-[85vh] lg:min-h-[600px] flex items-center overflow-hidden py-12 lg:py-0">
+        <div class="absolute inset-0 bg-primary/70 z-10"></div>
+        <img alt="Modern Law Office Interior" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0J8ZCK9TaxeP_4nkvaaWXAdxAWCN7sWGfhkBzTulJkL_o-UwJ3YIogAkqhvobCOPDgy24yJ31AzZ-kt1DT1ymKiz3I5_bYEW0p1vmtgbrmFKG_vsu4g1waNxAecvWtpA3JLxjaY74vQtYLcKwXpfychgf4WpANqSDN734_3ytQBEAMyBMOZoUjV62e8L0s788VS75E1U_bhaCFpOnhEs5YEXNmB1h4Abt7veotQAZn5bUOZau1Ax-mtR9UBcSXVqnnO9bWmpip-CP" />
+        <div class="relative z-20 max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8 text-white">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-secondary/30 backdrop-blur-sm border border-secondary/50 px-3 py-1 rounded-full mb-6">
+                    <span class="material-symbols-outlined text-sm">verified</span>
+                    <span class="text-xs font-bold uppercase tracking-wider">Trusted Legal Excellence</span>
                 </div>
-                <div class="hero-image-container" data-aos="zoom-in" data-aos-delay="200">
-                    <!-- Circular Owl Image -->
-                    <img src="Images/owl-ci.png" alt="Owl Wisdom" class="hero-owl">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-collage">
-                    <!-- New 4-Image Grid with Converging Animations -->
-                    <img src="Images/pexels-ekaterina-bolovtsova-6077124-1-scaled.jpg" class="collage-img c-img-1"
-                        alt="Legal Consultation" data-aos="fade-down-right" data-aos-delay="0">
-
-                    <img src="Images/pexels-olia-danilevich-5313170-1-scaled.jpg" class="collage-img c-img-2"
-                        alt="Signing Contract" data-aos="fade-down-left" data-aos-delay="200">
-
-                    <img src="Images/pexels-ekaterina-bolovtsova-6077961-1-scaled.jpg" class="collage-img c-img-3"
-                        alt="Legal Review" data-aos="fade-up-right" data-aos-delay="400">
-
-                    <img src="Images/lady_justice_1-scaled.jpg" class="collage-img c-img-4" alt="Justice"
-                        data-aos="fade-up-left" data-aos-delay="600">
-                </div>
-                <div class="about-content" data-aos="fade-left" data-aos-delay="200">
-                    <span class="section-label">About Us</span>
-                    <h2 class="section-title">Who We Are</h2>
-                    <p style="color: var(--text-muted); margin-bottom: 20px;">RLC Advocates LLP is a premier legal
-                        services firm located in Nairobi, Kenya. We combine deep local knowledge with global standards
-                        to deliver exceptional results.</p>
-                    <p style="color: var(--text-muted); margin-bottom: 30px;">Our approach is client-focused, ensuring
-                        that every legal
-                        strategy is tailored to your unique needs.</p>
-                    <a href="/about/" class="btn btn-primary">Learn More</a>
+                <h1 class="text-4xl md:text-7xl font-black leading-[1.1] mb-4 md:mb-6 tracking-tight">
+                    Expert Legal Solutions <br /><span class="text-cta">For Your Success</span>
+                </h1>
+                <p class="text-base md:text-xl text-gray-200 mb-6 md:mb-10 leading-relaxed font-light">
+                    Dedicated to providing legal services with integrity and excellence. We offer tailored solutions to ensure your success in every legal matter, backed by decades of courtroom experience.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="/practice/index.html" class="bg-cta hover:bg-[#e55a1b] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2">
+                        Our Services <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                    <a href="/index.html#contact" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center">
+                        Contact Us
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Practice Areas -->
-    <section id="practice">
-        <div class="container">
-            <div style="text-align: center; max-width: 800px; margin: 0 auto 50px;" data-aos="fade-up">
-                <span class="section-label">What We Do</span>
-                <h2 class="section-title">Our Practice Areas</h2>
-                <p style="color: var(--text-muted); font-size: 1.1rem;">We offer a full spectrum of legal services
-                    designed to meet the unique needs of our clients. From complex corporate transactions to high-stakes
-                    dispute resolution, our team possesses the deep industry knowledge required to deliver superior
-                    results.</p>
+    <!-- Our Services Preview Section -->
+    <section class="py-24 bg-background-light dark:bg-background-dark">
+        <div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-cta font-bold tracking-widest uppercase text-sm mb-3">Professional Expertise</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-primary dark:text-white tracking-tight">Our Core Services</h3>
+                <div class="w-20 h-1.5 bg-secondary mx-auto mt-6 rounded-full"></div>
             </div>
-
-            <div class="practice-grid">
-                <!-- Card 1 -->
-                <div class="glass-card" data-aos="fade-up" data-aos-delay="0">
-                    <img src="Images/Corporate & Commercial.jpg" class="practice-img" alt="Corporate"
-                        decoding="async" width="400" height="250"
-                        style="border-radius: 8px;">
-                    <div class="practice-content">
-                        <h3>Corporate & Commercial</h3>
-                        <p>Comprehensive legal support for business formation, mergers, acquisitions, and strategic
-                            commercial contracts.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Corporate Law -->
+                <div class="bg-white dark:bg-primary/50 p-10 rounded-xl border border-gray-100 dark:border-white/5 hover:border-secondary transition-all group shadow-xl shadow-gray-200/50 dark:shadow-none">
+                    <div class="size-14 bg-secondary/10 dark:bg-secondary/20 rounded-lg flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">corporate_fare</span>
                     </div>
+                    <h4 class="text-2xl font-bold mb-4 text-primary dark:text-white">Corporate Law</h4>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                        Strategic legal advice for businesses and corporations, covering mergers, acquisitions, and compliance strategies.
+                    </p>
                 </div>
-                <!-- Card 2 -->
-                <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <img src="Images/Real Estate & Conveyance law.jpg" class="practice-img" alt="Real Estate"
-                        decoding="async" width="400" height="250"
-                        style="border-radius: 8px;">
-                    <div class="practice-content">
-                        <h3>Real Estate & Conveyance</h3>
-                        <p>Expert guidance on property transactions, land use planning, and large-scale residential
-                            developments.</p>
+                <!-- Litigation -->
+                <div class="bg-white dark:bg-primary/50 p-10 rounded-xl border border-gray-100 dark:border-white/5 hover:border-secondary transition-all group shadow-xl shadow-gray-200/50 dark:shadow-none">
+                    <div class="size-14 bg-secondary/10 dark:bg-secondary/20 rounded-lg flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">gavel</span>
                     </div>
+                    <h4 class="text-2xl font-bold mb-4 text-primary dark:text-white">Litigation</h4>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                        Expert representation in complex civil and criminal disputes, focused on protecting your rights and interests.
+                    </p>
                 </div>
-                <!-- Card 3 -->
-                <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <img src="Images/Dispute Resolution.jpg" class="practice-img" alt="Litigation" 
-                        decoding="async" width="400" height="250"
-                        style="border-radius: 8px;">
-                    <div class="practice-content">
-                        <h3>Dispute Resolution</h3>
-                        <p>Strategic advocacy for commercial litigation, arbitration, and mediation to protect your
-                            interests.</p>
+                <!-- Real Estate -->
+                <div class="bg-white dark:bg-primary/50 p-10 rounded-xl border border-gray-100 dark:border-white/5 hover:border-secondary transition-all group shadow-xl shadow-gray-200/50 dark:shadow-none">
+                    <div class="size-14 bg-secondary/10 dark:bg-secondary/20 rounded-lg flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-3xl">domain</span>
                     </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
-                    <img src="Images/Intellectual Property.jpg" class="practice-img" alt="IP"
-                        decoding="async" width="400" height="250"
-                        style="border-radius: 8px;">
-                    <div class="practice-content">
-                        <h3>Intellectual Property</h3>
-                        <p>Safeguarding your brands, patents, and creative works through robust registration and
-                            enforcement.</p>
-                    </div>
+                    <h4 class="text-2xl font-bold mb-4 text-primary dark:text-white">Real Estate</h4>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                        Comprehensive services for property transactions, land use planning, and commercial development legalities.
+                    </p>
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 50px;" data-aos="fade-up" data-aos-delay="400">
-                <a href="/practice/" class="btn btn-primary">View All Services</a>
+            <div class="mt-16 text-center">
+                <a href="/practice/index.html" class="inline-flex items-center gap-2 text-secondary dark:text-blue-400 hover:text-accent-orange font-black text-lg transition-all duration-500 ease-in-out group">
+                    View All Professional Services 
+                    <span class="material-symbols-outlined group-hover:translate-x-3 transition-transform duration-500 ease-in-out">arrow_forward</span>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team">
-        <div class="container">
-            <div style="text-align: center; max-width: 800px; margin: 0 auto 50px;" data-aos="zoom-in">
-                <span class="section-label">Our Professionals</span>
-                <h2 class="section-title">Meet Our Expert Team</h2>
-                <p style="color: var(--text-muted); font-size: 1.1rem;">Our attorneys are distinguished by their
-                    academic excellence and commitment to legal innovation. We bring together a diverse group of legal
-                    minds dedicated to your success.</p>
+    <!-- About Us Teaser -->
+    <section class="py-24 bg-white dark:bg-primary">
+        <div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2 relative">
+                    <div class="absolute -top-6 -left-6 w-full h-full border-2 border-cta rounded-xl"></div>
+                    <img alt="Principal Partner Lawyer" class="relative z-10 rounded-xl shadow-2xl w-full h-[600px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsUMi5lmR4A9r6JPsng9t9jI6Gvxy9EGdmB6YRDQ1_jJLjLQQ8AQPPMD80onQF_F6VKP-_sLkqTjZ-9hKpl3cQ7hHWAOM3EZaFbO9we43bqarfu7MLFrLMLUD320Z9xW1EWO-aC96dJdap4VPzStPhDbnlxfJf2FG-8UOAco8SE9-O_fn66ySf7VyhL7k6gZDSo1BW7Jyd1r6jJXUGvFW-ds2kFoGx_Q8VL-XYDI7TgaGnGwnvbiWS4oVgy2mzOHFBgWjsQetup_og" />
+                    <div class="absolute -bottom-6 -right-6 bg-secondary p-8 rounded-xl z-20 hidden md:block">
+                        <p class="text-white text-4xl font-black italic">2+</p>
+                        <p class="text-white text-xs uppercase font-bold tracking-widest mt-1">Years of Practice</p>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2">
+                    <h2 class="text-cta font-bold tracking-widest uppercase text-sm mb-3">Our Story</h2>
+                    <h3 class="text-4xl md:text-5xl font-black text-primary dark:text-white mb-8 tracking-tight">A Legacy of Integrity and Proven Results</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+                        Founded in 2024, RLC Advocates has grown from a boutique practice into one of the most respected full-service law firms in the region. Our journey began with a simple mission: to provide high-level legal expertise without compromising on ethics or client care.
+                    </p>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg mb-10 leading-relaxed">
+                        Today, we represent Fortune 500 companies and individuals alike, maintaining a commitment to excellence that has earned us a reputation for winning even the most complex cases through meticulous preparation and strategic insight.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 mb-10">
+                        <div>
+                            <h5 class="text-primary dark:text-white font-bold text-xl mb-2">Our Values</h5>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">Integrity above all, combined with aggressive advocacy for our clients.</p>
+                        </div>
+                        <div>
+                            <h5 class="text-primary dark:text-white font-bold text-xl mb-2">Our Vision</h5>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm">To set the global standard for legal innovation and client satisfaction.</p>
+                        </div>
+                    </div>
+                    <a href="/about/index.html" class="inline-block text-primary dark:text-white font-black text-lg border-b-4 border-secondary hover:border-cta transition-all pb-1">
+                        Meet Our Leadership Team
+                    </a>
+                </div>
             </div>
+        </div>
+    </section>
 
+    <!-- Why Choose Us -->
+    <section class="py-24 bg-primary text-white">
+        <div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl md:text-5xl font-black tracking-tight mb-4">Why Choose RLC Advocates</h3>
+                <p class="text-gray-400 max-w-2xl mx-auto">We combine global standards with local expertise to deliver results that matter.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="text-center group">
+                    <div class="size-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-secondary transition-all">
+                        <span class="material-symbols-outlined text-4xl text-cta group-hover:text-white">workspace_premium</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Unmatched Expertise</h4>
+                    <p class="text-gray-400 leading-relaxed">Our attorneys are leaders in their respective fields, bringing decades of combined experience to every case.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="size-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-secondary transition-all">
+                        <span class="material-symbols-outlined text-4xl text-cta group-hover:text-white">shield_person</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Unwavering Integrity</h4>
+                    <p class="text-gray-400 leading-relaxed">Ethical practice isn't just a requirement; it's the foundation of everything we do and every client relationship.</p>
+                </div>
+                <div class="text-center group">
+                    <div class="size-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-secondary transition-all">
+                        <span class="material-symbols-outlined text-4xl text-cta group-hover:text-white">person_pin_circle</span>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4">Client-Centric</h4>
+                    <p class="text-gray-400 leading-relaxed">We listen first. Every strategy is tailored to your unique goals, ensuring you're informed every step of the way.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section (Dynamic) -->
+    <section class="py-24 bg-background-light dark:bg-background-dark">
+        <div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-cta font-bold tracking-widest uppercase text-sm mb-3">Our Professionals</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-primary dark:text-white tracking-tight">Meet Our Team</h3>
+                <div class="w-20 h-1.5 bg-secondary mx-auto mt-6 rounded-full"></div>
+            </div>
             <div class="team-grid">
-                <!-- Team Members Loaded Dynamically via js/load-team.js -->
-                <p style="text-align: center; grid-column: 1/-1; color: var(--text-muted);">Loading Team...</p>
+                <!-- Loaded Dynamically -->
+                <p class="text-center text-gray-500">Loading Team...</p>
+            </div>
+            <div class="text-center mt-12">
+                <a href="/team/index.html" class="bg-primary dark:bg-accent-blue text-white px-8 py-4 rounded-lg font-bold text-lg hover:opacity-90 transition-all">View All Members</a>
             </div>
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog">
-        <div class="container">
-            <div style="text-align: center; max-width: 800px; margin: 0 auto 50px;" data-aos="fade-up">
-                <span class="section-label">Legal Insights</span>
-                <h2 class="section-title">Latest News & Articles</h2>
-                <p style="color: var(--text-muted); font-size: 1.1rem;">Stay informed with the latest legal trends,
-                    regulatory updates, and expert analysis from our team.</p>
+    <!-- Insights Section (Dynamic) -->
+    <section class="py-24 bg-white dark:bg-primary">
+        <div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-cta font-bold tracking-widest uppercase text-sm mb-3">Legal Insights</h2>
+                <h3 class="text-4xl md:text-5xl font-black text-primary dark:text-white tracking-tight">Latest News & Articles</h3>
+                <div class="w-20 h-1.5 bg-secondary mx-auto mt-6 rounded-full"></div>
             </div>
             <div class="blog-grid" id="home-blog-grid">
-                <!-- Dynamically loaded via homepage/home-blog.js -->
+                <!-- Loaded Dynamically -->
+                <p class="text-center text-gray-500">Loading Latest Insights...</p>
             </div>
-            <!-- View All Button -->
-            <div style="text-align: center; margin-top: 50px;" data-aos="fade-up">
-                <a href="/blog/" class="btn btn-primary" style="color: white; padding: 15px 40px;">View All Insights <i class="fas fa-arrow-right" style="margin-left: 10px;"></i></a>
-            </div>
-        </div>
-    </section>
-
-    </section>
-
-    <!-- FAQ Preview Section (New 2-Column Grid) -->
-    <section id="faq-preview" style="padding: 100px 0;">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 60px;" data-aos="fade-up">
-                <span class="section-label">Common Questions</span>
-                <h2 class="section-title">FAQ</h2>
-            </div>
-            
-            <div class="faq-grid-section">
-                <div class="faq-grid-container">
-                    
-                    <!-- Q1 -->
-                    <div class="faq-grid-item" data-aos="fade-up" data-aos-delay="0">
-                        <div class="faq-icon">
-                            <i class="fas fa-question"></i>
-                        </div>
-                        <div class="faq-content">
-                            <h3>What does RLC bring to its clientele?</h3>
-                            <p>We focus on being a Strategic Legal Counsel for Growth-Focused Businesses by providing practical, business-oriented legal solutions to banks, international investors, and startups operating in Kenya’s dynamic commercial environment.</p>
-                        </div>
-                    </div>
-
-                    <!-- Q2 -->
-                    <div class="faq-grid-item" data-aos="fade-up" data-aos-delay="100">
-                        <div class="faq-icon">
-                            <i class="fas fa-question"></i>
-                        </div>
-                        <div class="faq-content">
-                            <h3>Do you offer initial consultations?</h3>
-                            <p>Yes. We offer an initial consultation to assess your matter and advise on the way forward. This may be offered at no charge or a nominal fee, depending on the nature of the matter.</p>
-                        </div>
-                    </div>
-
-                    <!-- Q3 -->
-                    <div class="faq-grid-item" data-aos="fade-up" data-aos-delay="200">
-                        <div class="faq-icon">
-                            <i class="fas fa-question"></i>
-                        </div>
-                        <div class="faq-content">
-                            <h3>How do you charge for legal services?</h3>
-                            <p>Our fees are guided by the Advocates Remuneration Order. We provide clear fee estimates, flexible billing options, and transparent invoicing throughout your matter.</p>
-                        </div>
-                    </div>
-
-                    <!-- Q4 -->
-                    <div class="faq-grid-item" data-aos="fade-up" data-aos-delay="300">
-                        <div class="faq-icon">
-                            <i class="fas fa-question"></i>
-                        </div>
-                        <div class="faq-content">
-                            <h3>How do I engage your services?</h3>
-                            <p>To get started, simply call us, send an email to office@rlcadvocates.co.ke, or schedule a consultation via our website. Our team will respond within 24 hours.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 50px;" data-aos="fade-up">
-                <a href="/faq/" class="btn btn-outline">Read All FAQs</a>
+            <div class="text-center mt-12">
+                <a href="/blog/index.html" class="bg-cta text-white px-8 py-4 rounded-lg font-bold text-lg hover:brightness-110 transition-all">View All Insights</a>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 40px;" data-aos="zoom-in">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Contact Us</h2>
-            </div>
-
-            <div class="contact-split">
-                <!-- Form -->
-                <form class="contact-form-dark glass-card" data-aos="fade-right">
-                    <h3 style="margin-bottom: 20px; color: white;">Send us a Message</h3>
-                    <input type="text" placeholder="Name">
-                    <input type="email" placeholder="Email">
-                    <textarea rows="5" placeholder="Message"></textarea>
-                    <button class="btn btn-primary">Send</button>
-                </form>
-
-                <!-- Info -->
-                <div class="contact-info-panel glass-card" data-aos="fade-left">
-                    <h3>Our Offices</h3>
-                    <p>Blue Shield Towers, 5th Floor<br>Upperhill Hospital Road, Nairobi, Kenya</p>
-
-                    <h3>Contact Details</h3>
-                    <p>Email: <a href="mailto:office@rlcadvocates.co.ke"
-                            style="color: var(--primary-color);">office@rlcadvocates.co.ke</a></p>
-                    <p>Phone:<br>
-                        <a href="tel:+254207800800"
-                            style="color: var(--primary-color); display: block; margin-top: 5px;">(+254) 207 800 800</a>
-                        <a href="tel:+254115800800" style="color: var(--primary-color); display: block;">(+254) 115 800
-                            800</a>
-                        <a href="tel:+254104800800" style="color: var(--primary-color); display: block;">(+254) 104 800
-                            800</a>
-                    </p>
-
-                    <div class="map-placeholder">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.3962753287249!2d36.81196753876715!3d-1.2992577181507836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10ef38e3f183%3A0x98e221de8ccd444e!2sBlueshield%20Towers!5e0!3m2!1sen!2ske!4v1768959120304!5m2!1sen!2ske"
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Preview Section -->
     </section>
 
     <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid-5">
-                <div class="footer-col">
-                    <img src="Images/rlc-white-logo.png" class="footer-logo">
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">RLC Advocates LLP is a premier legal
-                        services firm offering top-tier consultancy.</p>
+    <footer class="bg-primary text-white pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-[90%] mx-auto px-6 md:px-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Branding -->
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="/Images/rlc-white-logo.png" alt="RLC Advocates Logo" class="h-10">
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Providing premier legal services since 2024. Your success and legal protection are our highest priorities.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="w-10 h-10 bg-white/5 flex items-center justify-center rounded-lg hover:bg-accent-blue transition-colors" href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                        </a>
+                        <a class="w-10 h-10 bg-white/5 flex items-center justify-center rounded-lg hover:bg-accent-blue transition-colors" href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><a href="/faq/index.html">FAQs</a></li>
-                        <li><a href="/privacy/index.html">Privacy Policy</a></li>
-                        <li><a href="/terms/">Terms and Conditions</a></li>
+                <!-- Practice Areas -->
+                <div>
+                    <h5 class="text-lg font-bold mb-6">Practice Areas</h5>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Corporate Law</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Criminal Defense</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Family Law</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Intellectual Property</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Real Estate</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Follow Us</h4>
-                    <ul>
-                        <li><a href="#">LinkedIn</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
+                <!-- Contact Us -->
+                <div>
+                    <h5 class="text-lg font-bold mb-6">Contact Us</h5>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-accent-blue">location_on</span>
+                            <span>RLC Advocates LLP<br/>Nairobi, Kenya</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent-blue">call</span>
+                            <span>+254 207 800 800</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent-blue">mail</span>
+                            <span>office@rlcadvocates.co.ke</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Contact Us</h4>
-                    <ul style="list-style: none;">
-                        <li><a href="#">info@rlcadvocates.co.ke</a></li>
-                        <li><a href="#">+254 700 000000</a></li>
-                    </ul>
+                <!-- Newsletter -->
+                <div>
+                    <h5 class="text-lg font-bold mb-6">Newsletter</h5>
+                    <p class="text-gray-400 text-sm mb-4">Stay updated with legal news and firm insights.</p>
+                    <div class="flex flex-col gap-2">
+                        <input class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-accent-blue transition-colors" placeholder="Your Email" type="email" />
+                        <button class="bg-accent-blue hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-sm transition-colors">Subscribe</button>
+                    </div>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 40px; color: var(--primary-color); font-size: 0.8rem;">
-                &copy; <span id="current-year">2026</span> RLC Advocates LLP. All Rights Reserved.
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>&copy; <span id="current-year">2026</span> RLC Advocates. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="/privacy/index.html">Privacy Policy</a>
+                    <a class="hover:text-white transition-colors" href="/terms/index.html">Terms and Conditions</a>
+                </div>
             </div>
         </div>
-        <script src="shared/js/global.js?v=2.2"></script>
-        <script src="homepage/home-blog.js?v=2.2"></script> <!-- Dynamic Homepage Insights -->
-        <script src="team/team.js?v=2.2"></script> <!-- Dynamic Team Loader -->
-        <script>
-            // Simple Accordion Script for Homepage
-            document.querySelectorAll('.faq-question').forEach(item => {
-                item.addEventListener('click', () => {
-                    const parent = item.parentElement;
-                    parent.classList.toggle('active');
-                });
-            });
-        </script>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="shared/js/global.js?v=2.2"></script>
+    <script src="homepage/home-blog.js?v=2.2"></script>
+    <script src="team/team.js?v=2.2"></script>
 </body>
 
 </html>

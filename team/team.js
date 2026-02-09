@@ -114,7 +114,7 @@ async function loadTeamGrid(container, url, baseUrl) {
             }
             
             const card = document.createElement('div');
-            card.className = 'team-card';
+            card.className = 'group flex flex-col bg-white dark:bg-background-dark border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300';
             
             // Check session for animation
             const currentPath = window.location.pathname;
@@ -127,12 +127,27 @@ async function loadTeamGrid(container, url, baseUrl) {
             card.onclick = () => window.location.href = `/team/?slug=${member.slug}`;
             card.style.cursor = 'pointer';
 
+            const roleLabel = member.role.includes('Partner') ? 'PARTNER' : (member.role.includes('Associate') ? 'ASSOCIATE' : 'TEAM');
+
             card.innerHTML = `
-                <div class="team-img-wrapper">
-                    ${imgContent}
+                <div class="relative aspect-[4/5] overflow-hidden">
+                    <img src="${hasPhoto ? baseUrl + member.photo.url : '../Images/owl-ci.png'}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="${member.name}">
+                    <div class="absolute bottom-4 left-4 flex gap-2">
+                        <span class="bg-secondary/90 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">${roleLabel}</span>
+                    </div>
                 </div>
-                <div class="team-name">${member.name}</div>
-                <div class="team-role">${member.role}</div>
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="text-lg font-bold text-primary dark:text-white group-hover:text-secondary transition-colors">${member.name}</h3>
+                    <p class="text-secondary dark:text-blue-400 text-sm font-bold mb-3 uppercase tracking-tight">${member.role}</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">${member.bio_short || member.role}</p>
+                    <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-800 flex justify-between items-center">
+                        <a class="text-xs font-bold text-primary dark:text-gray-300 hover:underline" href="/team/?slug=${member.slug}">View Profile</a>
+                        <div class="flex gap-3">
+                            <span class="material-symbols-outlined text-gray-400 text-lg hover:text-secondary cursor-pointer">mail</span>
+                            <span class="material-symbols-outlined text-gray-400 text-lg hover:text-secondary cursor-pointer">share</span>
+                        </div>
+                    </div>
+                </div>
             `;
             container.appendChild(card);
         });
@@ -156,86 +171,102 @@ async function loadTeamProfile(baseUrl) {
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('slug');
 
+    const gridView = document.getElementById('team-grid-view');
+    const profileView = document.getElementById('profile-view');
+    const ctaSection = document.getElementById('team-cta');
+
     if (!slug) {
-        window.location.href = '/'; // Redirect to home
+        if(gridView) gridView.classList.remove('hidden');
+        if(profileView) profileView.classList.add('hidden');
         return;
     }
 
     try {
+        // Hide Grid, Show Profile
+        if(gridView) gridView.classList.add('hidden');
+        if(ctaSection) ctaSection.classList.add('hidden');
+        if(profileView) {
+            profileView.classList.remove('hidden');
+            setTimeout(() => profileView.style.opacity = '1', 50);
+        }
+
         const response = await fetch(`${baseUrl}/api/team-members?filters[slug][$eq]=${slug}&populate=*`);
         const data = await response.json();
         
         if (!data.data || data.data.length === 0) {
-            document.querySelector('.profile-container').innerHTML = '<h2>Team Member Not Found</h2>';
+            profileView.innerHTML = '<div class="text-center py-20 px-6"><h2 class="text-2xl font-bold">Team Member Not Found</h2><a href="/team/" class="text-accent-blue mt-4 inline-block">Back to Team</a></div>';
             return;
         }
 
         const member = data.data[0];
         
         // Update Page Title
-        document.title = `${member.name} - RLC Advocates`;
+        document.title = `${member.name} | RLC Advocates`;
 
         // Render Data
         document.getElementById('member-name').textContent = member.name;
         document.getElementById('member-role').textContent = member.role;
         
+        const shortBio = document.getElementById('member-bio-short');
+        if(shortBio) shortBio.textContent = member.bio_short || member.role;
+        
+        // Focus Areas Tags
+        const tagsContainer = document.getElementById('member-focus-areas');
+        if(tagsContainer && member.focus_areas) {
+            const areas = member.focus_areas.split(',').map(a => a.trim());
+            tagsContainer.innerHTML = areas.map(area => `<span class="px-4 py-2 bg-slate-100 dark:bg-slate-800 rounded text-sm font-semibold border border-slate-200 dark:border-slate-700">${area}</span>`).join('');
+        }
+
         // Bio (Rich Text)
-        // Simple Markdown rendering or block rendering needed? 
-        // Strapi v5 sends blocks usually. We might need a renderer. 
-        // For now, assuming simple text or HTML if the user enters it, or basic blocks.
-        // If it's rich text (blocks), we need a parser. Let's try to just dump it for now or assume user types paragraphs.
-        // Actually, let's use a helper to render blocks if possible or just JSON.stringify for debug
-        // BUT v5 usually uses Blocks. 
         const bioContent = document.getElementById('member-bio');
-        // Simple block renderer logic
         if (Array.isArray(member.bio)) {
              bioContent.innerHTML = member.bio.map(block => {
                 if (block.type === 'paragraph') {
                     return `<p>${block.children.map(child => child.text).join('')}</p>`;
                 }
+                if (block.type === 'heading') {
+                    return `<h3>${block.children.map(child => child.text).join('')}</h3>`;
+                }
                 return '';
              }).join('');
         } else {
-             // Parse Markdown String
              const rawBio = member.bio || 'No biography available.';
              if (typeof marked !== 'undefined') {
                  bioContent.innerHTML = marked.parse(rawBio);
              } else {
-                 // Fallback: Convert all newline types to breaks
-                 console.warn('Marked.js not found. Using simple fallback.');
                  bioContent.innerHTML = rawBio.replace(/(?:\r\n|\r|\n)/g, '<br>');
              }
         }
 
         // Image
-        const imgWrapper = document.querySelector('.profile-img-wrapper');
-        if (member.photo && member.photo.url) {
-            imgWrapper.innerHTML = `<img id="member-img" src="${baseUrl}${member.photo.url}" class="profile-img" alt="${member.name}">`;
-        } else {
-            imgWrapper.innerHTML = `<div class="profile-avatar-placeholder"><i class="fas fa-user"></i></div>`;
+        const img = document.getElementById('member-img');
+        if (img && member.photo && member.photo.url) {
+            img.src = `${baseUrl}${member.photo.url}`;
+            img.alt = member.name;
+        } else if(img) {
+            img.src = '../Images/owl-ci.png';
         }
 
         // Socials
         const socialContainer = document.querySelector('.member-socials');
-        socialContainer.innerHTML = ''; // Clear defaults
+        if(socialContainer) {
+            socialContainer.innerHTML = ''; 
+            const socials = [
+                { key: 'linkedin_url', icon: 'public', label: 'LinkedIn' },
+                { key: 'email', icon: 'mail', label: 'Email' }
+            ];
 
-        const socials = [
-            { key: 'linkedin_url', icon: 'fab fa-linkedin', label: 'LinkedIn' },
-            { key: 'facebook_url', icon: 'fab fa-facebook', label: 'Facebook' },
-            { key: 'twitter_url', icon: 'fab fa-x-twitter', label: 'X (Twitter)' },
-            { key: 'instagram_url', icon: 'fab fa-instagram', label: 'Instagram' }
-        ];
-
-        socials.forEach(social => {
-            if (member[social.key]) {
-                const link = document.createElement('a');
-                link.href = member[social.key];
-                link.target = '_blank';
-                link.className = 'social-icon-btn';
-                link.innerHTML = `<i class="${social.icon}"></i>`;
-                socialContainer.appendChild(link);
-            }
-        });
+            socials.forEach(social => {
+                const val = member[social.key];
+                if (val) {
+                    const link = document.createElement('a');
+                    link.href = social.key === 'email' ? `mailto:${val}` : val;
+                    link.className = 'flex items-center gap-2 text-sm hover:text-accent-orange transition-colors';
+                    link.innerHTML = `<span class="material-symbols-outlined text-[18px]">${social.icon}</span> ${val.length > 25 ? social.label : val}`;
+                    socialContainer.appendChild(link);
+                }
+            });
+        }
 
     } catch (error) {
         console.error('Error loading profile:', error);

@@ -1,121 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Member - RLC Advocates</title>
-    <link rel="stylesheet" href="../shared/css/global.css?v=2.2">
-    <link rel="stylesheet" href="team.css?v=2.2">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="../Images/owl-ci.png">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Our Expert Team | RLC Advocates</title>
     
-    <!-- Specific Styles moved to team.css -->
+    <!-- Scripts & Styles -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="../shared/js/tailwind-config.js?v=2.2"></script>
+    <link rel="stylesheet" href="../shared/css/global.css?v=2.2" />
+    <link rel="stylesheet" href="team.css?v=2.2" />
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="../Images/owl-ci.png">
 </head>
 
-<body>
-    <!-- Navbar (Simplified duplicate for now, ideally reused) -->
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container header-container">
-            <div class="logo">
-                <a href="/"><img src="../Images/rlc-white-logo.png" alt="RLC Logo"></a>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                <ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/about/index.html">About</a></li>
-                    <li><a href="/practice/index.html">Practice Areas</a></li>
-                    <li><a href="/team/index.html">Team</a></li>
-                    <li><a href="/blog/index.html">Insights</a></li>
-                    <li><a href="/index.html#contact" class="btn btn-primary" style="color: white;">Contact Us</a></li>
-                </ul>
+<body class="bg-background-light dark:bg-background-dark text-primary dark:text-white transition-colors duration-200">
+    <div class="relative flex min-h-screen flex-col overflow-x-hidden pt-[80px]">
+    <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md">
+        <div class="max-w-[90%] mx-auto flex items-center justify-between">
+            <a href="/index.html" class="flex items-center">
+                <img src="/Images/rlc-small-logo.png" alt="RLC Logo" class="h-10">
+            </a>
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold">
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/index.html">Home</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/about/index.html">About</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/practice/index.html">Services</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/blog/index.html">Blog</a>
+                <a class="text-accent-orange" href="/team/index.html">Team</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/contact/index.html">Contact</a>
             </nav>
-
-            <div class="hamburger-menu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+            <div class="flex items-center gap-4">
+                <a href="/contact/index.html" class="hidden lg:block bg-accent-orange hover:bg-accent-blue text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-accent-orange/20">
+                    Free Consultation
+                </a>
+                <button class="mobile-toggle lg:hidden text-primary pt-1">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
             </div>
         </div>
     </header>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center gap-8 text-primary p-6">
+        <button class="mobile-toggle absolute top-6 right-6 text-primary font-bold">
+            <span class="material-symbols-outlined text-4xl">close</span>
+        </button>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/index.html">Home</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/about/index.html">About</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/practice/index.html">Services</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/blog/index.html">Blog</a>
+        <a class="text-2xl font-bold text-accent-orange" href="/team/index.html">Team</a>
+        <a class="text-2xl text-accent-orange font-black" href="/contact/index.html">Free Consultation</a>
+    </div>
 
-    <!-- Profile Section -->
-    <section class="profile-section">
-        <div class="container profile-container">
-            <!-- Left: Card -->
-            <div class="profile-card" data-aos="fade-right">
-                <div class="profile-img-wrapper">
-                    <div class="profile-avatar-placeholder"><i class="fas fa-user"></i></div>
+        <main class="flex-1">
+            <!-- TEAM GRID VIEW -->
+            <div id="team-grid-view">
+                <!-- Hero Section -->
+                <div class="relative bg-primary text-white overflow-hidden py-20 md:py-24">
+                    <div class="absolute inset-0 opacity-20">
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent-blue via-transparent to-accent-orange"></div>
+                        <img alt="Law Firm Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW14TsprHuwWIAIruP0xhgOufqKyENL8vw6eY7ohY3EuST26WmKop8bkheu4UQ3oyow4kXcFAb15ukK4kkpLVAK1JIYslvIFI7qlhHCWDgdNYBvoRlKRWaXFDUUwXiAruLduL_Ju17sI7Ihbx22qBGibYgtdOXJGvxg-tWBsUBCDQzt0GQBLDVSPFRpz4dkc82bQZ5BjL5NaQSxkoP5KBC8vLYCaiZRSQSUzQq8z6wtDXmz0JqeBq_TUC3U21yKDulhsM1vwoO44ml" />
+                    </div>
+                    <div class="relative z-10 container mx-auto px-6 md:px-10 lg:px-20 text-center max-w-[90%]">
+                        <span class="inline-block px-4 py-1.5 mb-6 rounded-full bg-accent-orange/20 text-accent-orange text-xs font-bold uppercase tracking-widest">
+                            The Core of Our Firm
+                        </span>
+                        <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
+                            Our Expert Team
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-300 font-light max-w-2xl mx-auto leading-relaxed">
+                            A collective of elite legal minds dedicated to delivering excellence and strategic results for our clients worldwide.
+                        </p>
+                    </div>
                 </div>
-                <div class="member-contact">
-                    <div class="member-socials">
-                        <!-- Injected via JS -->
+
+                <!-- Filters -->
+                <div class="bg-white dark:bg-background-dark border-b border-gray-200 dark:border-gray-800">
+                    <div class="container mx-auto px-6 md:px-10 lg:px-20 py-6 overflow-x-auto">
+                        <div class="flex items-center gap-8 whitespace-nowrap">
+                            <p class="text-sm font-bold text-gray-400 uppercase tracking-wider">Department:</p>
+                            <button class="text-sm font-bold text-accent-orange border-b-2 border-accent-orange pb-1">All Professionals</button>
+                            <button class="text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors">Corporate Law</button>
+                            <button class="text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors">Dispute Resolution</button>
+                            <button class="text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors">Real Estate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Grid (Dynamic) -->
+                <section class="container mx-auto px-6 md:px-10 lg:px-20 py-20">
+                    <div class="team-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <!-- Loaded Dynamically via team.js -->
+                        <p class="text-center text-gray-500 col-span-full">Loading Team Members...</p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- PROFILE VIEW -->
+            <div id="profile-view" class="hidden opacity-0 transition-opacity duration-500">
+                <section class="max-w-7xl mx-auto px-6 lg:px-40 py-12">
+                    <!-- Profile Hero -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+                        <div class="lg:col-span-7">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-blue/10 text-accent-blue text-xs font-bold uppercase tracking-wider mb-6">
+                                <span class="w-2 h-2 rounded-full bg-accent-blue"></span>
+                                <span id="member-role">Position</span>
+                            </div>
+                            <h1 id="member-name" class="text-5xl lg:text-6xl font-extrabold text-primary dark:text-white mb-4 leading-tight">
+                                Name
+                            </h1>
+                            <p id="member-bio-short" class="text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-xl leading-relaxed">
+                                Summary...
+                            </p>
+                            <div class="flex flex-wrap gap-3" id="member-focus-areas">
+                                <!-- Tags injected -->
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5">
+                            <div class="relative group">
+                                <div class="absolute -inset-4 bg-accent-blue/10 rounded-xl blur-2xl transition group-hover:bg-accent-blue/20"></div>
+                                <div class="profile-img-wrapper relative rounded-xl w-full h-[500px] overflow-hidden shadow-2xl">
+                                    <img id="member-img" alt="Profile portrait" class="w-full h-full object-cover transition-all duration-500" src="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Info Bar -->
+                    <div class="bg-primary dark:bg-slate-900 text-white rounded-xl p-2 mb-12 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex gap-1 overflow-x-auto p-1">
+                            <button class="px-6 py-3 rounded-lg bg-white/10 text-sm font-bold whitespace-nowrap">Biography</button>
+                            <button class="px-6 py-3 rounded-lg hover:bg-white/5 text-sm font-bold whitespace-nowrap transition-colors">Achievements</button>
+                            <button class="px-6 py-3 rounded-lg hover:bg-white/5 text-sm font-bold whitespace-nowrap transition-colors">Credentials</button>
+                        </div>
+                        <div class="flex items-center gap-6 px-6 py-3 border-l border-white/10 member-socials">
+                            <!-- Socials Injected -->
+                        </div>
+                    </div>
+
+                    <!-- Profile Content Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        <!-- Left Side: Narrative -->
+                        <div class="lg:col-span-8">
+                            <div class="prose prose-slate dark:prose-invert max-w-none mb-16">
+                                <h2 class="text-3xl font-bold text-primary dark:text-white mb-6 flex items-center gap-3">
+                                    <span class="w-8 h-1 bg-accent-blue rounded-full"></span>
+                                    Professional Biography
+                                </h2>
+                                <div id="member-bio" class="text-lg leading-relaxed text-slate-700 dark:text-slate-300 mb-6 space-y-4">
+                                    <!-- Bio Injected -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Sidebar -->
+                        <div class="lg:col-span-4 space-y-8">
+                            <!-- Booking Form Card -->
+                            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                                <div class="bg-primary p-6 text-white">
+                                    <h3 class="text-xl font-bold mb-1">Book a Consultation</h3>
+                                    <p class="text-white/70 text-sm">Schedule a direct confidential session.</p>
+                                </div>
+                                <form class="p-6 space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Full Name</label>
+                                        <input class="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-accent-blue focus:border-accent-blue text-sm p-3" type="text" />
+                                    </div>
+                                    <button class="w-full bg-accent-orange hover:bg-orange-600 text-white font-bold py-4 rounded-lg shadow-lg shadow-orange-500/20 transition-all flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined">event</span>
+                                        Schedule Meeting
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Back Button -->
+                    <div class="mt-12">
+                        <a href="/team/index.html" class="inline-flex items-center gap-2 text-accent-blue font-bold hover:underline">
+                            <span class="material-symbols-outlined">arrow_back</span> Back to Team Overview
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <!-- CTA Section (Grid only) -->
+            <section id="team-cta" class="bg-gray-50 dark:bg-primary/30 border-t border-gray-200 dark:border-gray-800 py-24">
+                <div class="container mx-auto px-6 md:px-10 lg:px-40 text-center">
+                    <h2 class="text-3xl md:text-5xl font-black text-primary dark:text-white mb-6">Ready to work with the best?</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">
+                        Whether you're seeking world-class legal representation or looking to advance your career at a top-tier firm.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                        <a href="/index.html#contact" class="min-w-[200px] bg-primary dark:bg-white text-white dark:text-primary px-8 py-4 rounded-lg font-black text-lg shadow-xl hover:opacity-90 transition-all">
+                            Consultation
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    <footer class="bg-primary text-white pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-[90%] mx-auto px-6 md:px-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Branding -->
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="/Images/rlc-white-logo.png" alt="RLC Advocates Logo" class="h-10">
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Providing premier legal services since 2024. Your success and legal protection are our highest priorities.
+                    </p>
+                    <div class="flex gap-4">
+                        <a class="w-10 h-10 bg-white/5 flex items-center justify-center rounded-lg hover:bg-accent-blue transition-colors" href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                        </a>
+                        <a class="w-10 h-10 bg-white/5 flex items-center justify-center rounded-lg hover:bg-accent-blue transition-colors" href="#">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- Practice Areas -->
+                <div>
+                    <h5 class="text-lg font-bold mb-6">Practice Areas</h5>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Corporate Law</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Criminal Defense</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Family Law</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Intellectual Property</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Real Estate</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Us -->
+                <div>
+                    <h5 class="text-lg font-bold mb-6">Contact Us</h5>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-accent-blue">location_on</span>
+                            <span>RLC Advocates LLP<br/>Nairobi, Kenya</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent-blue">call</span>
+                            <span>+254 207 800 800</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent-blue">mail</span>
+                            <span>office@rlcadvocates.co.ke</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Newsletter -->
+                <div>
+                    <h5 class="text-lg font-bold mb-6">Newsletter</h5>
+                    <p class="text-gray-400 text-sm mb-4">Stay updated with legal news and firm insights.</p>
+                    <div class="flex flex-col gap-2">
+                        <input class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-accent-blue transition-colors" placeholder="Your Email" type="email" />
+                        <button class="bg-accent-blue hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-sm transition-colors">Subscribe</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Right: Content -->
-            <div class="profile-content" data-aos="fade-up">
-                <h1 id="member-name">Loading Profile...</h1>
-                <span id="member-role" class="profile-role">...</span>
-                <div id="member-bio" class="profile-bio">
-                    <!-- Bio Content -->
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>&copy; <span id="current-year">2026</span> RLC Advocates. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" href="/privacy/index.html">Privacy Policy</a>
+                    <a class="hover:text-white transition-colors" href="/terms/index.html">Terms and Conditions</a>
                 </div>
-                
-                <a href="/team/" class="btn btn-outline" style="margin-top: 40px; display: inline-block;">
-                    <i class="fas fa-arrow-left" style="margin-right: 10px;"></i> Back to Team
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-grid-5">
-                <div class="footer-col">
-                    <img src="../Images/rlc-white-logo.png" class="footer-logo">
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">RLC Advocates LLP is a premier legal
-                        services firm offering top-tier consultancy.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><a href="/faq/index.html">FAQs</a></li>
-                        <li><a href="/privacy/index.html">Privacy Policy</a></li>
-                        <li><a href="/terms/">Terms and Conditions</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Follow Us</h4>
-                    <ul>
-                        <li><a href="#">LinkedIn</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact Us</h4>
-                    <ul style="list-style: none;">
-                        <li><a href="mailto:office@rlcadvocates.co.ke">office@rlcadvocates.co.ke</a></li>
-                        <li><a href="tel:+254207800800">+254 207 800 800</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 40px; color: var(--primary-color); font-size: 0.8rem;">
-                &copy; <span id="current-year">2026</span> RLC Advocates LLP. All Rights Reserved.
             </div>
         </div>
     </footer>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </div>
     <script src="../shared/js/global.js?v=2.2"></script>
-    <script src="team.js?v=2.2"></script> <!-- Team Loader -->
+    <script src="team.js?v=2.2"></script>
 </body>
+
 </html>

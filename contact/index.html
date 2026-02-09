@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Frequently Asked Questions | RLC Advocates</title>
+    <title>Contact Us | RLC Advocates</title>
     
     <!-- Scripts & Styles -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="../shared/js/tailwind-config.js?v=2.2"></script>
     <link rel="stylesheet" href="../shared/css/global.css?v=2.2" />
-    <link rel="stylesheet" href="faq.css?v=2.2" />
+    <link rel="stylesheet" href="contact.css?v=2.2" />
     
     <!-- Icons -->
     <link rel="icon" type="image/png" href="../Images/owl-ci.png">
@@ -29,7 +29,7 @@
                     <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/practice/index.html">Services</a>
                     <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/blog/index.html">Blog</a>
                     <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/team/index.html">Team</a>
-                    <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/contact/index.html">Contact</a>
+                    <a class="text-accent-orange" href="/contact/index.html">Contact</a>
                 </nav>
                 <div class="flex items-center gap-4">
                     <a href="/contact/index.html" class="hidden lg:block bg-accent-orange hover:bg-accent-blue text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-accent-orange/20">
@@ -70,69 +70,104 @@
 
         <main class="flex-1">
             <!-- Hero Section -->
-            <div class="relative w-full py-16 bg-primary overflow-hidden">
-                <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 24px 24px;"></div>
-                <div class="relative max-w-[90%] mx-auto px-4 text-center">
-                    <nav class="flex justify-center gap-2 mb-6 text-white/50 text-sm">
-                        <a class="hover:text-white transition-colors" href="/index.html">Home</a>
-                        <span>/</span>
-                        <span class="text-white">FAQ</span>
-                    </nav>
-                    <h1 class="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
-                        Frequently Asked Questions
-                    </h1>
-                    <p class="text-lg text-white/70 max-w-2xl mx-auto">
-                        Find clear answers to common legal inquiries regarding our specialized services, engagement processes, and firm policies.
-                    </p>
+            <div class="relative h-[350px] flex items-center justify-center overflow-hidden contact-hero" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBY5oZqrV_VYRubQR_fX1vBl1I7DVRw3mrc6r-kY52YLXNYMt-g5WshmvgBreN_YSVY35JvR2jjbTom_qQXgy4vVIHNd443rab8I6gVSCAu599q2c1193qA6-TwzeMSihfTu1jOLaLvAgMgUyHoH_mg8vpoC5YEcc6sd1GvkXciQ3Gut7f8-P4Bfnv5XptgnixWv_vrkxyIYY9SAvCNEhGYe6y-6m7100Std3KoWQ4Mv51j87Q7izAhaET5hGHS2SNEydct3JJcyhg8');">
+                <div class="relative z-10 text-center px-4 max-w-3xl mx-auto">
+                    <h1 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">Get in Touch</h1>
+                    <p class="text-lg md:text-xl text-gray-200 font-medium">Professional legal counsel is just a message away. Our team is ready to provide the guidance you need.</p>
                 </div>
             </div>
 
-            <!-- Search Bar -->
-            <div class="max-w-[90%] mx-auto -mt-8 px-4 relative z-10">
-                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-2 flex items-center border border-gray-200 dark:border-gray-700">
-                    <span class="material-symbols-outlined text-gray-400 px-3">search</span>
-                    <input class="w-full py-3 px-2 text-primary dark:text-white bg-transparent border-none focus:ring-0 placeholder:text-gray-400" placeholder="Search for legal topics..." type="text" id="faq-search" />
-                </div>
-            </div>
-
-            <!-- FAQ Content -->
-            <section class="max-w-[90%] mx-auto px-4 py-20">
-                <div class="space-y-12" id="faq-container">
-                    <!-- General Inquiries -->
-                    <div>
-                        <div class="flex items-center gap-3 mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">
-                            <span class="material-symbols-outlined text-accent-blue font-bold">info</span>
-                            <h2 class="text-2xl font-bold tracking-tight">General Information</h2>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="faq-item group border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800/50 overflow-hidden">
-                                <button class="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" onclick="toggleFaq(this)">
-                                    <span class="font-semibold text-primary dark:text-white">What are RLC Advocates' standard office hours?</span>
-                                    <span class="material-symbols-outlined text-gray-400 expand-icon transition-transform">expand_more</span>
-                                </button>
-                                <div class="faq-answer px-5 text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
-                                    Our standard office hours are Monday through Friday, 8:30 AM to 6:00 PM. We offer emergency legal support for existing clients 24/7 through our priority channels.
+            <!-- Main Content Grid -->
+            <section class="max-w-[90%] mx-auto px-6 md:px-10 lg:px-20 pt-20 pb-0 lg:pt-32 lg:pb-0">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                    <!-- Contact Form (Left) -->
+                    <div class="bg-white dark:bg-gray-900 p-8 md:p-12 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 contact-form-container">
+                        <h2 class="text-3xl font-black mb-8">Send Us a Message</h2>
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Full Name</label>
+                                    <input class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all" placeholder="John Doe" required type="text" />
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Email Address</label>
+                                    <input class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all" placeholder="john@example.com" required type="email" />
                                 </div>
                             </div>
-                            <!-- More items can be added here or loaded from API -->
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Subject</label>
+                                <select class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all">
+                                    <option>Legal Consultation</option>
+                                    <option>Case Inquiry</option>
+                                    <option>Corporate Services</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Message</label>
+                                <textarea class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all resize-none" placeholder="How can we help you?" required rows="5"></textarea>
+                            </div>
+                            <button class="w-full bg-accent-orange hover:bg-orange-600 text-white font-black py-4 rounded-lg shadow-xl shadow-accent-orange/20 transition-all transform hover:-translate-y-1" type="submit">
+                                Submit Inquiry
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Information (Right) -->
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h2 class="text-3xl font-black mb-12">Our Contact Details</h2>
+                            <div class="space-y-12">
+                                <!-- Main Office -->
+                                <div class="flex gap-6 group contact-detail-card">
+                                    <div class="size-16 shrink-0 bg-accent-blue/10 dark:bg-accent-blue/20 rounded-2xl flex items-center justify-center text-accent-blue icon-box">
+                                        <span class="material-symbols-outlined text-3xl">location_on</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold mb-2">Main Office</h3>
+                                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                                            RLC Advocates LLP<br/>
+                                            Nairobi, Kenya
+                                        </p>
+                                        <a class="text-accent-blue font-bold flex items-center gap-1 hover:underline text-sm" href="#">
+                                            Get Directions <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- Direct Contact -->
+                                <div class="flex gap-6 group contact-detail-card">
+                                    <div class="size-16 shrink-0 bg-accent-blue/10 dark:bg-accent-blue/20 rounded-2xl flex items-center justify-center text-accent-blue icon-box">
+                                        <span class="material-symbols-outlined text-3xl">call</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold mb-2">Direct Lines</h3>
+                                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">+254 207 800 800</p>
+                                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">office@rlcadvocates.co.ke</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Emergency Banner -->
+                        <div class="mt-16 p-8 bg-primary dark:bg-accent-blue/20 rounded-2xl text-white shadow-2xl relative overflow-hidden">
+                            <div class="absolute -right-8 -bottom-8 opacity-10">
+                                <span class="material-symbols-outlined text-[100px]">emergency</span>
+                            </div>
+                            <div class="flex items-center gap-4 mb-4 relative z-10">
+                                <span class="material-symbols-outlined text-accent-orange font-bold">emergency</span>
+                                <h4 class="font-bold uppercase tracking-widest text-xs">Urgent Legal Support</h4>
+                            </div>
+                            <p class="text-sm text-gray-300 mb-6 relative z-10 leading-relaxed">For immediate legal emergencies outside of regular business hours, please call our priority hotline.</p>
+                            <span class="text-3xl font-black text-white relative z-10">+254 700 000 000</span>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Consultation CTA -->
-                <div class="mt-20 bg-primary rounded-2xl p-8 md:p-12 text-center text-white relative overflow-hidden shadow-2xl">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-accent-orange/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
-                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-accent-blue/10 rounded-full blur-3xl -ml-16 -mb-16"></div>
-                    <h3 class="text-2xl md:text-3xl font-bold mb-4 relative z-10">Still have questions?</h3>
-                    <p class="text-white/70 mb-8 max-w-lg mx-auto relative z-10">
-                        Our team is here to help you navigate your legal journey with precision and care. Get in touch with us today.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-                        <a href="/index.html#contact" class="bg-accent-orange hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-bold transition-all flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined">mail</span>
-                            Contact Us
-                        </a>
-                    </div>
+            <!-- Map Section -->
+            <section class="max-w-[90%] mx-auto px-6 md:px-10 lg:px-20 pb-20 lg:pb-32 -mt-16 lg:-mt-24">
+                <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-100 dark:border-gray-800 h-[450px] relative">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7925185770755!2d36.81067547587383!3d-1.2992780356423295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8cf919f4fcbf051d%3A0x97d27087db6082d2!2sRLC%20Advocates%20LLP!5e0!3m2!1sen!2ske!4v1770591451453!5m2!1sen!2ske" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </section>
         </main>
@@ -211,31 +246,10 @@
     <!-- Scripts -->
     <script src="../shared/js/global.js?v=2.2"></script>
     <script>
-        function toggleFaq(button) {
-            const item = button.closest('.faq-item');
-            const isActive = item.classList.contains('active');
-            
-            // Close other items
-            // document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-            
-            if (isActive) {
-                item.classList.remove('active');
-            } else {
-                item.classList.add('active');
-            }
-        }
-        
-        // Search functionality (simple)
-        document.getElementById('faq-search').addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
-            document.querySelectorAll('.faq-item').forEach(item => {
-                const text = item.textContent.toLowerCase();
-                if (text.includes(term)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message. An advocate will contact you shortly.');
+            this.reset();
         });
     </script>
 </body>

@@ -2,30 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Sticky Header on Scroll ---
     // --- Sticky Header on Scroll ---
-    const header = document.querySelector('.site-header');
+    // --- Sticky Header on Scroll ---
+    const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 1) {
-            header.classList.add('scrolled');
+        if (window.scrollY > 10) {
+            header?.classList.add('backdrop-blur-xl', 'shadow-md');
         } else {
-            header.classList.remove('scrolled');
+            header?.classList.remove('backdrop-blur-xl', 'shadow-md');
         }
     });
 
     // --- Mobile Menu Toggle ---
-    const hamburger = document.querySelector('.hamburger-menu');
-    const nav = document.querySelector('.main-nav');
+    const mobileToggles = document.querySelectorAll('.mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-    if (hamburger && nav) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            nav.classList.toggle('active');
+    if (mobileToggles.length > 0 && mobileMenu) {
+        mobileToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                document.body.classList.toggle('overflow-hidden');
+            });
         });
 
         // Close when clicking a link
-        nav.querySelectorAll('a').forEach(link => {
+        mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                nav.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('overflow-hidden');
             });
         });
     }
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            nav.classList.remove('active'); // Close menu on click
+            mobileMenu?.classList.remove('active'); // Close menu on click
 
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -175,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Material: Glowing Orange Points
         const material = new THREE.PointsMaterial({
-            color: 0xe36414,
+            color: 0xFD641F,
             size: 0.7,
             transparent: true,
             opacity: 0.8
@@ -186,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Lines Geometry (for connections)
         const lineMaterial = new THREE.LineBasicMaterial({
-            color: 0xe36414,
+            color: 0xFD641F,
             transparent: true,
             opacity: 0.15
         });
