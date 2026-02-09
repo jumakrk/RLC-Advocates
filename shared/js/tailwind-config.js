@@ -13,7 +13,7 @@ tailwind.config = {
                 "background-dark": "#151d1d",
             },
             fontFamily: {
-                "display": ["Inter", "sans-serif"]
+                "display": ["Satoshi", "sans-serif"]
             },
             borderRadius: {
                 "DEFAULT": "0.25rem",
