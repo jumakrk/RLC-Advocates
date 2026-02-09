@@ -275,4 +275,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         animate();
     }
+    // --- FAQ Toggle Logic ---
+    window.toggleFaq = function(button) {
+        const item = button.closest('.faq-item');
+        item.classList.toggle('active');
+    };
 });
+
+// Ensure toggleFaq is globally available if script loads after DOM
+window.toggleFaq = window.toggleFaq || function(button) {
+    const item = button.closest('.faq-item');
+    item.classList.toggle('active');
+};

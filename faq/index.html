@@ -100,21 +100,199 @@
                 <div class="space-y-12" id="faq-container">
                     <!-- General Inquiries -->
                     <div>
-                        <div class="flex items-center gap-3 mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">
-                            <span class="material-symbols-outlined text-accent-blue font-bold">info</span>
-                            <h2 class="text-2xl font-bold tracking-tight">General Information</h2>
-                        </div>
                         <div class="space-y-4">
-                            <div class="faq-item group border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800/50 overflow-hidden">
-                                <button class="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" onclick="toggleFaq(this)">
-                                    <span class="font-semibold text-primary dark:text-white">What are RLC Advocates' standard office hours?</span>
-                                    <span class="material-symbols-outlined text-gray-400 expand-icon transition-transform">expand_more</span>
+                            <!-- FAQ 1 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">What does RLC bring to its clientele?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
                                 </button>
-                                <div class="faq-answer px-5 text-gray-600 dark:text-gray-400 leading-relaxed text-sm">
-                                    Our standard office hours are Monday through Friday, 8:30 AM to 6:00 PM. We offer emergency legal support for existing clients 24/7 through our priority channels.
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-96">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        We focus on being a Strategic Legal Counsel for Growth-Focused Businesses by providing and delivering practical, business-oriented legal solutions to banks, international investors, and startups operating in Kenya’s dynamic commercial environment. Our team has deep expertise in civil & commercial litigation, banking and securities, cross-border transactions, regulatory compliance, and corporate structuring enabling us to support both complex deals and early-stage growth. Whether facilitating investment, securing financing, or setting up operations, we are committed to delivery timely, strategic, and value-driven legal support, with a focus on long-term partnerships and business success.
+                                    </div>
                                 </div>
                             </div>
-                            <!-- More items can be added here or loaded from API -->
+
+                            <!-- FAQ 2 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">Do you offer legal retainers for companies or SMEs?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        Yes. We provide tailored legal retainer packages that give your business access to ongoing legal support for corporate governance, contract reviews, legal compliance, and employment matters without the cost of in-house counsel.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 3 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">Do I need an appointment before visiting?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        Yes, we recommend booking an appointment to ensure that an advocate is available to meet with you. You can schedule by:<br>
+                                        Phone: 0207 800 800<br>
+                                        Email: office@rlcadvocates.co.ke<br>
+                                        Website: www.rlcadvocates.co.ke
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 4 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">Do you offer initial consultations?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        Yes. We offer an initial consultation to assess your matter and advise on the way forward. This may be offered at no charge or a nominal fee, depending on the nature of the matter.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 5 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">What documents should I bring to my first consultation?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-72">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        Depending on your issue, please bring:<br>
+                                        • Title deeds or agreements (for conveyancing)<br>
+                                        • Loan, charge or security documents (for banking matters)<br>
+                                        • Contracts, correspondence or court documents<br>
+                                        • Company registration documents (for corporate matters)<br><br>
+                                        We will guide you on what to bring when scheduling your appointment.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 6 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">How do you charge for legal services?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        Our fees are guided by the Advocates Remuneration Order. We provide:<br>
+                                        • Clear fee estimates after an initial consultation<br>
+                                        • Flexible billing options depending on complexity and urgency of your matter.<br>
+                                        • Transparent invoicing throughout your matter.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 7 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">Do you offer fixed fees or payment plans?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        For certain transactions such as conveyancing or contract drafting, we may offer fixed or capped fees. Payment plans can be arranged for corporate or ongoing matters on request.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 8 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">Do you offer virtual consultations?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        Yes. We serve clients locally and internationally via Zoom, Google Meet, phone calls, and email correspondence. We handle many transactions and legal matters remotely with the same level of attention and professionalism.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 9 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">Do you handle matters outside Nairobi or internationally?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        Yes. We work with clients across Kenya and if need be, we collaborate with regional and international firms where cross-border issues arise. Our services extend to foreign investors and diaspora clients as well.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 10 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">Can you help with due diligence for property or company purchases?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        Absolutely. We conduct due diligence for real estate transactions (confirming land ownership, charges, encumbrances) and corporate acquisitions, mergers or investments. This protects our clients from legal and financial risks.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 11 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">Do you assist with drafting and reviewing contracts?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        Yes. We draft, review and negotiate contracts including but not limited to shareholder agreements, sale or lease agreements, joint ventures and MOUs, loan, security and service agreements. We ensure your contracts are legally sound and commercially practical.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 12 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">What happens if I receive a demand letter or court summons?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        Contact us immediately. Legal notices often have strict deadlines. We’ll assess the documents, advise on your rights, and respond appropriately whether through negotiation or court representation.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 13 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">How do you protect client confidentiality?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        We are bound by the Advocates Act, the LSK Code of Conduct, and the Data Protection Act, 2019, as well as being registered Data Processors and Controllers in accordance with the Data protection laws. All client information and documents are handled with strict confidentiality, both during and after our engagement.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ 14 -->
+                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                                <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                                    <span class="font-bold text-primary dark:text-white text-lg">How do I engage your services?</span>
+                                    <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
+                                </button>
+                                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 group-[.active]:max-h-48">
+                                    <div class="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-sm">
+                                        To get started, simply call us or send an email, submit a contact form on our website, or schedule a consultation. Our very able team will respond to you within 24 hours to guide you through the process and outline the next steps in your matter.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
