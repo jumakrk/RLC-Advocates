@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="homepage/homepage.css?v=2.2" />
     
     <!-- Icons -->
-    <link rel="icon" type="image/png" href="Images/owl-ci.png">
+    <link rel="icon" type="image/png" href="Images/rlc-favicon.png">
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-primary dark:text-white font-display">
@@ -29,7 +29,7 @@
             <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold">
                 <a class="text-accent-orange" href="/index.html">Home</a>
                 <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/about/index.html">About</a>
-                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/practice/index.html">Services</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/practice/index.html">Practices</a>
                 <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/blog/index.html">Blog</a>
                 <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/team/index.html">Team</a>
                 <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/contact/index.html">Contact</a>
@@ -59,9 +59,8 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="relative mt-[80px] min-h-[500px] lg:h-[85vh] lg:min-h-[600px] flex items-center overflow-hidden py-12 lg:py-0">
-        <div class="absolute inset-0 bg-primary/70 z-10"></div>
-        <img alt="Modern Law Office Interior" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0J8ZCK9TaxeP_4nkvaaWXAdxAWCN7sWGfhkBzTulJkL_o-UwJ3YIogAkqhvobCOPDgy24yJ31AzZ-kt1DT1ymKiz3I5_bYEW0p1vmtgbrmFKG_vsu4g1waNxAecvWtpA3JLxjaY74vQtYLcKwXpfychgf4WpANqSDN734_3ytQBEAMyBMOZoUjV62e8L0s788VS75E1U_bhaCFpOnhEs5YEXNmB1h4Abt7veotQAZn5bUOZau1Ax-mtR9UBcSXVqnnO9bWmpip-CP" />
+    <section class="relative mt-[80px] min-h-[500px] lg:h-[85vh] lg:min-h-[600px] flex items-center overflow-hidden py-12 lg:py-0 bg-fixed bg-center bg-cover" style="background-image: url('Images/Corporate & Commercial.jpg');">
+        <div class="absolute inset-0 bg-primary/40 z-10"></div>
         <div class="relative z-20 max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8 text-white">
             <div class="max-w-3xl">
                 <div class="inline-flex items-center gap-2 bg-secondary/30 backdrop-blur-sm border border-secondary/50 px-3 py-1 rounded-full mb-6">
@@ -86,6 +85,52 @@
         </div>
     </section>
 
+    <!-- About RLC Advocates Section -->
+    <section class="py-20 bg-white dark:bg-primary">
+        <div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <!-- Image -->
+                <div class="w-full lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -top-4 -left-4 w-full h-full border-2 border-accent-blue rounded-xl"></div>
+                        <img src="Images/pexels-olia-danilevich-5313170-1-scaled.jpg" alt="RLC Advocates Team Meeting" class="relative z-10 rounded-xl shadow-2xl w-full h-[400px] object-cover" />
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="w-full lg:w-1/2">
+                    <span class="inline-block bg-accent-blue/10 text-accent-blue font-bold text-xs uppercase tracking-widest px-4 py-2 rounded-full mb-4">About RLC Advocates</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-primary dark:text-white mb-6 tracking-tight leading-tight">Dedicated to Protecting Your Rights & Interests</h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-base mb-8 leading-relaxed">
+                        Since our inception, RLC Advocates has built a reputation for excellence. We understand that legal issues can be overwhelming, which is why we dedicate ourselves to providing clear, actionable advice.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3">
+                            <span class="flex-shrink-0 size-6 rounded-full bg-accent-orange/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-accent-orange text-sm">check</span>
+                            </span>
+                            <span class="text-gray-700 dark:text-gray-200 font-medium">Top-tier legal representation</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="flex-shrink-0 size-6 rounded-full bg-accent-orange/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-accent-orange text-sm">check</span>
+                            </span>
+                            <span class="text-gray-700 dark:text-gray-200 font-medium">Personalized attention to every case</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="flex-shrink-0 size-6 rounded-full bg-accent-orange/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-accent-orange text-sm">check</span>
+                            </span>
+                            <span class="text-gray-700 dark:text-gray-200 font-medium">Available 24/7 for urgent matters</span>
+                        </li>
+                    </ul>
+                    <a href="/about/index.html" class="inline-block bg-accent-blue hover:bg-accent-orange text-white px-8 py-3.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-accent-blue/20 hover:shadow-accent-orange/20">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Our Services Preview Section -->
     <section class="py-24 bg-background-light dark:bg-background-dark">
         <div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,36 +139,74 @@
                 <h3 class="text-4xl md:text-5xl font-black text-primary dark:text-white tracking-tight">Our Core Services</h3>
                 <div class="w-20 h-1.5 bg-secondary mx-auto mt-6 rounded-full"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="flex flex-wrap justify-center gap-6">
                 <!-- Corporate Law -->
-                <div class="bg-white dark:bg-primary/50 p-10 rounded-xl border border-gray-100 dark:border-white/5 hover:border-secondary transition-all group shadow-xl shadow-gray-200/50 dark:shadow-none">
-                    <div class="size-14 bg-secondary/10 dark:bg-secondary/20 rounded-lg flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-3xl">corporate_fare</span>
+                <div class="group relative h-[520px] w-96 rounded-2xl overflow-hidden cursor-pointer shadow-xl shadow-gray-200/50 dark:shadow-none">
+                    <img src="Images/Corporate & Commercial.jpg" alt="Corporate Law" class="absolute inset-0 w-96 h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent transition-all duration-500 group-hover:bg-primary/80"></div>
+                    <div class="absolute bottom-0 left-0 w-96 p-6 flex flex-col justify-end h-full">
+                        <div class="transform translate-y-[80px] group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
+                            <div class="size-12 rounded-full bg-accent-blue/20 flex items-center justify-center mb-4 backdrop-blur-sm group-hover:bg-accent-orange/20 transition-colors duration-300">
+                                <span class="material-symbols-outlined text-3xl text-accent-blue transition-colors duration-300 group-hover:text-accent-orange">corporate_fare</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 text-white group-hover:text-accent-orange transition-colors duration-300">Corporate Law</h4>
+                            <p class="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75 text-sm leading-relaxed">
+                                Strategic legal advice for businesses and corporations, covering mergers, acquisitions, and compliance strategies.
+                            </p>
+                        </div>
                     </div>
-                    <h4 class="text-2xl font-bold mb-4 text-primary dark:text-white">Corporate Law</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                        Strategic legal advice for businesses and corporations, covering mergers, acquisitions, and compliance strategies.
-                    </p>
                 </div>
+
                 <!-- Litigation -->
-                <div class="bg-white dark:bg-primary/50 p-10 rounded-xl border border-gray-100 dark:border-white/5 hover:border-secondary transition-all group shadow-xl shadow-gray-200/50 dark:shadow-none">
-                    <div class="size-14 bg-secondary/10 dark:bg-secondary/20 rounded-lg flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-3xl">gavel</span>
+                <div class="group relative h-[520px] w-96 rounded-2xl overflow-hidden cursor-pointer shadow-xl shadow-gray-200/50 dark:shadow-none">
+                    <img src="Images/Dispute Resolution.jpg" alt="Litigation" class="absolute inset-0 w-96 h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent transition-all duration-500 group-hover:bg-primary/80"></div>
+                    <div class="absolute bottom-0 left-0 w-96 p-6 flex flex-col justify-end h-full">
+                        <div class="transform translate-y-[80px] group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
+                            <div class="size-12 rounded-full bg-accent-blue/20 flex items-center justify-center mb-4 backdrop-blur-sm group-hover:bg-accent-orange/20 transition-colors duration-300">
+                                <span class="material-symbols-outlined text-3xl text-accent-blue transition-colors duration-300 group-hover:text-accent-orange">gavel</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 text-white group-hover:text-accent-orange transition-colors duration-300">Litigation</h4>
+                            <p class="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75 text-sm leading-relaxed">
+                                Expert representation in complex civil and criminal disputes, focused on protecting your rights and interests.
+                            </p>
+                        </div>
                     </div>
-                    <h4 class="text-2xl font-bold mb-4 text-primary dark:text-white">Litigation</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                        Expert representation in complex civil and criminal disputes, focused on protecting your rights and interests.
-                    </p>
                 </div>
+
                 <!-- Real Estate -->
-                <div class="bg-white dark:bg-primary/50 p-10 rounded-xl border border-gray-100 dark:border-white/5 hover:border-secondary transition-all group shadow-xl shadow-gray-200/50 dark:shadow-none">
-                    <div class="size-14 bg-secondary/10 dark:bg-secondary/20 rounded-lg flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
-                        <span class="material-symbols-outlined text-3xl">domain</span>
+                <div class="group relative h-[520px] w-96 rounded-2xl overflow-hidden cursor-pointer shadow-xl shadow-gray-200/50 dark:shadow-none">
+                    <img src="Images/Real Estate & Conveyance law.jpg" alt="Real Estate" class="absolute inset-0 w-96 h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent transition-all duration-500 group-hover:bg-primary/80"></div>
+                    <div class="absolute bottom-0 left-0 w-96 p-6 flex flex-col justify-end h-full">
+                        <div class="transform translate-y-[80px] group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
+                            <div class="size-12 rounded-full bg-accent-blue/20 flex items-center justify-center mb-4 backdrop-blur-sm group-hover:bg-accent-orange/20 transition-colors duration-300">
+                                <span class="material-symbols-outlined text-3xl text-accent-blue transition-colors duration-300 group-hover:text-accent-orange">domain</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 text-white group-hover:text-accent-orange transition-colors duration-300">Real Estate</h4>
+                            <p class="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75 text-sm leading-relaxed">
+                                Comprehensive services for property transactions, land use planning, and commercial development legalities.
+                            </p>
+                        </div>
                     </div>
-                    <h4 class="text-2xl font-bold mb-4 text-primary dark:text-white">Real Estate</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                        Comprehensive services for property transactions, land use planning, and commercial development legalities.
-                    </p>
+                </div>
+
+                <!-- Intellectual Property -->
+                <div class="group relative h-[520px] w-96 rounded-2xl overflow-hidden cursor-pointer shadow-xl shadow-gray-200/50 dark:shadow-none">
+                    <img src="Images/Intellectual Property.jpg" alt="Intellectual Property" class="absolute inset-0 w-96 h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent transition-all duration-500 group-hover:bg-primary/80"></div>
+                    <div class="absolute bottom-0 left-0 w-96 p-6 flex flex-col justify-end h-full">
+                        <div class="transform translate-y-[80px] group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
+                            <div class="size-12 rounded-full bg-accent-blue/20 flex items-center justify-center mb-4 backdrop-blur-sm group-hover:bg-accent-orange/20 transition-colors duration-300">
+                                <span class="material-symbols-outlined text-3xl text-accent-blue transition-colors duration-300 group-hover:text-accent-orange">copyright</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-2 text-white group-hover:text-accent-orange transition-colors duration-300">Intellectual Property</h4>
+                            <p class="text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75 text-sm leading-relaxed">
+                                Protecting your creative innovations through trademarks, patents, copyrights, and trade secret management.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -142,7 +225,7 @@
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <div class="w-full lg:w-1/2 relative">
                     <div class="absolute -top-6 -left-6 w-full h-full border-2 border-cta rounded-xl"></div>
-                    <img alt="Principal Partner Lawyer" class="relative z-10 rounded-xl shadow-2xl w-full h-[600px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsUMi5lmR4A9r6JPsng9t9jI6Gvxy9EGdmB6YRDQ1_jJLjLQQ8AQPPMD80onQF_F6VKP-_sLkqTjZ-9hKpl3cQ7hHWAOM3EZaFbO9we43bqarfu7MLFrLMLUD320Z9xW1EWO-aC96dJdap4VPzStPhDbnlxfJf2FG-8UOAco8SE9-O_fn66ySf7VyhL7k6gZDSo1BW7Jyd1r6jJXUGvFW-ds2kFoGx_Q8VL-XYDI7TgaGnGwnvbiWS4oVgy2mzOHFBgWjsQetup_og" />
+                    <img alt="Principal Partner Lawyer" class="relative z-10 rounded-xl shadow-2xl w-full h-[600px] object-cover" src="Images/pexels-ekaterina-bolovtsova-6077124-1-scaled.jpg" />
                     <div class="absolute -bottom-6 -right-6 bg-secondary p-8 rounded-xl z-20 hidden md:block">
                         <p class="text-white text-4xl font-black italic">2+</p>
                         <p class="text-white text-xs uppercase font-bold tracking-widest mt-1">Years of Practice</p>
@@ -182,67 +265,27 @@
                 <h3 class="text-4xl md:text-5xl font-black tracking-tight mb-4">Why Choose RLC Advocates</h3>
                 <p class="text-gray-400 max-w-2xl mx-auto">We combine global standards with local expertise to deliver results that matter.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="text-center group">
-                    <div class="size-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-secondary transition-all">
-                        <span class="material-symbols-outlined text-4xl text-cta group-hover:text-white">workspace_premium</span>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-4">Unmatched Expertise</h4>
-                    <p class="text-gray-400 leading-relaxed">Our attorneys are leaders in their respective fields, bringing decades of combined experience to every case.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-4xl text-cta mb-4">verified_user</span>
+                    <h4 class="text-xl font-bold mb-2">Proven Track Record</h4>
+                    <p class="text-gray-400 text-sm">Over 98% success rate in litigation and conflict resolution.</p>
                 </div>
-                <div class="text-center group">
-                    <div class="size-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-secondary transition-all">
-                        <span class="material-symbols-outlined text-4xl text-cta group-hover:text-white">shield_person</span>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-4">Unwavering Integrity</h4>
-                    <p class="text-gray-400 leading-relaxed">Ethical practice isn't just a requirement; it's the foundation of everything we do and every client relationship.</p>
+                <div class="p-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-4xl text-cta mb-4">groups</span>
+                    <h4 class="text-xl font-bold mb-2">Client-Centric Approach</h4>
+                    <p class="text-gray-400 text-sm">Your goals are our priority. We tailor strategies to your unique needs.</p>
                 </div>
-                <div class="text-center group">
-                    <div class="size-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:bg-secondary transition-all">
-                        <span class="material-symbols-outlined text-4xl text-cta group-hover:text-white">person_pin_circle</span>
-                    </div>
-                    <h4 class="text-2xl font-bold mb-4">Client-Centric</h4>
-                    <p class="text-gray-400 leading-relaxed">We listen first. Every strategy is tailored to your unique goals, ensuring you're informed every step of the way.</p>
+                <div class="p-8 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-4xl text-cta mb-4">balance</span>
+                    <h4 class="text-xl font-bold mb-2">Ethical Practice</h4>
+                    <p class="text-gray-400 text-sm">Unwavering commitment to integrity and professional ethics.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section (Dynamic) -->
-    <section class="py-24 bg-background-light dark:bg-background-dark">
-        <div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-cta font-bold tracking-widest uppercase text-sm mb-3">Our Professionals</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-primary dark:text-white tracking-tight">Meet Our Team</h3>
-                <div class="w-20 h-1.5 bg-secondary mx-auto mt-6 rounded-full"></div>
-            </div>
-            <div class="team-grid">
-                <!-- Loaded Dynamically -->
-                <p class="text-center text-gray-500">Loading Team...</p>
-            </div>
-            <div class="text-center mt-12">
-                <a href="/team/index.html" class="bg-primary dark:bg-accent-blue text-white px-8 py-4 rounded-lg font-bold text-lg hover:opacity-90 transition-all">View All Members</a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Insights Section (Dynamic) -->
-    <section class="py-24 bg-white dark:bg-primary">
-        <div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-cta font-bold tracking-widest uppercase text-sm mb-3">Legal Insights</h2>
-                <h3 class="text-4xl md:text-5xl font-black text-primary dark:text-white tracking-tight">Latest News & Articles</h3>
-                <div class="w-20 h-1.5 bg-secondary mx-auto mt-6 rounded-full"></div>
-            </div>
-            <div class="blog-grid" id="home-blog-grid">
-                <!-- Loaded Dynamically -->
-                <p class="text-center text-gray-500">Loading Latest Insights...</p>
-            </div>
-            <div class="text-center mt-12">
-                <a href="/blog/index.html" class="bg-cta text-white px-8 py-4 rounded-lg font-bold text-lg hover:brightness-110 transition-all">View All Insights</a>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="bg-primary text-white pt-20 pb-10 border-t border-white/5">
@@ -316,9 +359,12 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="homepage/home-blog.js"></script>
     <script src="shared/js/global.js?v=2.2"></script>
-    <script src="homepage/home-blog.js?v=2.2"></script>
-    <script src="team/team.js?v=2.2"></script>
+    <script>
+        // Update copyright year
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    </script>
 </body>
 
 </html>

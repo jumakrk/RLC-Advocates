@@ -5,20 +5,22 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>About Us | RLC Advocates</title>
-    
+
     <!-- Scripts & Styles -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="../shared/js/tailwind-config.js?v=2.2"></script>
     <link rel="stylesheet" href="../shared/css/global.css?v=2.2" />
     <link rel="stylesheet" href="about.css?v=2.2" />
-    
+
     <!-- Icons -->
-    <link rel="icon" type="image/png" href="../Images/owl-ci.png">
+    <link rel="icon" type="image/png" href="../Images/rlc-favicon.png">
 </head>
 
-<body class="bg-background-light dark:bg-background-dark text-primary dark:text-white antialiased transition-colors duration-300">
+<body
+    class="bg-background-light dark:bg-background-dark text-primary dark:text-white antialiased transition-colors duration-300">
     <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pt-[80px]">
-        <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md">
+        <header
+            class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md">
             <div class="max-w-[90%] mx-auto flex items-center justify-between">
                 <a href="/index.html" class="flex items-center">
                     <img src="/Images/rlc-small-logo.png" alt="RLC Logo" class="h-10">
@@ -26,13 +28,16 @@
                 <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold">
                     <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/index.html">Home</a>
                     <a class="text-accent-orange" href="/about/index.html">About</a>
-                    <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/practice/index.html">Services</a>
+                    <a class="text-gray-700 hover:text-accent-orange transition-colors"
+                        href="/practice/index.html">Practices</a>
                     <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/blog/index.html">Blog</a>
                     <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/team/index.html">Team</a>
-                    <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/contact/index.html">Contact</a>
+                    <a class="text-gray-700 hover:text-accent-orange transition-colors"
+                        href="/contact/index.html">Contact</a>
                 </nav>
                 <div class="flex items-center gap-4">
-                    <a href="/contact/index.html" class="hidden lg:block bg-accent-orange hover:bg-accent-blue text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-accent-orange/20">
+                    <a href="/contact/index.html"
+                        class="hidden lg:block bg-accent-orange hover:bg-accent-blue text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all shadow-lg shadow-accent-orange/20">
                         Free Consultation
                     </a>
                     <button class="mobile-toggle lg:hidden text-primary pt-1">
@@ -43,54 +48,104 @@
         </header>
 
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center gap-8 text-primary p-6">
+        <div id="mobile-menu"
+            class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center gap-8 text-primary p-6">
             <button class="mobile-toggle absolute top-6 right-6 text-primary font-bold">
                 <span class="material-symbols-outlined text-4xl">close</span>
             </button>
             <a class="text-2xl font-bold hover:text-accent-orange" href="/index.html">Home</a>
             <a class="text-2xl font-bold text-accent-orange" href="/about/index.html">About</a>
-            <a class="text-2xl font-bold hover:text-accent-orange" href="/practice/index.html">Services</a>
+            <a class="text-2xl font-bold hover:text-accent-orange" href="/practice/index.html">Practices</a>
             <a class="text-2xl font-bold hover:text-accent-orange" href="/blog/index.html">Blog</a>
             <a class="text-2xl font-bold hover:text-accent-orange" href="/team/index.html">Team</a>
             <a class="text-2xl text-accent-orange font-black" href="/contact/index.html">Free Consultation</a>
         </div>
 
         <!-- Hero Section -->
-        <div class="relative w-full h-[450px] flex items-center justify-center overflow-hidden">
-            <div class="about-hero absolute inset-0 transition-transform duration-700 hover:scale-105"></div>
-            <div class="relative z-10 text-center px-4 max-w-4xl">
-                <div class="inline-block px-3 py-1 mb-6 border border-white/30 rounded-full bg-white/10 backdrop-blur-sm">
-                    <span class="text-xs font-bold text-white uppercase tracking-widest">Established 2024</span>
+        <!-- Hero Section -->
+        <section class="max-w-[90%] mx-auto px-4 md:px-10 lg:px-20 py-20 lg:py-32 items-center">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <!-- Text Content -->
+                <div class="w-full lg:w-1/2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="h-0.5 w-8 bg-accent-orange"></div>
+                        <span class="text-accent-blue font-bold tracking-widest uppercase text-xs">About Our Firm</span>
+                    </div>
+                    <h1
+                        class="text-5xl md:text-6xl lg:text-7xl font-black text-primary dark:text-white leading-[1.1] mb-6 tracking-tight">
+                        Defending Your Rights With <span class="text-accent-blue">Integrity</span> Since 2024
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-10 leading-relaxed max-w-xl">
+                        RLC Advocates is dedicated to providing unwavering legal support with excellence. We have a
+                        proven track record of success in complex litigation, blending traditional legal values with
+                        modern strategies.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#story"
+                            class="bg-primary hover:bg-primary/90 text-white px-8 py-3.5 rounded-lg font-bold text-sm transition-all shadow-lg">
+                            Our Story
+                        </a>
+                        <a href="/team/index.html"
+                            class="bg-white hover:bg-gray-50 text-primary border border-gray-200 px-8 py-3.5 rounded-lg font-bold text-sm transition-all">
+                            Meet the Partners
+                        </a>
+                    </div>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.1] mb-6 tracking-tight">
-                    Our Legacy of <span class="text-accent-orange">Excellence</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-200 font-light max-w-2xl mx-auto leading-relaxed">
-                    A multi-disciplinary legal practice committed to justice, integrity, and the relentless pursuit of our clients' interests.
-                </p>
-                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#story" class="bg-accent-orange text-white px-8 py-4 rounded-lg font-bold hover:brightness-110 transition-all flex items-center justify-center gap-2">
-                        Discover Our Firm <span class="material-symbols-outlined">arrow_downward</span>
-                    </a>
+
+                <!-- Hero Image -->
+                <div class="w-full lg:w-1/2 relative">
+                    <!-- Decorative Elements -->
+                    <div
+                        class="absolute -top-6 -right-6 w-32 h-32 border-2 border-accent-blue rounded-tr-3xl hidden lg:block">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-accent-orange rounded-bl-3xl hidden lg:block">
+                    </div>
+
+                    <!-- Main Image -->
+                    <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="../Images/right-4703922_1920-1.jpg" alt="Modern Law Office"
+                            class="w-full h-[500px] object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <main id="story" class="w-full max-w-[90%] mx-auto px-4 md:px-10 lg:px-20 py-20">
             <!-- Our Story Section -->
+            <!-- Our Story Section -->
             <div class="grid lg:grid-cols-2 gap-16 items-center mb-32">
-                <div class="order-2 lg:order-1">
+                <!-- Image Side (Left) -->
+                <div class="relative order-last lg:order-first">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-accent-orange/10 rounded-full blur-3xl"></div>
+                    <img alt="Legal scales and gavel" class="rounded-xl shadow-2xl w-full object-cover aspect-[4/3]"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm_bHyubR2eoJmGIjuJV13c3RoswgOY4zIzmnb0O86wkdsw8LMbtCBR6PoNNz_2_-Uajnrx1d8kqwwacPWF8XLY4qvEIestp375HY_nu0KQWRKikmUA14XwpBQqTsaCvxpgc-aIBR55Lx0C8EgrOLxIMdx2Z_j0AoKzCisn-vbohN0tExvswWplKxkkYBAqOFujkmA7GN0isvu_r4u5mDBLj07Y7R2X2tzwMqMl0Rub8U7OcBgTnPYr7GdysVC8fRmCfcZTBWYVunH" />
+                    <div
+                        class="absolute -bottom-6 -right-6 bg-primary p-6 rounded-lg shadow-xl hidden md:block max-w-[280px]">
+                        <span class="text-accent-orange text-5xl font-black leading-none italic block mb-2">"</span>
+                        <p class="text-white text-sm italic font-medium leading-relaxed">Justice is the constant and
+                            perpetual will to allot to every man his due.</p>
+                    </div>
+                </div>
+
+                <!-- Text Side (Right) -->
+                <div>
                     <div class="flex items-center gap-2 mb-4">
                         <div class="h-1 w-12 bg-accent-blue"></div>
-                        <span class="text-accent-blue font-bold tracking-widest uppercase text-xs">Since the Beginning</span>
+                        <span class="text-accent-blue font-bold tracking-widest uppercase text-xs">Since the
+                            Beginning</span>
                     </div>
-                    <h2 class="text-4xl font-black text-primary dark:text-white mb-8 leading-tight">Our Story: Evolution of <br />Advocacy</h2>
+                    <h2 class="text-4xl font-black text-primary dark:text-white mb-8 leading-tight">Our Story: Evolution
+                        of <br />Advocacy</h2>
                     <div class="space-y-6 text-gray-600 dark:text-gray-400 leading-relaxed text-lg font-light">
                         <p>
-                            RLC Advocates began with a singular vision: to redefine what legal excellence means in a modern world. From our humble beginnings as a boutique firm in the heart of the legal district, our growth has been fueled by a relentless pursuit of justice.
+                            RLC Advocates began with a singular vision: to redefine what legal excellence means in a
+                            modern world. From our humble beginnings as a boutique firm in the heart of the legal
+                            district, our growth has been fueled by a relentless pursuit of justice.
                         </p>
                         <p>
-                            Over the decades, we have evolved with the changing global legal landscape, integrating modern, data-driven strategies with time-honored principles of ethical advocacy. Today, we stand as a market leader, representing international corporations and individuals alike.
+                            Over the decades, we have evolved with the changing global legal landscape, integrating
+                            modern, data-driven strategies with time-honored principles of ethical advocacy. Today, we
+                            stand as a market leader, representing international corporations and individuals alike.
                         </p>
                     </div>
                     <div class="mt-8 grid grid-cols-2 gap-8 border-t border-gray-100 dark:border-gray-800 pt-8">
@@ -104,32 +159,31 @@
                         </div>
                     </div>
                 </div>
-                <div class="order-1 lg:order-2">
-                    <div class="relative">
-                        <div class="absolute -top-4 -left-4 w-24 h-24 bg-accent-orange/10 rounded-full blur-3xl"></div>
-                        <img alt="Legal scales and gavel" class="rounded-xl shadow-2xl w-full object-cover aspect-[4/3]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm_bHyubR2eoJmGIjuJV13c3RoswgOY4zIzmnb0O86wkdsw8LMbtCBR6PoNNz_2_-Uajnrx1d8kqwwacPWF8XLY4qvEIestp375HY_nu0KQWRKikmUA14XwpBQqTsaCvxpgc-aIBR55Lx0C8EgrOLxIMdx2Z_j0AoKzCisn-vbohN0tExvswWplKxkkYBAqOFujkmA7GN0isvu_r4u5mDBLj07Y7R2X2tzwMqMl0Rub8U7OcBgTnPYr7GdysVC8fRmCfcZTBWYVunH" />
-                        <div class="absolute -bottom-6 -right-6 bg-primary p-6 rounded-lg shadow-xl hidden md:block">
-                            <span class="text-accent-orange text-5xl font-black leading-none italic">"</span>
-                            <p class="text-white text-sm italic font-medium max-w-[200px]">Justice is the constant and perpetual will to allot to every man his due.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- Mission & Vision -->
             <div class="grid md:grid-cols-2 gap-8 mb-32">
-                <div class="group bg-primary dark:bg-gray-900 p-10 rounded-xl transition-all hover:-translate-y-2 border-b-4 border-accent-blue shadow-lg">
+                <!-- Mission: White BG, Blue Icon -->
+                <div
+                    class="group bg-white dark:bg-gray-800 p-10 rounded-xl transition-all hover:-translate-y-2 border-t-4 border-accent-blue shadow-lg dark:border-gray-700">
                     <span class="material-symbols-outlined text-accent-blue text-4xl mb-6">rocket_launch</span>
-                    <h3 class="text-2xl font-bold text-white mb-4">Our Mission</h3>
-                    <p class="text-gray-400 font-light leading-relaxed">
-                        To empower our clients through expert legal counsel and precise advocacy. We strive to provide clarity in complex situations, ensuring our clients’ interests are protected with the highest level of professionalism and care.
+                    <h3 class="text-2xl font-bold text-primary dark:text-white mb-4">Our Mission</h3>
+                    <p class="text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                        To empower our clients through expert legal counsel and precise advocacy. We strive to provide
+                        clarity in complex situations, ensuring our clients’ interests are protected with the highest
+                        level of professionalism and care.
                     </p>
                 </div>
-                <div class="group bg-white dark:bg-gray-800 p-10 rounded-xl transition-all hover:-translate-y-2 border-b-4 border-accent-orange shadow-lg border border-gray-100 dark:border-gray-700">
+
+                <!-- Vision: Dark (Primary) BG, Orange Icon -->
+                <div
+                    class="group bg-primary dark:bg-gray-900 p-10 rounded-xl transition-all hover:-translate-y-2 border-b-4 border-accent-orange shadow-lg">
                     <span class="material-symbols-outlined text-accent-orange text-4xl mb-6">visibility</span>
-                    <h3 class="text-2xl font-bold text-primary dark:text-white mb-4">Our Vision</h3>
-                    <p class="text-gray-600 dark:text-gray-400 font-light leading-relaxed">
-                        Setting the global standard for legal advocacy and ethical practice. We envision a future where RLC Advocates is synonymous with legal innovation, uncompromising integrity, and unparalleled success for our clients worldwide.
+                    <h3 class="text-2xl font-bold text-white mb-4">Our Vision</h3>
+                    <p class="text-gray-300 dark:text-gray-400 font-light leading-relaxed">
+                        Setting the global standard for legal advocacy and ethical practice. We envision a future where
+                        RLC Advocates is synonymous with legal innovation, uncompromising integrity, and unparalleled
+                        success for our clients worldwide.
                     </p>
                 </div>
             </div>
@@ -140,37 +194,47 @@
                 <div class="w-16 h-1 bg-accent-orange mx-auto"></div>
             </div>
             <div class="grid md:grid-cols-3 gap-8 mb-32">
-                <div class="flex flex-col items-center text-center p-8 rounded-lg border border-gray-100 dark:border-gray-800 bg-white dark:bg-background-dark/50 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="size-16 rounded-full bg-accent-blue/10 text-accent-blue flex items-center justify-center mb-6">
+                <div
+                    class="flex flex-col items-center text-center p-8 rounded-lg border border-gray-100 dark:border-gray-800 bg-white dark:bg-background-dark/50 shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="size-16 rounded-full bg-accent-blue/10 text-accent-blue flex items-center justify-center mb-6">
                         <span class="material-symbols-outlined text-3xl">verified_user</span>
                     </div>
                     <h4 class="text-xl font-bold mb-3">Integrity</h4>
                     <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                        We adhere to the highest ethical standards. Honesty and transparency are the foundations of every relationship we build with our clients.
+                        We adhere to the highest ethical standards. Honesty and transparency are the foundations of
+                        every relationship we build with our clients.
                     </p>
                 </div>
-                <div class="flex flex-col items-center text-center p-8 rounded-lg border border-gray-100 dark:border-gray-800 bg-white dark:bg-background-dark/50 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="size-16 rounded-full bg-accent-orange/10 text-accent-orange flex items-center justify-center mb-6">
+                <div
+                    class="flex flex-col items-center text-center p-8 rounded-lg border border-gray-100 dark:border-gray-800 bg-white dark:bg-background-dark/50 shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="size-16 rounded-full bg-accent-orange/10 text-accent-orange flex items-center justify-center mb-6">
                         <span class="material-symbols-outlined text-3xl">star</span>
                     </div>
                     <h4 class="text-xl font-bold mb-3">Excellence</h4>
                     <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                        Precision in every case. We don't just provide legal services; we deliver elite expertise tailored to win and protect.
+                        Precision in every case. We don't just provide legal services; we deliver elite expertise
+                        tailored to win and protect.
                     </p>
                 </div>
-                <div class="flex flex-col items-center text-center p-8 rounded-lg border border-gray-100 dark:border-gray-800 bg-white dark:bg-background-dark/50 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="size-16 rounded-full bg-primary/10 text-primary dark:text-accent-blue flex items-center justify-center mb-6">
+                <div
+                    class="flex flex-col items-center text-center p-8 rounded-lg border border-gray-100 dark:border-gray-800 bg-white dark:bg-background-dark/50 shadow-sm hover:shadow-md transition-shadow">
+                    <div
+                        class="size-16 rounded-full bg-primary/10 text-primary dark:text-accent-blue flex items-center justify-center mb-6">
                         <span class="material-symbols-outlined text-3xl">groups</span>
                     </div>
                     <h4 class="text-xl font-bold mb-3">Client-First</h4>
                     <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                        Your needs are our priority. We listen, adapt, and create bespoke legal strategies designed to achieve your specific objectives.
+                        Your needs are our priority. We listen, adapt, and create bespoke legal strategies designed to
+                        achieve your specific objectives.
                     </p>
                 </div>
             </div>
 
             <!-- Community Impact -->
-            <div class="relative w-full rounded-2xl overflow-hidden bg-primary dark:bg-gray-900 px-8 py-20 md:px-16 text-white shadow-2xl">
+            <div
+                class="relative w-full rounded-2xl overflow-hidden bg-primary dark:bg-gray-900 px-8 py-20 md:px-16 text-white shadow-2xl">
                 <div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
                     <svg class="h-full w-full" preserveAspectRation="none" viewBox="0 0 100 100">
                         <path d="M0 0 L100 0 L100 100 Z" fill="currentColor"></path>
@@ -178,9 +242,12 @@
                 </div>
                 <div class="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h2 class="text-3xl md:text-4xl font-black mb-6 leading-tight">Commitment to <span class="text-accent-orange">Community</span></h2>
+                        <h2 class="text-3xl md:text-4xl font-black mb-6 leading-tight">Commitment to <span
+                                class="text-accent-orange">Community</span></h2>
                         <p class="text-gray-300 font-light text-lg mb-8 leading-relaxed">
-                            Beyond the courtroom, we are dedicated to making a tangible difference. Our firm actively participates in pro-bono work and local legal educational initiatives to ensure justice is accessible to all.
+                            Beyond the courtroom, we are dedicated to making a tangible difference. Our firm actively
+                            participates in pro-bono work and local legal educational initiatives to ensure justice is
+                            accessible to all.
                         </p>
                         <div class="flex flex-wrap gap-6">
                             <div class="flex items-center gap-3">
@@ -194,83 +261,85 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
-                        <img alt="Team collaboration" class="rounded-lg shadow-lg w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx04yo4TbTqg9vJzQtE3QU5nEhGAFaJhYdc58B3RX6Mwta95oiWZ6wcP6KZYVQZsb0ELoWl_ndFPNp3-PZxj3W3Y5OoxOdx7ELWA800TZWH8KxcsYPyCPwxadAJK9aZKRWjWV2fBaPpItfchwhPOd6t_YO1WItWCx4vVCCJBJOZk36wS1tHMifKu0w7apQSRKwYd26--vFy8inMpP5Y8B6Fmajd9YjzfqTFj_9PGcfplytEvRxm2pekSX2nhcCvVkz0IXCEMTyf3GF" />
-                        <img alt="Signing documents" class="rounded-lg shadow-lg w-full h-48 object-cover mt-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-bdbnzpYTgM3J-LAY8kCR3Jp0X5pktNaSKWKhMWgJ4U9dAia7MHoZrRKkHwXGN3EYpkhxoTziQUykgn2nYHHNbwS_FMdVZiza4-U_jGAnGBkpIJ675a_-O5N-q0BV1W4fOEe4XcTeuYzJfvz7A2EgnZheLfiqi4xvrmSCBIXw-ZfhidgVNhOjv7sPnjzZXWs020nM0dp31THE_yB_BlDp-vSFdBqiYsXTg4PaGkNjh2d9tqbJIn7lZoGYwxSMK-_Xrr2-8geIIBHZ" />
+                        <img alt="Team collaboration" class="rounded-lg shadow-lg w-full h-48 object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx04yo4TbTqg9vJzQtE3QU5nEhGAFaJhYdc58B3RX6Mwta95oiWZ6wcP6KZYVQZsb0ELoWl_ndFPNp3-PZxj3W3Y5OoxOdx7ELWA800TZWH8KxcsYPyCPwxadAJK9aZKRWjWV2fBaPpItfchwhPOd6t_YO1WItWCx4vVCCJBJOZk36wS1tHMifKu0w7apQSRKwYd26--vFy8inMpP5Y8B6Fmajd9YjzfqTFj_9PGcfplytEvRxm2pekSX2nhcCvVkz0IXCEMTyf3GF" />
+                        <img alt="Signing documents" class="rounded-lg shadow-lg w-full h-48 object-cover mt-8"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-bdbnzpYTgM3J-LAY8kCR3Jp0X5pktNaSKWKhMWgJ4U9dAia7MHoZrRKkHwXGN3EYpkhxoTziQUykgn2nYHHNbwS_FMdVZiza4-U_jGAnGBkpIJ675a_-O5N-q0BV1W4fOEe4XcTeuYzJfvz7A2EgnZheLfiqi4xvrmSCBIXw-ZfhidgVNhOjv7sPnjzZXWs020nM0dp31THE_yB_BlDp-vSFdBqiYsXTg4PaGkNjh2d9tqbJIn7lZoGYwxSMK-_Xrr2-8geIIBHZ" />
                     </div>
                 </div>
             </div>
         </main>
 
         <!-- Footer -->
-    <footer class="bg-primary text-white pt-20 pb-10 border-t border-white/5">
-        <div class="max-w-[90%] mx-auto px-6 md:px-20">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                <!-- Branding -->
-                <div>
-                    <div class="flex items-center mb-6">
-                        <img src="/Images/rlc-white-logo.png" alt="RLC Advocates Logo" class="h-10">
+        <footer class="bg-primary text-white pt-20 pb-10 border-t border-white/5">
+            <div class="max-w-[90%] mx-auto px-6 md:px-20">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                    <!-- Branding -->
+                    <div>
+                        <div class="flex items-center mb-6">
+                            <img src="/Images/rlc-white-logo.png" alt="RLC Advocates Logo" class="h-10">
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Providing premier legal services since 2024. Your success and legal protection are our highest priorities.
+                        </p>
+                        <div class="flex gap-4">
+                            <a class="w-10 h-10 bg-white/5 flex items-center justify-center rounded-lg hover:bg-accent-blue transition-colors" href="#">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                            </a>
+                            <a class="w-10 h-10 bg-white/5 flex items-center justify-center rounded-lg hover:bg-accent-blue transition-colors" href="#">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+                            </a>
+                        </div>
                     </div>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                        Providing premier legal services since 2024. Your success and legal protection are our highest priorities.
-                    </p>
-                    <div class="flex gap-4">
-                        <a class="w-10 h-10 bg-white/5 flex items-center justify-center rounded-lg hover:bg-accent-blue transition-colors" href="#">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-                        </a>
-                        <a class="w-10 h-10 bg-white/5 flex items-center justify-center rounded-lg hover:bg-accent-blue transition-colors" href="#">
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
-                        </a>
+                    <!-- Practice Areas -->
+                    <div>
+                        <h5 class="text-lg font-bold mb-6">Practice Areas</h5>
+                        <ul class="space-y-4 text-gray-400 text-sm">
+                            <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Corporate Law</a></li>
+                            <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Criminal Defense</a></li>
+                            <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Family Law</a></li>
+                            <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Intellectual Property</a></li>
+                            <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Real Estate</a></li>
+                        </ul>
+                    </div>
+                    <!-- Contact Us -->
+                    <div>
+                        <h5 class="text-lg font-bold mb-6">Contact Us</h5>
+                        <ul class="space-y-4 text-gray-400 text-sm">
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-accent-blue">location_on</span>
+                                <span>RLC Advocates LLP<br/>Nairobi, Kenya</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-accent-blue">call</span>
+                                <span>+254 207 800 800</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-accent-blue">mail</span>
+                                <span>office@rlcadvocates.co.ke</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Newsletter -->
+                    <div>
+                        <h5 class="text-lg font-bold mb-6">Newsletter</h5>
+                        <p class="text-gray-400 text-sm mb-4">Stay updated with legal news and firm insights.</p>
+                        <div class="flex flex-col gap-2">
+                            <input class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-accent-blue transition-colors" placeholder="Your Email" type="email" />
+                            <button class="bg-accent-blue hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-sm transition-colors">Subscribe</button>
+                        </div>
                     </div>
                 </div>
-                <!-- Practice Areas -->
-                <div>
-                    <h5 class="text-lg font-bold mb-6">Practice Areas</h5>
-                    <ul class="space-y-4 text-gray-400 text-sm">
-                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Corporate Law</a></li>
-                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Criminal Defense</a></li>
-                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Family Law</a></li>
-                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Intellectual Property</a></li>
-                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Real Estate</a></li>
-                    </ul>
-                </div>
-                <!-- Contact Us -->
-                <div>
-                    <h5 class="text-lg font-bold mb-6">Contact Us</h5>
-                    <ul class="space-y-4 text-gray-400 text-sm">
-                        <li class="flex items-start gap-3">
-                            <span class="material-symbols-outlined text-accent-blue">location_on</span>
-                            <span>RLC Advocates LLP<br/>Nairobi, Kenya</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-accent-blue">call</span>
-                            <span>+254 207 800 800</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-accent-blue">mail</span>
-                            <span>office@rlcadvocates.co.ke</span>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Newsletter -->
-                <div>
-                    <h5 class="text-lg font-bold mb-6">Newsletter</h5>
-                    <p class="text-gray-400 text-sm mb-4">Stay updated with legal news and firm insights.</p>
-                    <div class="flex flex-col gap-2">
-                        <input class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-accent-blue transition-colors" placeholder="Your Email" type="email" />
-                        <button class="bg-accent-blue hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-sm transition-colors">Subscribe</button>
+                <!-- Bottom Bar -->
+                <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                    <p>&copy; <span id="current-year">2026</span> RLC Advocates. All rights reserved.</p>
+                    <div class="flex gap-6">
+                        <a class="hover:text-white transition-colors" href="/privacy/index.html">Privacy Policy</a>
+                        <a class="hover:text-white transition-colors" href="/terms/index.html">Terms and Conditions</a>
                     </div>
                 </div>
             </div>
-            <!-- Bottom Bar -->
-            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-                <p>&copy; <span id="current-year">2026</span> RLC Advocates. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a class="hover:text-white transition-colors" href="/privacy/index.html">Privacy Policy</a>
-                    <a class="hover:text-white transition-colors" href="/terms/index.html">Terms and Conditions</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
     </div>
     <script src="../shared/js/global.js?v=2.2"></script>
 </body>
