@@ -12,6 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "order": {
+      "type": "integer",
+      "default": 100
+    },
     "name": {
       "type": "string",
       "required": true
@@ -25,8 +29,17 @@
       "targetField": "name",
       "required": true
     },
-    "bio": {
-      "type": "richtext"
+    "email": {
+      "type": "email"
+    },
+    "phone_number": {
+      "type": "string"
+    },
+    "bio_short": {
+      "type": "text"
+    },
+    "focus_areas": {
+      "type": "text"
     },
     "photo": {
       "type": "media",
@@ -36,21 +49,29 @@
         "images"
       ]
     },
+    "bio": {
+      "type": "richtext"
+    },
+    "achievements": {
+      "type": "richtext"
+    },
+    "education": {
+      "type": "richtext"
+    },
+    "bar_admissions": {
+      "type": "richtext"
+    },
     "linkedin_url": {
       "type": "string"
     },
-    "facebook_url": {
-        "type": "string"
-    },
     "twitter_url": {
-        "type": "string"
+      "type": "string"
+    },
+    "facebook_url": {
+      "type": "string"
     },
     "instagram_url": {
-        "type": "string"
-    },
-    "order": {
-        "type": "integer",
-        "default": 100
+      "type": "string"
     }
   }
 }

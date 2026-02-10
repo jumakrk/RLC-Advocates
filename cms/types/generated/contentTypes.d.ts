@@ -482,11 +482,17 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    achievements: Schema.Attribute.RichText;
+    bar_admissions: Schema.Attribute.RichText;
     bio: Schema.Attribute.RichText;
+    bio_short: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    education: Schema.Attribute.RichText;
+    email: Schema.Attribute.Email;
     facebook_url: Schema.Attribute.String;
+    focus_areas: Schema.Attribute.Text;
     instagram_url: Schema.Attribute.String;
     linkedin_url: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -497,6 +503,7 @@ export interface ApiTeamMemberTeamMember extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<100>;
+    phone_number: Schema.Attribute.String;
     photo: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
     role: Schema.Attribute.String & Schema.Attribute.Required;

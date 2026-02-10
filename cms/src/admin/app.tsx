@@ -22,76 +22,77 @@ export default {
             // Apply the same "Dark Green" scale to BOTH Light and Dark themes to force the look
             light: {
                 colors: {
-                    primary100: '#fdf0e7',
-                    primary200: '#fbdccf',
-                    primary300: '#ffbca6',
-                    primary400: '#fa9d7d',
-                    primary500: '#e36414',
-                    primary600: '#cc5a12',
-                    primary700: '#b55010',
-                    buttonPrimary100: '#fdf0e7',
-                    buttonPrimary500: '#e36414',
-                    buttonPrimary600: '#cc5a12',
+                    primary100: '#fff0e6', // Lighter orange
+                    primary200: '#ffdcb8',
+                    primary500: '#FD641F', // Brand Orange
+                    primary600: '#e55a1c',
+                    primary700: '#cc5019',
+                    buttonPrimary500: '#FD641F',
+                    buttonPrimary600: '#e55a1c',
 
-                    // Override Secondary just in case Loader uses it
-                    secondary100: '#fdf0e7',
-                    secondary200: '#fbdccf',
-                    secondary300: '#ffbca6',
-                    secondary400: '#fa9d7d',
-                    secondary500: '#e36414',
-                    secondary600: '#cc5a12',
-                    secondary700: '#b55010',
+                    // Secondary (Blue)
+                    secondary100: '#e6f0ff',
+                    secondary500: '#0047AB', // Brand Blue
+                    secondary600: '#003d91',
+                    secondary700: '#00337a',
 
-                    // FORCE DARK MODE LOOK: Low neutrals = Dark Backgrounds
-                    neutral0: '#162b2b',    // Content/Card Background (Lighter Green)
-                    neutral100: '#0d1e1e',  // Main App Background (Dark Green)
-                    neutral150: '#0d1e1e',
-                    neutral200: '#162b2b',
-                    neutral300: '#2a4040',
-                    neutral400: '#4b6666',
-                    neutral500: '#6e8585',
-                    neutral600: '#95b3b3',
-                    neutral700: '#b9cccc',
-                    neutral800: '#dce5e5',
-                    neutral900: '#ffffff',  // Text (White)
-                    neutral1000: '#ffffff',
+                    // Override Default Success (Green) to Brand Blue
+                    success100: '#e6f0ff',
+                    success200: '#b3d1ff',
+                    success500: '#0047AB', // Brand Blue (Cobalt)
+                    success600: '#003d91',
+                    success700: '#00337a',
+
+                    // Revert to Standard Light Theme Neutrals
+                    neutral0: '#ffffff',    // Card/Content
+                    neutral100: '#f6f6f9',  // Main App Background
+                    neutral150: '#eaeaef',
+                    neutral200: '#dcdce4',
+                    neutral300: '#c0c0cf',
+                    neutral400: '#a5a5ba',
+                    neutral500: '#8e8ea9',
+                    neutral600: '#666687',
+                    neutral700: '#4a4a6a',
+                    neutral800: '#32324d',
+                    neutral900: '#212134',  // Text (Dark)
+                    neutral1000: '#151d1d',
                 },
             },
             dark: {
                 colors: {
-                    primary100: '#fdf0e7',
-                    primary200: '#fbdccf',
-                    primary300: '#ffbca6',
-                    primary400: '#fa9d7d',
-                    primary500: '#e36414',
-                    primary600: '#cc5a12',
-                    primary700: '#b55010',
-                    buttonPrimary100: '#fdf0e7',
-                    buttonPrimary500: '#e36414',
-                    buttonPrimary600: '#cc5a12',
+                    primary100: '#fff0e6',
+                    primary200: '#ffdcb8',
+                    primary500: '#FD641F',
+                    primary600: '#e55a1c',
+                    primary700: '#cc5019',
+                    buttonPrimary500: '#FD641F',
+                    buttonPrimary600: '#e55a1c',
 
-                    // Override Secondary for Dark Mode too
-                    secondary100: '#fdf0e7',
-                    secondary200: '#fbdccf',
-                    secondary300: '#ffbca6',
-                    secondary400: '#fa9d7d',
-                    secondary500: '#e36414',
-                    secondary600: '#cc5a12',
-                    secondary700: '#b55010',
+                    secondary100: '#e6f0ff',
+                    secondary500: '#0047AB',
+                    secondary600: '#003d91',
+                    secondary700: '#00337a',
 
-                    // Identical Scale for Dark Mode
-                    neutral0: '#162b2b',    // Content/Card Background
-                    neutral100: '#0d1e1e',  // Main App Background
-                    neutral150: '#0d1e1e',
-                    neutral200: '#162b2b',
-                    neutral300: '#2a4040',
-                    neutral400: '#4b6666',
-                    neutral500: '#6e8585',
-                    neutral600: '#95b3b3',
-                    neutral700: '#b9cccc',
-                    neutral800: '#dce5e5',
-                    neutral900: '#ffffff',  // Text
-                    neutral1000: '#ffffff',
+                    // Override Default Success (Green) to Brand Blue
+                    success100: '#e6f0ff',
+                    success200: '#b3d1ff',
+                    success500: '#0047AB', // Brand Blue (Cobalt)
+                    success600: '#003d91',
+                    success700: '#00337a',
+
+                    // Force Light Look even in Dark Mode (White Backgrounds)
+                    neutral0: '#ffffff',    // Card/Content
+                    neutral100: '#f6f6f9',  // Main App Background
+                    neutral150: '#eaeaef',
+                    neutral200: '#dcdce4',
+                    neutral300: '#c0c0cf',
+                    neutral400: '#a5a5ba',
+                    neutral500: '#8e8ea9',
+                    neutral600: '#666687',
+                    neutral700: '#4a4a6a',
+                    neutral800: '#32324d',
+                    neutral900: '#212134',  // Text (Dark)
+                    neutral1000: '#151d1d',
                 },
             },
         },
@@ -108,10 +109,10 @@ export default {
             :where(input[type="password"]),
             :where(input[type="number"]),
             :where(textarea) {
-                border: 1px solid #e36414 !important;
+                border: 1px solid #FD641F !important;
             }
             :where(input:focus), :where(textarea:focus) {
-                box-shadow: 0 0 0 2px rgba(227, 100, 20, 0.2) !important;
+                box-shadow: 0 0 0 2px rgba(253, 100, 31, 0.2) !important;
             }
         `;
         document.head.appendChild(style);

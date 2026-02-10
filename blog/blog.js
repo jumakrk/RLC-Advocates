@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     // Start loader immediately
-    const loaderStartTime = showLoader();
+    // const loaderStartTime = showLoader();
+    const loaderStartTime = null;
 
     // --- CONFIG ---
     const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '';
