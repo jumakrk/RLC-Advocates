@@ -239,37 +239,27 @@ section {
     align-items: center;
 }
 
-.main-nav a:not(.btn) {
-    font-weight: 500;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--text-light);
-    opacity: 0.8;
-    transition: all 0.3s;
+/* Navigation Hover Effect */
+header nav a {
     position: relative;
-    padding-bottom: 5px;
+    padding-bottom: 2px; /* Space for underline */
 }
 
-.main-nav a:not(.btn)::after {
+header nav a::after {
     content: '';
     position: absolute;
-    width: 0;
+    width: 100%;
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease-in-out;
+    background-color: var(--accent-blue);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
 }
 
-.main-nav a:not(.btn):hover {
-    color: var(--primary-color);
-    opacity: 1;
-    text-shadow: 0 0 10px var(--primary-glow);
-}
-
-.main-nav a:not(.btn):hover::after {
-    width: 100%;
+header nav a:hover::after {
+    transform: scaleX(1);
 }
 
 .mobile-menu-toggle,
