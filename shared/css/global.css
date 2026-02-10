@@ -632,3 +632,18 @@ header nav a:hover::after {
         gap: 15px;
     }
 }
+
+/* Fix for mobile menu button on very small screens */
+@media (max-width: 342px) {
+    #mobile-menu a.bg-accent-orange {
+        font-size: 14px !important;
+        padding: 10px 15px !important;
+        width: auto;
+        max-width: 90%;
+        margin: 0 auto;
+        display: inline-block;
+        white-space: normal !important; /* Allow wrapping if needed */
+        line-height: 1.2;
+        text-align: center;
+    }
+}
