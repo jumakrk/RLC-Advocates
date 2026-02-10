@@ -19,8 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileToggles.length > 0 && mobileMenu) {
         mobileToggles.forEach(toggle => {
             toggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('active');
+                const isActive = mobileMenu.classList.toggle('active');
                 document.body.classList.toggle('overflow-hidden');
+                
+                // Toggle Icon
+                const icon = toggle.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.textContent = isActive ? 'close' : 'menu';
+                }
             });
         });
 
@@ -29,6 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
                 document.body.classList.remove('overflow-hidden');
+                
+                // Reset Icon
+                mobileToggles.forEach(toggle => {
+                    const icon = toggle.querySelector('.material-symbols-outlined');
+                    if (icon) icon.textContent = 'menu';
+                });
             });
         });
     }
