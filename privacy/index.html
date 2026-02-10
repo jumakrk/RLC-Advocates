@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="../shared/css/global.css?v=2.2">
     <link rel="icon" type="image/png" href="../Images/rlc-favicon.png">
     <script>
@@ -38,7 +39,7 @@
 
 <body class="bg-background-light dark:bg-background-dark text-primary dark:text-white transition-colors duration-200 font-display pt-[80px]">
     <!-- Header -->
-    <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md">
+    <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md print:hidden">
         <div class="max-w-[90%] mx-auto flex items-center justify-between">
             <a href="/index.html" class="flex items-center">
                 <img src="/Images/rlc-small-logo.png" alt="RLC Logo" class="h-10">
@@ -63,7 +64,7 @@
     </header>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center gap-8 text-primary p-6">
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center gap-8 text-primary p-6 print:hidden">
         <button class="mobile-toggle absolute top-6 right-6 text-primary">
             <span class="material-symbols-outlined text-4xl">close</span>
         </button>
@@ -77,16 +78,16 @@
 
     <!-- Breadcrumb & Title -->
     <div class="max-w-[90%] mx-auto w-full px-6 py-12">
-        <nav class="flex items-center gap-2 text-xs font-medium mb-6 uppercase tracking-wider text-gray-400">
+        <nav class="flex items-center gap-2 text-xs font-medium mb-6 uppercase tracking-wider text-gray-400 print:hidden">
             <a class="hover:text-accent-blue" href="/index.html">Home</a>
             <span class="material-symbols-outlined text-xs">chevron_right</span>
             <span class="text-gray-600">Privacy Policy</span>
         </nav>
         
-        <div class="mb-12 border-b border-gray-100 pb-8">
+        <div class="mb-12 border-b border-gray-100 pb-8" id="pdf-header">
             <h1 class="text-5xl font-black text-primary mb-6 tracking-tight">Privacy Policy</h1>
             <div class="flex flex-wrap items-center gap-6">
-                <span class="px-3 py-1 bg-accent-blue text-white text-[10px] font-bold rounded uppercase tracking-widest">Legal Document</span>
+                <span class="px-3 py-1 bg-accent-blue text-white text-[10px] font-bold rounded uppercase tracking-widest print:hidden">Legal Document</span>
                 <p class="text-gray-400 text-sm">Effective Date: January 2025</p>
             </div>
         </div>
@@ -94,8 +95,8 @@
         <!-- Main Content Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <!-- Sidebar Navigation -->
-            <aside class="lg:col-span-3">
-                <div class="sticky top-24 space-y-8">
+            <aside class="lg:col-span-3 relative h-full print:hidden">
+                <div class="sticky top-32 space-y-8">
                     <div>
                         <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-6">Sections</h3>
                         <nav class="flex flex-col gap-0.5" id="sidebar-nav">
@@ -148,7 +149,7 @@
 
                     <div class="bg-accent-orange/5 p-6 rounded-2xl border border-accent-orange/10">
                         <h4 class="text-[10px] font-black text-accent-orange uppercase tracking-widest mb-4">Need a copy?</h4>
-                        <button class="flex items-center gap-3 text-sm font-bold text-primary hover:underline group">
+                        <button onclick="downloadPDF()" class="flex items-center gap-3 text-sm font-bold text-primary hover:underline group">
                             <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">download</span>
                             Download PDF
                         </button>
@@ -157,7 +158,7 @@
             </aside>
 
             <!-- Policy Content -->
-            <main class="lg:col-span-9 max-w-none">
+            <main class="lg:col-span-9 max-w-none print:col-span-12 print:w-full" id="policy-content">
                 <div class="mb-12 scroll-mt-32" id="intro">
                     <h2 class="text-2xl font-black text-primary mb-4 flex items-center gap-4 uppercase tracking-tight">
                         <span class="w-10 h-1 bg-accent-orange inline-block rounded-full"></span>
@@ -355,7 +356,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-primary text-white pt-20 pb-10 border-t border-white/5">
+    <footer class="bg-primary text-white pt-20 pb-10 border-t border-white/5 print:hidden">
         <div class="max-w-[90%] mx-auto px-6 md:px-20">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <!-- Branding -->
@@ -387,8 +388,8 @@
                     </ul>
                 </div>
                 <!-- Contact Us -->
-                <div>
-                    <h5 class="text-lg font-bold mb-6">Contact Us</h5>
+                <div id="pdf-footer">
+                    <h5 class="text-lg font-bold mb-6 text-gray-800">Contact Us</h5>
                     <ul class="space-y-4 text-gray-400 text-sm">
                         <li class="flex items-start gap-3">
                             <span class="material-symbols-outlined text-accent-blue">location_on</span>
@@ -431,25 +432,117 @@
         const sections = document.querySelectorAll('.scroll-mt-32');
         const navLinks = document.querySelectorAll('.nav-link');
 
-        window.addEventListener('scroll', () => {
+        function onScroll() {
             let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute('id');
+            
+            // Default to first section if at top
+            if (window.scrollY < 100) {
+                current = 'intro';
+            } else {
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Adjust offset to trigger earlier/later as needed
+                    if (window.scrollY >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+            }
+
+            navLinks.forEach(link => {
+                // Reset all to inactive state
+                link.classList.remove('bg-primary', 'text-white', 'font-bold');
+                link.classList.add('text-gray-500', 'hover:bg-gray-50');
+                
+                // Set active state
+                if (link.getAttribute('data-section') === current) {
+                    link.classList.add('bg-primary', 'text-white', 'font-bold');
+                    link.classList.remove('text-gray-500', 'hover:bg-gray-50');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', onScroll);
+        // Run once on load to set initial state
+        window.addEventListener('load', onScroll);
+
+        function downloadPDF() {
+            // Create a temporary container for PDF generation
+            const container = document.createElement('div');
+            container.className = 'pdf-container bg-white text-primary';
+            // Set width to approx A4 width in px at 96dpi (794px) minus margins, 
+            // but we use a larger fixed width for better resolution and let html2pdf scale it.
+            container.style.width = '800px'; 
+            container.style.padding = '40px';
+            container.style.position = 'absolute';
+            container.style.left = '-9999px';
+            container.style.top = '0';
+            
+            // 1. Header (Logo)
+            const mainHeader = document.querySelector('header').cloneNode(true);
+            // Remove fixed/absolute positioning classes from header for PDF
+            mainHeader.classList.remove('fixed', 'sticky', 'backdrop-blur-md', 'top-0', 'left-0', 'w-full', 'z-50');
+            mainHeader.classList.add('static', 'w-full', 'mb-8', 'border-b', 'border-gray-200', 'pb-4');
+            // Hide navigation, mobile menu toggle, and buttons in header
+            const nav = mainHeader.querySelector('nav');
+            if (nav) nav.remove();
+            const buttons = mainHeader.querySelectorAll('a[href*="contact"], button');
+            buttons.forEach(btn => btn.remove());
+            
+            // 2. Page Title (Privacy Policy)
+            const pageTitle = document.getElementById('pdf-header').cloneNode(true);
+            // Clean up badge
+            const badge = pageTitle.querySelector('.print\\:hidden');
+            if (badge) badge.remove();
+            
+            // 3. Main Content
+            const content = document.getElementById('policy-content').cloneNode(true);
+            
+            // 4. Contact Info (Footer)
+            const footer = document.getElementById('pdf-footer').cloneNode(true);
+            // Style footer for PDF
+            footer.classList.remove('text-gray-400');
+            footer.classList.add('mt-12', 'pt-8', 'border-t', 'border-gray-200');
+            // Ensure Contact stays together on page break if possible
+            footer.style.pageBreakInside = 'avoid';
+
+            // Force text color adjustments
+            const footerItems = footer.querySelectorAll('*');
+            footerItems.forEach(el => {
+                if (el.classList.contains('text-gray-400') || el.classList.contains('text-white')) {
+                    el.classList.remove('text-gray-400', 'text-white');
+                    el.classList.add('text-gray-600');
+                }
+                if (el.tagName === 'H5') {
+                    el.classList.remove('text-white');
+                    el.classList.add('text-primary');
                 }
             });
 
-            navLinks.forEach(link => {
-                link.classList.remove('bg-primary', 'text-white', 'font-bold');
-                link.classList.add('text-gray-500');
-                if (link.getAttribute('data-section') === current) {
-                    link.classList.add('bg-primary', 'text-white', 'font-bold');
-                    link.classList.remove('text-gray-500');
-                }
-            });
-        });
+            // Assemble
+            container.appendChild(mainHeader);
+            container.appendChild(pageTitle);
+            container.appendChild(content);
+            container.appendChild(footer);
+
+            // Append to body
+            document.body.appendChild(container);
+
+            // Wait a moment for layout/images
+            setTimeout(() => {
+                const opt = {
+                    margin:       [0.5, 0.5, 0.5, 0.5], // Top, Left, Bottom, Right
+                    filename:     'RLC-Advocates-Privacy-Policy.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2, useCORS: true, logging: false, letterRendering: true },
+                    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
+                    pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+                };
+
+                html2pdf().set(opt).from(container).save().then(() => {
+                    document.body.removeChild(container);
+                });
+            }, 500); // 500ms delay
+        }
     </script>
 </body>
 

@@ -39,7 +39,7 @@
 
 <body class="bg-background-light dark:bg-background-dark text-primary dark:text-white transition-colors duration-200 font-display pt-[80px]">
     <!-- Header -->
-    <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md">
+    <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md print:hidden">
         <div class="max-w-[90%] mx-auto flex items-center justify-between">
             <a href="/index.html" class="flex items-center">
                 <img src="/Images/rlc-small-logo.png" alt="RLC Logo" class="h-10">
@@ -64,7 +64,7 @@
     </header>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center gap-8 text-primary p-6">
+    <div id="mobile-menu" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center gap-8 text-primary p-6 print:hidden">
         <button class="mobile-toggle absolute top-6 right-6 text-primary">
             <span class="material-symbols-outlined text-4xl">close</span>
         </button>
@@ -78,7 +78,7 @@
 
     <!-- Breadcrumb & Title -->
     <div class="max-w-[90%] mx-auto w-full px-6 py-12">
-        <nav class="flex items-center gap-2 text-xs font-medium mb-10 uppercase tracking-wider text-gray-400">
+        <nav class="flex items-center gap-2 text-xs font-medium mb-10 uppercase tracking-wider text-gray-400 print:hidden">
             <a class="hover:text-accent-blue" href="/index.html">Home</a>
             <span class="material-symbols-outlined text-xs">chevron_right</span>
             <span class="text-gray-600">Terms & Conditions</span>
@@ -87,7 +87,7 @@
         <div class="mb-12 border-b border-gray-100 pb-8">
             <h1 class="text-5xl font-black text-primary mb-6 tracking-tight">Terms & Conditions</h1>
             <div class="flex flex-wrap items-center gap-6">
-                <span class="px-3 py-1 bg-accent-orange text-white text-[10px] font-bold rounded uppercase tracking-widest">Legal Agreement</span>
+                <span class="px-3 py-1 bg-accent-orange text-white text-[10px] font-bold rounded uppercase tracking-widest print:hidden">Legal Agreement</span>
                 <p class="text-gray-400 text-sm">Effective Date: January 2025</p>
             </div>
         </div>
@@ -95,8 +95,8 @@
         <!-- Main Content Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
             <!-- Sidebar Navigation -->
-            <aside class="lg:col-span-3">
-                <div class="sticky top-24 space-y-8">
+            <aside class="lg:col-span-3 relative h-full print:hidden">
+                <div class="sticky top-32 space-y-8">
                     <div>
                         <h3 class="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-6 px-3">Sections</h3>
                         <nav class="flex flex-col gap-0.5" id="sidebar-nav">
@@ -148,7 +148,7 @@
                         </a>
                     </div>
 
-                    <button class="flex items-center gap-3 text-xs font-bold text-gray-400 hover:text-primary transition-colors px-4 group">
+                    <button onclick="window.print()" class="flex items-center gap-3 text-xs font-bold text-gray-400 hover:text-primary transition-colors px-4 group">
                         <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">print</span>
                         Print document
                     </button>
@@ -156,7 +156,7 @@
             </aside>
 
             <!-- Policy Content -->
-            <main class="lg:col-span-9 max-w-none">
+            <main class="lg:col-span-9 max-w-none print:col-span-12 print:w-full">
                 <div class="mb-12 scroll-mt-32" id="usage">
                     <h2 class="text-2xl font-black text-primary mb-4 flex items-center gap-4 uppercase tracking-tight">
                         <span class="w-10 h-1 bg-accent-orange inline-block rounded-full"></span>
@@ -265,7 +265,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-primary text-white pt-20 pb-10 border-t border-white/5">
+    <footer class="bg-primary text-white pt-20 pb-10 border-t border-white/5 print:hidden">
         <div class="max-w-[90%] mx-auto px-6 md:px-20">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <!-- Branding -->
@@ -342,25 +342,38 @@
         const sections = document.querySelectorAll('.scroll-mt-32');
         const navLinks = document.querySelectorAll('.nav-link');
 
-        window.addEventListener('scroll', () => {
+        function onScroll() {
             let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
+            
+            // Default to first section if at top
+            if (window.scrollY < 100) {
+                current = 'usage';
+            } else {
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Adjust offset to trigger earlier/later as needed
+                    if (window.scrollY >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+            }
 
             navLinks.forEach(link => {
+                // Reset all to inactive state
                 link.classList.remove('bg-primary', 'text-white', 'font-bold');
-                link.classList.add('text-gray-500');
+                link.classList.add('text-gray-500', 'hover:bg-gray-50');
+                
+                // Set active state
                 if (link.getAttribute('data-section') === current) {
                     link.classList.add('bg-primary', 'text-white', 'font-bold');
-                    link.classList.remove('text-gray-500');
+                    link.classList.remove('text-gray-500', 'hover:bg-gray-50');
                 }
             });
-        });
+        }
+
+        window.addEventListener('scroll', onScroll);
+        // Run once on load to set initial state
+        window.addEventListener('load', onScroll);
     </script>
 </body>
 
