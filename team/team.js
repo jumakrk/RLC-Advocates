@@ -110,16 +110,13 @@ async function loadTeamGrid(container, url, baseUrl) {
             if (hasPhoto) {
                 imgContent = `<img src="${baseUrl}${member.photo.url}" class="team-img" alt="${member.name}">`;
             } else {
-                imgContent = `<div class="team-avatar-placeholder"><i class="fas fa-user"></i></div>`;
+                imgContent = `<div class="team-avatar-placeholder"><span class="material-symbols-outlined text-4xl text-gray-400">person</span></div>`;
             }
             
             const card = document.createElement('div');
             card.className = 'group flex flex-col bg-white dark:bg-background-dark border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300';
             
-            // Check session for animation
-            const currentPath = window.location.pathname;
-            const hasVisited = sessionStorage.getItem(`visited_${currentPath}`);
-            if (!hasVisited) {
+            if (typeof AOS !== 'undefined') {
                 card.setAttribute('data-aos', 'fade-up');
             }
 
@@ -159,7 +156,9 @@ async function loadTeamGrid(container, url, baseUrl) {
             container.appendChild(card);
         });
         
-        if (typeof AOS !== 'undefined') setTimeout(() => AOS.refresh(), 100);
+        if (typeof AOS !== 'undefined') {
+            setTimeout(() => AOS.refresh(), 100);
+        }
 
         // Preload images for smoother transition to profile page
         preloadTeamImages(members, baseUrl);

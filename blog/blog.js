@@ -152,10 +152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const featuredContainer = document.getElementById('featured-article-container');
         if (!featuredContainer) return;
         
-        // Check session for animation
-        const currentPath = window.location.pathname;
-        const hasVisited = sessionStorage.getItem(`visited_${currentPath}`);
-        const aosAttr = hasVisited ? '' : 'data-aos="fade-up"';
+        const aosAttr = 'data-aos="fade-up"';
         const imageUrl = getImageUrl(article);
         const category = article.category || 'Legal Insight';
 
@@ -189,7 +186,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         `;
         
-        if (typeof AOS !== 'undefined' && !hasVisited) {
+        if (typeof AOS !== 'undefined') {
             setTimeout(() => AOS.refresh(), 100);
         }
     };
@@ -208,7 +205,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Check session for animation
         const currentPath = window.location.pathname;
-        const hasVisited = sessionStorage.getItem(`visited_${currentPath}`);
 
         if(pageArticles.length === 0) {
             const msg = activeFilter 
@@ -221,7 +217,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         pageArticles.forEach((article, index) => {
             const delay = index * 100;
-            const aosAttr = hasVisited ? '' : `data-aos="fade-up" data-aos-delay="${delay}"`;
+            const aosAttr = `data-aos="fade-up" data-aos-delay="${delay}"`;
             const category = article.category || 'General';
             const imageUrl = getImageUrl(article);
 
@@ -256,7 +252,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             recentGrid.innerHTML += html;
         });
 
-        if (typeof AOS !== 'undefined' && !hasVisited) {
+        if (typeof AOS !== 'undefined') {
             setTimeout(() => AOS.refresh(), 100);
         }
 

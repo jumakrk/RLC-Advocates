@@ -11,6 +11,9 @@
     <script src="../shared/js/tailwind-config.js?v=2.2"></script>
     <link rel="stylesheet" href="../shared/css/global.css?v=2.2" />
     <link rel="stylesheet" href="practice.css?v=2.2" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <!-- Icons -->
     <!-- Preload Critical Assets -->
@@ -20,6 +23,7 @@
 
 <body
     class="bg-background-light dark:bg-background-dark font-display text-primary dark:text-gray-100 transition-colors duration-200 pt-[80px]">
+    <div id="webgl-container" class="fixed inset-0 z-[-1] pointer-events-none"></div>
     <header
         class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md">
         <div class="max-w-[90%] mx-auto flex items-center justify-between">
@@ -138,7 +142,7 @@
                             residential sectors.</p>
                     </div>
                     <!-- Family Law -->
-                    <div
+                    <div data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -151,7 +155,7 @@
                             sensitivity and care.</p>
                     </div>
                     <!-- Intellectual Property -->
-                    <div
+                    <div data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -164,7 +168,7 @@
                             enforcement.</p>
                     </div>
                     <!-- Legal Consulting -->
-                    <div
+                    <div data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -176,7 +180,7 @@
                             complex regulatory environments, mitigate risks, and support strategic business decisions.</p>
                     </div>
                     <!-- IT Law -->
-                    <div
+                    <div data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -188,7 +192,7 @@
                             privacy, software licensing, cybersecurity compliance, and digital rights management.</p>
                     </div>
                     <!-- Labour & Employment Law -->
-                    <div
+                    <div data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -200,7 +204,7 @@
                             workplace policies, dispute resolution, and regulatory compliance for employers and employees.</p>
                     </div>
                     <!-- Notary Law -->
-                    <div
+                    <div data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -212,7 +216,7 @@
                             documents, administration of oaths, and witnessing of signatures for legal validity.</p>
                     </div>
                     <!-- Tax Law -->
-                    <div
+                    <div data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -224,7 +228,7 @@
                             services including compliance, planning, and dispute resolution with tax authorities.</p>
                     </div>
                     <!-- Wills Planning Law -->
-                    <div
+                    <div data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -243,7 +247,7 @@
         <section class="py-24 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800">
             <div class="max-w-[90%] mx-auto px-6 lg:px-10">
                 <div class="flex flex-col lg:flex-row gap-16 items-center">
-                    <div class="w-full lg:w-1/2">
+                    <div data-aos="fade-right" class="w-full lg:w-1/2">
                         <div class="relative">
                             <div class="absolute -top-4 -left-4 w-24 h-24 bg-accent-blue/10 rounded-lg -z-10"></div>
                             <img alt="Legal office desk"
@@ -256,7 +260,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-full lg:w-1/2">
+                    <div data-aos="fade-left" class="w-full lg:w-1/2">
                         <h2 class="text-3xl lg:text-4xl font-extrabold text-primary dark:text-white mb-8">Our Approach
                         </h2>
                         <p class="text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">
@@ -307,7 +311,7 @@
         <!-- CTA Section -->
         <section class="py-20">
             <div class="mx-4 lg:mx-10">
-                <div class="relative bg-primary rounded-3xl overflow-hidden px-8 py-16 lg:p-20 text-center">
+                <div data-aos="zoom-in" class="relative bg-primary rounded-3xl overflow-hidden px-8 py-16 lg:p-20 text-center">
                     <div
                         class="absolute top-0 right-0 w-64 h-64 bg-accent-orange opacity-10 rounded-full -mr-32 -mt-32">
                     </div>

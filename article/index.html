@@ -11,12 +11,16 @@
     <script src="../shared/js/tailwind-config.js?v=2.2"></script>
     <link rel="stylesheet" href="../shared/css/global.css?v=2.2" />
     <link rel="stylesheet" href="article.css?v=2.2" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <!-- Icons -->
     <link rel="icon" type="image/png" href="../Images/rlc-favicon.png">
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-display transition-colors duration-200">
+    <div id="webgl-container" class="fixed inset-0 z-[-1] pointer-events-none"></div>
     <!-- Reading Progress Bar -->
     <div id="progress-bar" class="fixed top-0 left-0 w-0 h-1 z-[60] bg-accent-blue transition-all duration-100"></div>
 
@@ -58,7 +62,7 @@
         <a class="text-xs bg-accent-orange text-white font-bold px-3 py-1.5 rounded-full shadow-lg hover:bg-accent-blue transition-colors whitespace-nowrap" href="/contact/index.html">Free Consultation</a>
     </div>
 
-        <main class="flex-1 max-w-[90%] mx-auto w-full px-4 md:px-10 py-10 lg:py-16">
+        <main data-aos="fade-up" class="flex-1 max-w-[90%] mx-auto w-full px-4 md:px-10 py-10 lg:py-16">
             <!-- Breadcrumbs -->
             <nav class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-8">
                 <a class="hover:text-accent-blue" href="/index.html">Home</a>
@@ -70,7 +74,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12" id="article-view" style="opacity: 0;">
                 <!-- Article Section -->
-                <article class="lg:col-span-8">
+                <article data-aos="fade-up" class="lg:col-span-8">
                     <h1 id="article-title" class="text-3xl md:text-5xl font-extrabold text-primary dark:text-white leading-tight mb-8">
                         Loading Insight...
                     </h1>
@@ -135,7 +139,7 @@
                 </article>
 
                 <!-- Sidebar -->
-                <aside class="lg:col-span-4 space-y-12">
+                <aside data-aos="fade-left" class="lg:col-span-4 space-y-12">
 
                     <!-- Related Insights Card (Static Template for UI) -->
                     <div class="bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">

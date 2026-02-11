@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rlc-advocates-v1';
+const CACHE_NAME = 'rlc-advocates-v4';
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
@@ -11,6 +11,7 @@ const ASSETS_TO_CACHE = [
 ];
 
 self.addEventListener('install', (event) => {
+    self.skipWaiting(); // Activate new service worker immediately
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
@@ -25,34 +26,47 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // For HTML, JS, and CSS files: use network-first strategy
+    // This ensures code updates are always picked up
+    if (event.request.url.match(/\.(html|js|css)$/i) || event.request.mode === 'navigate') {
+        event.respondWith(
+            fetch(event.request)
+                .then((response) => {
+                    // Cache the fresh response
+                    if (response && response.status === 200) {
+                        const responseToCache = response.clone();
+                        caches.open(CACHE_NAME).then((cache) => {
+                            cache.put(event.request, responseToCache);
+                        });
+                    }
+                    return response;
+                })
+                .catch(() => {
+                    // Network failed, fall back to cache
+                    return caches.match(event.request);
+                })
+        );
+        return;
+    }
+
+    // For images and other assets: use cache-first strategy for performance
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
-                // Cache hit - return response
                 if (response) {
                     return response;
                 }
 
-                // Clone the request
-                const fetchRequest = event.request.clone();
-
-                return fetch(fetchRequest).then(
+                return fetch(event.request.clone()).then(
                     (response) => {
-                        // Check if we received a valid response
                         if (!response || response.status !== 200 || response.type !== 'basic') {
                             return response;
                         }
 
-                        // Clone the response
                         const responseToCache = response.clone();
-
-                        // Cache images and CSS/JS files dynamically
-                        if (event.request.url.match(/\.(jpg|jpeg|png|gif|svg|css|js)$/i)) {
-                            caches.open(CACHE_NAME)
-                                .then((cache) => {
-                                    cache.put(event.request, responseToCache);
-                                });
-                        }
+                        caches.open(CACHE_NAME).then((cache) => {
+                            cache.put(event.request, responseToCache);
+                        });
 
                         return response;
                     }

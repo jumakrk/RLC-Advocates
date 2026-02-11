@@ -11,12 +11,16 @@
     <script src="../shared/js/tailwind-config.js?v=2.2"></script>
     <link rel="stylesheet" href="../shared/css/global.css?v=2.2" />
     <link rel="stylesheet" href="faq.css?v=2.2" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <!-- Icons -->
     <link rel="icon" type="image/png" href="../Images/rlc-favicon.png">
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-primary dark:text-white transition-colors duration-200">
+    <div id="webgl-container" class="fixed inset-0 z-[-1] pointer-events-none"></div>
     <div class="relative flex min-h-screen flex-col overflow-x-hidden pt-[80px]">
         <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md">
             <div class="max-w-[90%] mx-auto flex items-center justify-between">
@@ -91,7 +95,7 @@
                     <div>
                         <div class="space-y-4">
                             <!-- FAQ 1 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">What does RLC bring to its clientele?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -104,7 +108,7 @@
                             </div>
 
                             <!-- FAQ 2 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">Do you offer legal retainers for companies or SMEs?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -117,7 +121,7 @@
                             </div>
 
                             <!-- FAQ 3 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">Do I need an appointment before visiting?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -133,7 +137,7 @@
                             </div>
 
                             <!-- FAQ 4 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">Do you offer initial consultations?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -146,7 +150,7 @@
                             </div>
 
                             <!-- FAQ 5 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">What documents should I bring to my first consultation?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -164,7 +168,7 @@
                             </div>
 
                             <!-- FAQ 6 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">How do you charge for legal services?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -180,7 +184,7 @@
                             </div>
 
                             <!-- FAQ 7 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">Do you offer fixed fees or payment plans?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -193,7 +197,7 @@
                             </div>
 
                             <!-- FAQ 8 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">Do you offer virtual consultations?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -206,7 +210,7 @@
                             </div>
 
                             <!-- FAQ 9 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">Do you handle matters outside Nairobi or internationally?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -219,7 +223,7 @@
                             </div>
 
                             <!-- FAQ 10 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">Can you help with due diligence for property or company purchases?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -232,7 +236,7 @@
                             </div>
 
                             <!-- FAQ 11 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">Do you assist with drafting and reviewing contracts?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -245,7 +249,7 @@
                             </div>
 
                             <!-- FAQ 12 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">What happens if I receive a demand letter or court summons?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -258,7 +262,7 @@
                             </div>
 
                             <!-- FAQ 13 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">How do you protect client confidentiality?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -271,7 +275,7 @@
                             </div>
 
                             <!-- FAQ 14 -->
-                            <div class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
+                            <div data-aos="fade-up" class="faq-item group bg-white dark:bg-gray-800 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] overflow-hidden transition-all duration-300">
                                 <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
                                     <span class="font-bold text-primary dark:text-white text-lg">How do I engage your services?</span>
                                     <span class="material-symbols-outlined text-accent-blue transform transition-transform duration-300 group-[.active]:rotate-180">expand_more</span>
@@ -287,7 +291,7 @@
                 </div>
 
                 <!-- Consultation CTA -->
-                <div class="mt-20 bg-primary rounded-2xl p-8 md:p-12 text-center text-white relative overflow-hidden shadow-2xl">
+                <div data-aos="zoom-in" class="mt-20 bg-primary rounded-2xl p-8 md:p-12 text-center text-white relative overflow-hidden shadow-2xl">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-accent-orange/10 rounded-full blur-3xl -mr-16 -mt-16"></div>
                     <div class="absolute bottom-0 left-0 w-32 h-32 bg-accent-blue/10 rounded-full blur-3xl -ml-16 -mb-16"></div>
                     <h3 class="text-2xl md:text-3xl font-bold mb-4 relative z-10">Still have questions?</h3>

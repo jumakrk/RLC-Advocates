@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../shared/css/global.css?v=2.2">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="icon" type="image/png" href="../Images/rlc-favicon.png">
     <script>
         tailwind.config = {
@@ -38,6 +41,7 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-primary dark:text-white transition-colors duration-200 font-display pt-[80px]">
+    <div id="webgl-container" class="fixed inset-0 z-[-1] pointer-events-none"></div>
     <!-- Header -->
     <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md print:hidden">
         <div class="max-w-[90%] mx-auto flex items-center justify-between">
@@ -84,7 +88,7 @@
             <span class="text-gray-600">Terms & Conditions</span>
         </nav>
         
-        <div class="mb-12 border-b border-gray-100 pb-8">
+        <div data-aos="fade-up" class="mb-12 border-b border-gray-100 pb-8">
             <h1 class="text-5xl font-black text-primary mb-6 tracking-tight">Terms & Conditions</h1>
             <div class="flex flex-wrap items-center gap-6">
                 <span class="px-3 py-1 bg-accent-orange text-white text-[10px] font-bold rounded uppercase tracking-widest print:hidden">Legal Agreement</span>
@@ -156,7 +160,7 @@
             </aside>
 
             <!-- Policy Content -->
-            <main class="lg:col-span-9 max-w-none print:col-span-12 print:w-full">
+            <main data-aos="fade-up" class="lg:col-span-9 max-w-none print:col-span-12 print:w-full">
                 <div class="mb-12 scroll-mt-32" id="usage">
                     <h2 class="text-2xl font-black text-primary mb-4 flex items-center gap-4 uppercase tracking-tight">
                         <span class="w-10 h-1 bg-accent-orange inline-block rounded-full"></span>
@@ -344,18 +348,19 @@
 
         function onScroll() {
             let current = '';
+            const headerOffset = 140; // header height + some buffer
             
-            // Default to first section if at top
-            if (window.scrollY < 100) {
-                current = 'usage';
-            } else {
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    // Adjust offset to trigger earlier/later as needed
-                    if (window.scrollY >= sectionTop - 200) {
-                        current = section.getAttribute('id');
-                    }
-                });
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                // Section is active if its top is at or above the threshold
+                if (rect.top <= headerOffset) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Default to first section if none matched
+            if (!current && sections.length > 0) {
+                current = sections[0].getAttribute('id');
             }
 
             navLinks.forEach(link => {
