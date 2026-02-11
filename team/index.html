@@ -32,8 +32,8 @@
                 <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/index.html">Home</a>
                 <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/about/index.html">About</a>
                 <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/practice/index.html">Practices</a>
-                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/blog/index.html">Blog</a>
                 <a class="text-accent-orange" href="/team/index.html">Team</a>
+                <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/blog/index.html">Blog</a>
                 <a class="text-gray-700 hover:text-accent-orange transition-colors" href="/contact/index.html">Contact</a>
             </nav>
             <div class="flex items-center gap-4">
@@ -55,8 +55,8 @@
         <a class="text-2xl font-bold hover:text-accent-orange" href="/index.html">Home</a>
         <a class="text-2xl font-bold hover:text-accent-orange" href="/about/index.html">About</a>
         <a class="text-2xl font-bold hover:text-accent-orange" href="/practice/index.html">Practices</a>
-        <a class="text-2xl font-bold hover:text-accent-orange" href="/blog/index.html">Blog</a>
         <a class="text-2xl font-bold text-accent-orange" href="/team/index.html">Team</a>
+        <a class="text-2xl font-bold hover:text-accent-orange" href="/blog/index.html">Blog</a>
         <a class="text-xs bg-accent-orange text-white font-bold px-3 py-1.5 rounded-full shadow-lg hover:bg-accent-blue transition-colors whitespace-nowrap" href="/contact/index.html">Free Consultation</a>
     </div>
 
@@ -96,7 +96,7 @@
                 </div>
 
                 <!-- Team Grid (Dynamic) -->
-                <section class="container mx-auto px-6 md:px-10 lg:px-20 pt-4 pb-20">
+                <section class="container mx-auto px-6 md:px-10 lg:px-20 pt-0 pb-20">
                     <div class="team-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         <!-- Loaded Dynamically via team.js -->
                         <p class="text-center text-gray-500 col-span-full">Loading Team Members...</p>
@@ -178,78 +178,55 @@
 
                             <hr class="border-gray-100 dark:border-white/5 mb-16" />
 
-                            <!-- 2. Achievements Section -->
-                            <div id="section-achievements" class="mb-16">
-                                <h2 class="text-3xl font-bold text-primary dark:text-white mb-8 flex items-center gap-4">
-                                    <span class="w-12 h-1 bg-accent-orange rounded-full"></span>
+                            <!-- 2. Key Achievements -->
+                            <div id="section-achievements" class="mb-12">
+                                <h2 class="text-2xl font-bold text-primary dark:text-white mb-6 flex items-center gap-3">
+                                    <span class="p-2 bg-accent-orange/10 rounded-lg text-accent-orange material-symbols-outlined">emoji_events</span>
                                     Key Achievements
                                 </h2>
-                                <div id="member-achievements" class="space-y-6">
-                                    <!-- Injected -->
-                                    <div class="bg-gray-50 dark:bg-white/5 rounded-xl p-8 text-center text-gray-500 italic">
-                                        Achievements loaded here...
+                                <div class="bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-2xl p-8 shadow-xl">
+                                    <div id="member-achievements" class="space-y-4 text-gray-600 dark:text-gray-300">
+                                        <!-- Injected -->
+                                        <div class="italic text-gray-400">Achievements loaded here...</div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                            <!-- Grid for Education & Admissions -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                                 <!-- 3. Education -->
-                                <div id="section-education">
-                                     <h3 class="text-xl font-bold text-primary dark:text-white mb-6 uppercase tracking-wider flex items-center gap-3">
+                                <div id="section-education" class="bg-gray-50 dark:bg-white/5 rounded-2xl p-8 border border-gray-100 dark:border-white/5 shadow-lg">
+                                     <h3 class="text-lg font-bold text-primary dark:text-white mb-6 uppercase tracking-wider flex items-center gap-3">
                                         <span class="p-2 bg-accent-blue/10 rounded-lg text-accent-blue material-symbols-outlined">school</span>
                                         Education
                                     </h3>
-                                    <div id="member-education" class="space-y-4">
+                                    <div id="member-education" class="space-y-4 text-sm text-gray-600 dark:text-gray-300">
                                         <!-- Injected -->
                                     </div>
                                 </div>
 
                                 <!-- 4. Admissions -->
-                                <div id="section-admissions">
-                                     <h3 class="text-xl font-bold text-primary dark:text-white mb-6 uppercase tracking-wider flex items-center gap-3">
+                                <div id="section-admissions" class="bg-gray-50 dark:bg-white/5 rounded-2xl p-8 border border-gray-100 dark:border-white/5 shadow-lg">
+                                     <h3 class="text-lg font-bold text-primary dark:text-white mb-6 uppercase tracking-wider flex items-center gap-3">
                                         <span class="p-2 bg-accent-orange/10 rounded-lg text-accent-orange material-symbols-outlined">gavel</span>
                                         Bar Admissions
                                     </h3>
-                                    <div id="member-admissions" class="space-y-4">
+                                    <div id="member-admissions" class="space-y-4 text-sm text-gray-600 dark:text-gray-300">
                                         <!-- Injected -->
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Booking Form (Anchor Target) -->
-                            <div id="booking-form" class="bg-primary text-white rounded-2xl p-8 md:p-12 relative overflow-hidden">
-                                <div class="absolute top-0 right-0 w-64 h-64 bg-accent-orange/20 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
-                                <h2 class="text-2xl md:text-3xl font-bold mb-6 relative z-10">Schedule a Consultation</h2>
-                                <p class="text-gray-300 mb-8 max-w-lg relative z-10">Directly book a confidential session with this partner regarding your legal matters.</p>
-                                
-                                <form class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-                                    <div class="col-span-2">
-                                        <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Name</label>
-                                        <input type="text" class="w-full bg-white/10 border border-white/10 rounded-lg font-medium text-white px-4 py-3 focus:outline-none focus:border-accent-orange focus:ring-0 focus:bg-white/20 transition-all placeholder-white/30" placeholder="Your Full Name">
-                                    </div>
-                                    <div class="col-span-2">
-                                        <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Email</label>
-                                        <input type="email" class="w-full bg-white/10 border border-white/10 rounded-lg font-medium text-white px-4 py-3 focus:outline-none focus:border-accent-orange focus:ring-0 focus:bg-white/20 transition-all placeholder-white/30" placeholder="email@company.com">
-                                    </div>
-                                    <div class="col-span-2">
-                                        <label class="block text-xs font-bold uppercase text-gray-400 mb-2">Phone</label>
-                                        <input type="tel" class="w-full bg-white/10 border border-white/10 rounded-lg font-medium text-white px-4 py-3 focus:outline-none focus:border-accent-orange focus:ring-0 focus:bg-white/20 transition-all placeholder-white/30" placeholder="+254...">
-                                    </div>
-                                    <div class="col-span-2 mt-4">
-                                        <button class="w-full bg-accent-orange hover:bg-white hover:text-accent-orange text-white font-black py-4 rounded-lg shadow-lg hover:shadow-xl transition-all uppercase tracking-wide">
-                                            Request Appointment
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+
 
                         </div>
                     </div>
                 
                     <!-- Back Button -->
                     <div class="mt-12">
-                        <a href="/team/index.html" class="inline-flex items-center gap-2 text-accent-blue font-bold hover:underline">
-                            <span class="material-symbols-outlined">arrow_back</span> Back to Team Overview
+                        <a href="/team/index.html" class="inline-flex items-center gap-2 text-accent-blue font-bold hover:text-accent-orange transition-colors group">
+                            <span class="material-symbols-outlined transition-colors">arrow_back</span>
+                            <span class="group-hover:underline">Back to Team Overview</span>
                         </a>
                     </div>
                 </section>

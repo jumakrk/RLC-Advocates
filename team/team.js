@@ -324,19 +324,32 @@ async function loadTeamProfile(baseUrl) {
                         return `<p>${block.children.map(child => child.text).join('')}</p>`;
                     }
                     if (block.type === 'heading') {
-                        return `<h3 class="text-xl font-bold mt-4 mb-2">${block.children.map(child => child.text).join('')}</h3>`;
+                        return `<h3 class="text-lg font-bold mt-4 mb-2 text-primary dark:text-white">${block.children.map(child => child.text).join('')}</h3>`;
                     }
                     if (block.type === 'list') {
                         const tag = block.format === 'ordered' ? 'ol' : 'ul';
-                        const listClass = block.format === 'ordered' ? 'list-decimal pl-5 space-y-2' : 'list-disc pl-5 space-y-2';
-                        return `<${tag} class="${listClass}">${block.children.map(item => `<li>${item.children.map(c => c.text).join('')}</li>`).join('')}</${tag}>`;
+                        const listClass = block.format === 'ordered' ? 'list-decimal pl-5 space-y-2 marker:text-accent-blue font-medium' : 'space-y-3';
+                        
+                        return `<${tag} class="${listClass}">
+                            ${block.children.map(item => {
+                                const text = item.children.map(c => c.text).join('');
+                                // Custom bullet for UL
+                                if(block.format !== 'ordered') {
+                                    return `<li class="flex gap-3 items-start">
+                                        <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent-orange shrink-0"></span>
+                                        <span class="leading-relaxed">${text}</span>
+                                    </li>`;
+                                }
+                                return `<li>${text}</li>`;
+                            }).join('')}
+                        </${tag}>`;
                     }
                     return '';
                  }).join('');
             } else {
                  let raw = data;
                  // 1. Handle Headers (### -> h3)
-                 raw = raw.replace(/^### (.*$)/gim, '<h3 class="text-lg font-bold text-gray-800 dark:text-white mt-4 mb-2">$1</h3>');
+                 raw = raw.replace(/^### (.*$)/gim, '<h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mt-4 mb-2">$1</h3>');
                  
                  // 2. Handle Bold (**text**)
                  raw = raw.replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-primary dark:text-white">$1</strong>');
@@ -344,23 +357,29 @@ async function loadTeamProfile(baseUrl) {
                  // 3. Handle Italic (*text*)
                  raw = raw.replace(/\*(.*?)\*/gim, '<em class="italic text-gray-500">$1</em>');
 
-                 // 4. Handle Lists (- item)
-                 // Start of list
-                 // Note: Simple replacement for now, might need fuller parsing if complex
-                 raw = raw.replace(/^- (.*$)/gim, '<li class="ml-4 list-disc">$1</li>');
-                 
-                 // Wrap lists if multiple lis appear (basic heurestic)
-                 if (raw.includes('<li')) {
-                     // If it doesn't already have ul/ol wrapper
-                     if (!raw.includes('<ul') && !raw.includes('<ol')) {
-                         raw = `<ul class="space-y-2 text-gray-600 dark:text-gray-300">${raw}</ul>`;
-                     }
-                 } else {
-                     // New lines to breaks if not a list
-                     raw = raw.replace(/(?:\r\n|\r|\n)/g, '<br>');
+                 // 4. Handle Lists (- item) using custom HTML for better styling
+                 if (raw.includes('- ')) {
+                    const lines = raw.split('\n');
+                    const processed = lines.map(line => {
+                        if(line.trim().startsWith('- ')) {
+                            const content = line.replace(/^- /, '').trim();
+                            return `<li class="flex gap-3 items-start">
+                                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent-orange shrink-0"></span>
+                                <span class="leading-relaxed">${content}</span>
+                            </li>`;
+                        }
+                        return line ? `<p class="mb-2">${line}</p>` : '';
+                    }).join('');
+                    
+                    // Wrap in UL if we found LIs
+                    if(processed.includes('<li')) {
+                        el.innerHTML = `<ul class="space-y-3">${processed}</ul>`;
+                        return;
+                    }
                  }
-
-                 el.innerHTML = raw;
+                 
+                 // Fallback for simple newlines
+                 el.innerHTML = raw.replace(/(?:\r\n|\r|\n)/g, '<br>');
             }
         };
 
