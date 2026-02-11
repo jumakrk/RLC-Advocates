@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
     // --- DOM Elements ---
-    const heroContainer = document.getElementById('hero-article-container');
+    const featuredContainer = document.getElementById('featured-article-container');
     const recentGrid = document.getElementById('recent-articles-grid');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
+    const searchInput = document.querySelector('input[type="text"]');
 
     // --- LOADER LOGIC ---
     const showLoader = () => {
@@ -40,58 +41,150 @@ document.addEventListener('DOMContentLoaded', async () => {
     let allArticles = [];
     let recentArticles = []; 
     let currentPage = 0;
-    const pageSize = 3;
+    const pageSize = 6; // Increased to 6 for better grid feel
+    let activeFilter = null;
+
+    // --- CONFIG ---
+    const CATEGORIES = [
+        'Corporate Law',
+        'Litigation & Dispute',
+        'Real Estate',
+        'Intellectual Property',
+        'Employment',
+        'Tax',
+        'Commercial'
+    ];
 
     // --- HELPERS ---
     const formatDate = (dateString) => new Date(dateString).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
     const getImageUrl = (article) => article.cover?.url ? `${API_BASE}${article.cover.url}` : '../Images/owl-ci.png';
 
+    const countMatches = (keyword) => {
+        const lowerKey = keyword.toLowerCase();
+        return allArticles.filter(article => {
+            const title = (article.title || '').toLowerCase();
+            const cat = (article.category || '').toLowerCase();
+            const summary = (article.summary || '').toLowerCase();
+            const body = (article.content || '').toLowerCase(); // Check body if available
+            return title.includes(lowerKey) || cat.includes(lowerKey) || summary.includes(lowerKey) || body.includes(lowerKey);
+        }).length;
+    };
+
+    const getFilteredArticles = () => {
+        let filtered = allArticles;
+
+        // 1. Filter by Category
+        // 1. Filter by Category (using broad matching to align with countMatches)
+        if (activeFilter) {
+            const lowerFilter = activeFilter.toLowerCase();
+            filtered = filtered.filter(article => {
+                const title = (article.title || '').toLowerCase();
+                const cat = (article.category || '').toLowerCase();
+                const summary = (article.summary || '').toLowerCase();
+                const body = (article.content || '').toLowerCase();
+                return title.includes(lowerFilter) || cat.includes(lowerFilter) || summary.includes(lowerFilter) || body.includes(lowerFilter);
+            });
+        }
+
+        // 2. Filter by Search Query
+        const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        if (query) {
+             filtered = filtered.filter(article => {
+                const title = (article.title || '').toLowerCase();
+                const cat = (article.category || '').toLowerCase();
+                const summary = (article.summary || '').toLowerCase();
+                const body = (article.content || '').toLowerCase();
+                return title.includes(query) || cat.includes(query) || summary.includes(query) || body.includes(query);
+            });
+        }
+
+        // 3. Exclude Featured (only if no filters active)
+        if (!activeFilter && !query && filtered.length > 0) {
+             return filtered.slice(1);
+        }
+
+        return filtered;
+    };
+
     // --- RENDER FUNCTIONS ---
     
-    // 1. Hero (Latest Article)
-    const renderHero = (article) => {
-        if (!heroContainer) return;
+    // 1. Sidebar Categories
+    const renderSidebarCategories = () => {
+        const sidebarList = document.querySelector('aside ul.space-y-3');
+        if (!sidebarList) return;
+
+        sidebarList.innerHTML = '';
+
+        CATEGORIES.forEach(cat => {
+            const count = countMatches(cat);
+            // Only show categories with articles? Or show all with 0? showing all for now.
+            const isActive = activeFilter === cat;
+            const activeClass = isActive ? 'bg-accent-orange text-white' : 'text-gray-600 dark:text-gray-400 group-hover:text-accent-blue';
+            const badgeClass = isActive ? 'bg-white/20 text-white' : 'bg-gray-100 dark:bg-white/10 text-gray-500';
+            const containerClass = isActive ? 'bg-accent-orange rounded-lg shadow-md -mx-2 px-2 py-1' : 'group';
+
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <a class="flex items-center justify-between ${containerClass} cursor-pointer transition-all">
+                    <span class="${activeClass} transition-colors font-medium">${cat}</span>
+                    <span class="text-xs px-2 py-1 rounded-full ${badgeClass} transition-colors">${count}</span>
+                </a>
+            `;
+            
+            li.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (activeFilter === cat) {
+                    activeFilter = null; // Toggle off
+                } else {
+                    activeFilter = cat; // Toggle on
+                }
+                currentPage = 0; // Reset pagination
+                renderRecentGrid();
+                renderSidebarCategories(); // Re-render to update active styling
+            });
+
+            sidebarList.appendChild(li);
+        });
+    };
+
+    // 2. Featured Article (Latest)
+    const renderFeatured = (article) => {
+        const featuredContainer = document.getElementById('featured-article-container');
+        if (!featuredContainer) return;
         
         // Check session for animation
         const currentPath = window.location.pathname;
         const hasVisited = sessionStorage.getItem(`visited_${currentPath}`);
-        const aosAttr = hasVisited ? '' : 'data-aos="fade-left"';
-        const imgAosAttr = hasVisited ? '' : 'data-aos="zoom-in" data-aos-delay="200"';
-
+        const aosAttr = hasVisited ? '' : 'data-aos="fade-up"';
+        const imageUrl = getImageUrl(article);
         const category = article.category || 'Legal Insight';
 
-        heroContainer.innerHTML = `
-            <div class="bg-white dark:bg-primary/20 rounded-xl overflow-hidden shadow-2xl flex flex-col lg:flex-row min-h-[500px] border border-gray-100 dark:border-gray-800 blog-hero-card cursor-pointer" onclick="window.location.href='/article/?slug=${article.slug}'" ${aosAttr}>
-                <div class="lg:w-3/5 relative overflow-hidden">
-                    <img src="${getImageUrl(article)}" alt="${article.title}" class="w-full h-full object-cover blog-hero-image" ${imgAosAttr}>
-                    <div class="absolute top-6 left-6">
-                        <span class="bg-accent-orange text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-md">Featured Article</span>
+        featuredContainer.innerHTML = `
+            <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-white/5 shadow-sm border border-gray-200 dark:border-gray-800 hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300 cursor-pointer" onclick="window.location.href='/article/?slug=${article.slug}'" ${aosAttr}>
+                <div class="relative h-96 overflow-hidden">
+                    <img src="${imageUrl}" alt="${article.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
+                    
+                    <!-- Pulsing Featured Label -->
+                    <div class="absolute top-6 left-6 z-10">
+                        <span class="inline-block px-4 py-1.5 rounded-full bg-accent-orange text-white text-[10px] font-bold uppercase tracking-widest shadow-lg animate-pulse-orange">
+                            Featured
+                        </span>
                     </div>
-                </div>
-                <div class="lg:w-2/5 p-8 lg:p-12 flex flex-col justify-center bg-white dark:bg-gray-900">
-                    <div class="flex items-center gap-2 mb-4 text-accent-blue font-semibold text-sm">
-                        <span class="material-symbols-outlined text-lg">description</span>
-                        ${category}
-                    </div>
-                    <h2 class="text-3xl lg:text-4xl font-extrabold text-primary dark:text-white leading-tight mb-6">
-                        ${article.title}
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8 line-clamp-3">
-                        ${article.summary || article.title}
-                    </p>
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-12 h-12 rounded-full bg-accent-blue/10 flex items-center justify-center border border-accent-blue/20">
-                            <span class="material-symbols-outlined text-accent-blue">person</span>
-                        </div>
-                        <div>
-                            <p class="font-bold text-primary dark:text-white">${article.author || 'RLC Team'}</p>
-                            <p class="text-sm text-gray-500">${formatDate(article.date || article.publishedAt)} • 5 min read</p>
+
+                    <div class="absolute bottom-0 left-0 p-6 md:p-10 w-full md:w-3/4">
+                        <span class="inline-block px-3 py-1 rounded bg-white/20 backdrop-blur-sm text-white text-xs font-bold uppercase tracking-wider mb-4 border border-white/30">
+                            ${category}
+                        </span>
+                        <h2 class="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight group-hover:text-accent-blue transition-colors">
+                            ${article.title}
+                        </h2>
+                        <div class="flex items-center text-gray-300 text-sm gap-6">
+                            <span class="flex items-center gap-2"><span class="material-symbols-outlined text-lg">calendar_today</span> ${formatDate(article.date || article.publishedAt)}</span>
+                            <span class="flex items-center gap-2"><span class="material-symbols-outlined text-lg">person</span> ${article.author || 'RLC Team'}</span>
+                            <span class="flex items-center gap-2"><span class="material-symbols-outlined text-lg">schedule</span> 5 min read</span>
                         </div>
                     </div>
-                    <button class="bg-accent-orange text-white px-8 py-4 rounded-lg font-bold hover:bg-orange-600 transition-all flex items-center justify-center gap-2 w-full lg:w-max shadow-xl shadow-accent-orange/20">
-                        Read Full Article
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                    </button>
                 </div>
             </div>
         `;
@@ -101,54 +194,62 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
-    // 2. Recent Grid (Paginated)
+    // 3. Recent Grid (Paginated)
     const renderRecentGrid = () => {
         if (!recentGrid) return;
         recentGrid.innerHTML = '';
         
+        // Get correct list based on filter
+        const listToRender = getFilteredArticles();
+
         const start = currentPage * pageSize;
         const end = start + pageSize;
-        const pageArticles = recentArticles.slice(start, end);
+        const pageArticles = listToRender.slice(start, end);
 
         // Check session for animation
         const currentPath = window.location.pathname;
         const hasVisited = sessionStorage.getItem(`visited_${currentPath}`);
 
         if(pageArticles.length === 0) {
-            recentGrid.innerHTML = '<p class="text-center col-span-full py-10 text-gray-500">No more articles.</p>';
+            const msg = activeFilter 
+                ? `No articles found matching "${activeFilter}".` 
+                : 'No more articles.';
+            recentGrid.innerHTML = `<p class="text-center col-span-full py-10 text-gray-500">${msg}</p>`;
+            updateControls(listToRender.length);
             return;
         }
 
         pageArticles.forEach((article, index) => {
-            // Delay: 0, 100, 200
             const delay = index * 100;
             const aosAttr = hasVisited ? '' : `data-aos="fade-up" data-aos-delay="${delay}"`;
             const category = article.category || 'General';
+            const imageUrl = getImageUrl(article);
 
             const html = `
-                <article class="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 dark:border-gray-800 flex flex-col cursor-pointer" onclick="window.location.href='/article/?slug=${article.slug}'" ${aosAttr}>
-                    <div class="relative overflow-hidden aspect-[16/10]">
-                        <img src="${getImageUrl(article)}" alt="${article.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-4 left-4 bg-accent-blue text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">${category}</span>
+                <article class="flex flex-col h-full bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden hover:border-accent-blue/50 transition-colors group cursor-pointer" onclick="window.location.href='/article/?slug=${article.slug}'" ${aosAttr}>
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="${imageUrl}" alt="${article.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 rounded bg-accent-orange text-white text-[10px] font-bold uppercase tracking-wide shadow-sm">
+                                ${category}
+                            </span>
+                        </div>
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3 group-hover:text-accent-blue transition-colors">
+                    <div class="flex flex-col flex-grow p-8">
+                        <div class="flex items-center gap-2 mb-4 text-xs text-gray-500 dark:text-gray-400 font-medium">
+                            <span>${formatDate(article.date || article.publishedAt)}</span>
+                            <span class="w-1 h-1 rounded-full bg-gray-400"></span>
+                            <span>By ${article.author || 'RLC Team'}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-4 leading-snug group-hover:text-accent-blue transition-colors">
                             ${article.title}
                         </h3>
-                        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6 line-clamp-3">
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-grow line-clamp-3">
                             ${article.summary || article.title}
                         </p>
-                        <div class="mt-auto flex items-center justify-between pt-6 border-t border-gray-50 dark:border-gray-800">
-                            <div class="flex items-center gap-3">
-                                <div class="size-8 rounded-full bg-gray-200 overflow-hidden flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-gray-500 text-xl">person</span>
-                                </div>
-                                <span class="text-xs font-bold text-primary dark:text-gray-300 uppercase tracking-tighter">${article.author || 'RLC Team'}</span>
-                            </div>
-                            <a class="text-accent-orange font-bold text-xs flex items-center gap-1 hover:gap-2 transition-all" href="/article/?slug=${article.slug}">
-                                READ MORE <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                            </a>
-                        </div>
+                        <span class="inline-flex items-center text-accent-blue font-bold text-sm group-hover:gap-2 transition-all">
+                            Read Article <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+                        </span>
                     </div>
                 </article>
             `;
@@ -159,14 +260,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             setTimeout(() => AOS.refresh(), 100);
         }
 
-        updateControls();
+        updateControls(listToRender.length);
     };
 
-    const updateControls = () => {
+    const updateControls = (totalItems) => {
         if(prevBtn) prevBtn.disabled = currentPage === 0;
         if(nextBtn) {
-            const totalPages = Math.ceil(recentArticles.length / pageSize);
-            nextBtn.disabled = currentPage >= totalPages - 1;
+            const totalPages = Math.ceil(totalItems / pageSize);
+            nextBtn.disabled = currentPage >= totalPages - 1 || totalPages === 0;
         }
     };
 
@@ -182,11 +283,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if(nextBtn) {
         nextBtn.addEventListener('click', () => {
-            const totalPages = Math.ceil(recentArticles.length / pageSize);
+            const listToRender = getFilteredArticles();
+            const totalPages = Math.ceil(listToRender.length / pageSize);
             if(currentPage < totalPages - 1) {
                 currentPage++;
                 renderRecentGrid();
             }
+        });
+    }
+
+    // --- SEARCH LISTENER ---
+    if (searchInput) {
+        searchInput.addEventListener('input', () => {
+             currentPage = 0;
+            // Use a small debounce if desired, but for client-side filtering immediate is fine
+             renderRecentGrid();
         });
     }
 
@@ -202,26 +313,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (articles.length > 0) {
             allArticles = articles;
             
-            // 1. Render Hero (Index 0)
-            renderHero(articles[0]);
-
-            // 2. Prepare and Render Recent (The rest)
-            if(articles.length > 1) {
-                recentArticles = articles.slice(1);
-                renderRecentGrid();
-            } else {
-                if(recentGrid) recentGrid.innerHTML = '<p style="color: grey; grid-column: 1/-1;">No additional articles yet.</p>';
-                // Disable next btn if no recent articles
-                if(nextBtn) nextBtn.disabled = true;
-            }
+            // 1. Initial Render
+            renderFeatured(articles[0]);
+            renderSidebarCategories(); // New: Render Sidebar
+            renderRecentGrid();        // New: Render Grid (defaults to slice(1))
             
         } else {
-            if(heroContainer) heroContainer.innerHTML = '<p>No insights found.</p>';
+            if(featuredContainer) featuredContainer.innerHTML = '<p>No insights found.</p>';
         }
 
     } catch (error) {
         console.error('Error fetching articles:', error);
-        if(heroContainer) heroContainer.innerHTML = '<p style="color: #ff6b6b;">Unable to load insights. Please check connection.</p>';
+        if(featuredContainer) featuredContainer.innerHTML = '<p style="color: #ff6b6b;">Unable to load insights. Please check connection.</p>';
+        console.log(error)
     } finally {
         await hideLoader(loaderStartTime);
     }

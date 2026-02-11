@@ -54,76 +54,120 @@
         <a class="text-xs bg-accent-orange text-white font-bold px-3 py-1.5 rounded-full shadow-lg hover:bg-accent-blue transition-colors whitespace-nowrap" href="/contact/index.html">Free Consultation</a>
     </div>
 
-    <main class="max-w-[90%] mx-auto px-4 lg:px-20 py-10">
-        <!-- Hero Section: Featured Article -->
-        <section class="mb-16" id="hero-article-container">
-            <!-- Loaded Dynamically via blog.js -->
-            <div class="bg-white dark:bg-primary/20 rounded-xl overflow-hidden shadow-2xl flex flex-col lg:flex-row min-h-[500px] border border-gray-100 dark:border-gray-800 animate-pulse">
-                <div class="lg:w-3/5 bg-gray-200 dark:bg-gray-800"></div>
-                <div class="lg:w-2/5 p-12 bg-white dark:bg-gray-900 space-y-6">
-                    <div class="h-4 bg-gray-200 dark:bg-gray-800 w-1/4 rounded"></div>
-                    <div class="h-10 bg-gray-200 dark:bg-gray-800 w-3/4 rounded"></div>
-                    <div class="h-20 bg-gray-200 dark:bg-gray-800 w-full rounded"></div>
+    <main class="flex-grow py-12 bg-background-light dark:bg-background-dark">
+        <!-- Hero Section -->
+        <header class="relative bg-primary dark:bg-background-dark py-24 overflow-hidden mb-12">
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('../Images/photorealistic-lawyer-environment.jpg');"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-accent-blue/40"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 text-center sm:text-left">
+                <div class="max-w-3xl">
+                    <span class="inline-block py-1 px-3 rounded-full bg-accent-orange/10 border border-accent-orange/30 text-accent-orange text-xs font-bold uppercase tracking-wider mb-4">
+                        Knowledge Base
+                    </span>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Legal Insights & Perspectives</h1>
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl">
+                        Navigating complex legal landscapes with clarity. Read our latest analysis on corporate governance, intellectual property, and civil litigation.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="relative w-full max-w-md">
+                            <input class="w-full pl-11 pr-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-transparent transition-all" placeholder="Search for legal topics..." type="text"/>
+                            <span class="material-symbols-outlined absolute left-3 top-3.5 text-gray-400">search</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <!-- Practice Area Filters -->
-        <section class="mb-10 border-b border-gray-200 dark:border-gray-800 overflow-x-auto">
-            <div class="flex gap-10 whitespace-nowrap min-w-max pb-px">
-                <button class="border-b-4 border-accent-blue pb-4 px-2 text-accent-blue font-bold flex items-center gap-2">
-                    <span class="material-symbols-outlined">apps</span> All Insights
-                </button>
-                <button class="border-b-4 border-transparent pb-4 px-2 text-gray-500 hover:text-accent-blue font-medium transition-all flex items-center gap-2">
-                    <span class="material-symbols-outlined">balance</span> Corporate Law
-                </button>
-                <button class="border-b-4 border-transparent pb-4 px-2 text-gray-500 hover:text-accent-blue font-medium transition-all flex items-center gap-2">
-                    <span class="material-symbols-outlined">account_balance</span> Litigation
-                </button>
-                <button class="border-b-4 border-transparent pb-4 px-2 text-gray-500 hover:text-accent-blue font-medium transition-all flex items-center gap-2">
-                    <span class="material-symbols-outlined">domain</span> Real Estate
-                </button>
-            </div>
-        </section>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Blog Content Section -->
+                <div class="w-full lg:w-2/3">
+                    <!-- Featured Article Container -->
+                    <div id="featured-article-container" class="mb-12">
+                        <!-- Loaded dynamically -->
+                        <div class="animate-pulse bg-gray-200 dark:bg-gray-800 h-96 rounded-xl w-full"></div>
+                    </div>
 
-        <!-- Blog Grid -->
-        <section class="mb-16">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="recent-articles-grid">
-                <!-- Loaded Dynamically via blog.js -->
-                <p class="text-center text-gray-500 col-span-full py-10">Loading Latest Insights...</p>
-            </div>
-            
-            <!-- Pagination Controls -->
-            <div class="flex justify-center items-center gap-6 mt-12">
-                <button id="prev-btn" class="size-12 rounded-full border border-gray-200 dark:border-gray-800 flex items-center justify-center hover:bg-accent-blue hover:text-white transition-all disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-current" disabled>
-                    <span class="material-symbols-outlined">arrow_back</span>
-                </button>
-                <button id="next-btn" class="size-12 rounded-full border border-gray-200 dark:border-gray-800 flex items-center justify-center hover:bg-accent-blue hover:text-white transition-all disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-current">
-                    <span class="material-symbols-outlined">arrow_forward</span>
-                </button>
-            </div>
-        </section>
+                    <!-- Article Grid -->
+                    <div class="grid md:grid-cols-2 gap-8" id="recent-articles-grid">
+                         <!-- Loaded dynamically -->
+                         <div class="animate-pulse bg-gray-200 dark:bg-gray-800 h-64 rounded-xl"></div>
+                         <div class="animate-pulse bg-gray-200 dark:bg-gray-800 h-64 rounded-xl"></div>
+                    </div>
 
-        <!-- Newsletter Signup -->
-        <section class="mt-20">
-            <div class="bg-primary rounded-2xl p-10 lg:p-16 flex flex-col lg:flex-row items-center gap-12 relative overflow-hidden shadow-2xl">
-                <div class="absolute top-0 right-0 w-64 h-64 bg-accent-blue/10 rounded-full -mr-32 -mt-32"></div>
-                <div class="absolute bottom-0 left-0 w-48 h-48 bg-accent-orange/10 rounded-full -ml-24 -mb-24"></div>
-                <div class="lg:w-1/2 z-10 text-center lg:text-left">
-                    <h2 class="text-3xl lg:text-4xl font-extrabold text-white mb-4">Stay Informed.</h2>
-                    <p class="text-gray-300 text-lg">Get the latest legal insights and regulatory updates delivered directly to your inbox every Tuesday.</p>
+                    <!-- Pagination -->
+                    <div class="mt-12 flex justify-center">
+                        <nav class="flex items-center gap-2">
+                            <button id="prev-btn" class="p-2 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors disabled:opacity-50">
+                                <span class="material-symbols-outlined">chevron_left</span>
+                            </button>
+                            <span class="px-4 py-2 text-gray-600 dark:text-gray-400 font-medium" id="page-indicator">Page 1</span>
+                            <button id="next-btn" class="p-2 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors disabled:opacity-50">
+                                <span class="material-symbols-outlined">chevron_right</span>
+                            </button>
+                        </nav>
+                    </div>
                 </div>
-                <div class="lg:w-1/2 w-full z-10">
-                    <form class="flex flex-col sm:flex-row gap-4">
-                        <input class="flex-grow bg-white/10 border-white/20 text-white placeholder:text-gray-400 rounded-lg px-6 py-4 focus:ring-accent-orange focus:border-accent-orange" placeholder="Your professional email" type="email" />
-                        <button class="bg-accent-orange hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-lg transition-all shadow-xl shadow-accent-orange/20 whitespace-nowrap" type="submit">
-                            Subscribe Now
-                        </button>
-                    </form>
-                    <p class="text-gray-500 text-xs mt-4 text-center lg:text-left italic">By subscribing, you agree to our Privacy Policy and to receive marketing communications.</p>
-                </div>
+
+                <!-- Sidebar -->
+                <aside class="w-full lg:w-1/3 space-y-8">
+                    <!-- Categories Widget -->
+                    <div class="bg-white dark:bg-white/5 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800">
+                        <h4 class="text-lg font-bold text-primary dark:text-white mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">Practice Areas</h4>
+                        <ul class="space-y-3">
+                            <li>
+                                <a class="flex items-center justify-between group" href="/practice/index.html">
+                                    <span class="text-gray-600 dark:text-gray-400 group-hover:text-accent-blue transition-colors">Corporate Law</span>
+                                    <span class="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-white/10 text-gray-500">14</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="flex items-center justify-between group" href="/practice/index.html">
+                                    <span class="text-gray-600 dark:text-gray-400 group-hover:text-accent-blue transition-colors">Litigation & Dispute</span>
+                                    <span class="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-white/10 text-gray-500">8</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="flex items-center justify-between group" href="/practice/index.html">
+                                    <span class="text-gray-600 dark:text-gray-400 group-hover:text-accent-blue transition-colors">Real Estate</span>
+                                    <span class="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-white/10 text-gray-500">22</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="flex items-center justify-between group" href="/practice/index.html">
+                                    <span class="text-gray-600 dark:text-gray-400 group-hover:text-accent-blue transition-colors">Intellectual Property</span>
+                                    <span class="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-white/10 text-gray-500">6</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter Widget -->
+                    <div class="bg-primary p-6 rounded-xl shadow-lg relative overflow-hidden">
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-accent-blue/20 rounded-full blur-2xl"></div>
+                        <h4 class="text-lg font-bold text-white mb-2 relative z-10">Legal Briefing</h4>
+                        <p class="text-gray-300 text-sm mb-4 relative z-10">Get the latest legal updates and firm news delivered to your inbox monthly.</p>
+                        <form class="space-y-3 relative z-10">
+                            <input class="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-transparent" placeholder="Your email address" type="email"/>
+                            <button class="w-full bg-accent-orange hover:bg-orange-600 text-white font-bold py-2.5 rounded-lg transition-colors" type="button">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Popular Tags -->
+                    <div class="bg-white dark:bg-white/5 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800">
+                        <h4 class="text-lg font-bold text-primary dark:text-white mb-4">Trending Topics</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <a class="px-3 py-1 rounded bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 text-sm hover:bg-accent-blue/10 hover:text-accent-blue transition-colors" href="#">Startups</a>
+                            <a class="px-3 py-1 rounded bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 text-sm hover:bg-accent-blue/10 hover:text-accent-blue transition-colors" href="#">GDPR</a>
+                            <a class="px-3 py-1 rounded bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 text-sm hover:bg-accent-blue/10 hover:text-accent-blue transition-colors" href="#">Tax Reform</a>
+                            <a class="px-3 py-1 rounded bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-gray-400 text-sm hover:bg-accent-blue/10 hover:text-accent-blue transition-colors" href="#">Compliance</a>
+                        </div>
+                    </div>
+                </aside>
             </div>
-        </section>
+        </div>
     </main>
 
     <!-- Footer -->

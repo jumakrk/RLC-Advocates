@@ -77,8 +77,8 @@
 
                     <!-- Author & Info -->
                     <div class="flex items-center gap-4 mb-10 pb-8 border-b border-gray-200 dark:border-gray-800">
-                        <div class="h-14 w-14 rounded-full overflow-hidden bg-gray-200 border-2 border-accent-blue flex items-center justify-center">
-                            <span class="material-symbols-outlined text-accent-blue text-3xl">person</span>
+                        <div class="h-14 w-14 rounded-full overflow-hidden bg-white border-2 border-accent-blue flex items-center justify-center">
+                            <img src="../Images/rlc-small-logo.png" alt="RLC Team" class="w-full h-full object-contain p-2">
                         </div>
                         <div>
                             <p id="article-author" class="text-lg font-bold text-primary dark:text-white leading-none">RLC Team</p>
@@ -94,32 +94,49 @@
                         <img id="article-cover" alt="Insight Cover" class="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-lg" src="" />
                     </div>
 
+                    <!-- Summary (Unique Design) -->
+                    <div id="article-summary-container" class="hidden mb-10 p-6 bg-accent-orange/5 border-l-4 border-accent-orange rounded-r-lg">
+                        <p id="article-summary" class="text-xl md:text-2xl font-serif italic text-gray-800 dark:text-gray-200 leading-relaxed"></p>
+                    </div>
+
                     <!-- Article Content -->
                     <div id="article-body" class="article-content prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
                         <!-- Content Injected Here -->
                     </div>
 
-                    <!-- Share Section -->
-                    <div class="mt-16 flex items-center justify-between py-6 border-t border-b border-gray-200 dark:border-gray-800">
+                    <!-- Share & Navigation Section -->
+                    <div class="mt-16 flex flex-col md:flex-row items-center justify-between py-6 border-t border-b border-gray-200 dark:border-gray-800 gap-6">
+                        <!-- Back Button (Left) -->
+                        <a href="/blog/index.html" class="text-sm font-bold text-accent-orange flex items-center gap-2 hover:gap-3 transition-all">
+                            <span class="material-symbols-outlined">arrow_back</span> Back to Blog
+                        </a>
+
+                        <!-- Share Buttons (Right) -->
                         <div class="flex items-center gap-4">
                             <span class="text-sm font-bold uppercase tracking-widest text-gray-400">Share This Article</span>
                             <div class="flex gap-2">
-                                <a href="#" class="p-2 bg-gray-100 dark:bg-gray-800 hover:bg-accent-blue hover:text-white rounded-full transition-colors">
-                                    <span class="material-symbols-outlined text-sm">link</span>
-                                </a>
-                                <a href="#" class="p-2 bg-gray-100 dark:bg-gray-800 hover:bg-accent-blue hover:text-white rounded-full transition-colors">
-                                    <span class="material-symbols-outlined text-sm">mail</span>
-                                </a>
+                                <!-- Facebook -->
+                                <button id="share-facebook" class="w-9 h-9 flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-[#1877F2] hover:text-white rounded-full transition-all duration-300 group" title="Share on Facebook">
+                                    <svg class="w-4 h-4 fill-current group-hover:fill-white transition-colors" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.791-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                </button>
+                                
+                                <!-- X (Twitter) -->
+                                <button id="share-twitter" class="w-9 h-9 flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-black hover:text-white rounded-full transition-all duration-300 group" title="Share on X">
+                                    <svg class="w-4 h-4 fill-current group-hover:fill-white transition-colors" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                </button>
+                                
+                                <!-- Generic Share / Copy Link -->
+                                <button id="share-generic" class="w-9 h-9 flex items-center justify-center bg-gray-100 dark:bg-gray-800 hover:bg-accent-blue hover:text-white rounded-full transition-all duration-300" title="Share Article">
+                                    <span class="material-symbols-outlined text-sm">share</span>
+                                </button>
                             </div>
                         </div>
-                        <a href="/blog/index.html" class="text-sm font-bold text-accent-orange flex items-center gap-2">
-                            <span class="material-symbols-outlined">arrow_back</span> Back to Blog
-                        </a>
                     </div>
                 </article>
 
                 <!-- Sidebar -->
                 <aside class="lg:col-span-4 space-y-12">
+
                     <!-- Related Insights Card (Static Template for UI) -->
                     <div class="bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
                         <h4 class="text-xl font-bold text-primary dark:text-white mb-6 flex items-center gap-2">
@@ -285,6 +302,12 @@
                     document.getElementById('featured-image-wrapper').style.display = 'none'; 
                 }
 
+                // Summary Injection
+                if (article.summary) {
+                    document.getElementById('article-summary').innerText = article.summary;
+                    document.getElementById('article-summary-container').classList.remove('hidden');
+                }
+
                 // Render Content
                 const bodyContainer = document.getElementById('article-body');
                 if (typeof article.content === 'string') {
@@ -324,7 +347,7 @@
                 const data = await response.json();
                 const container = document.getElementById('related-insights-container');
                 
-                if (data.data && data.data.length > 0) {
+            if (data.data && data.data.length > 0) {
                     container.innerHTML = data.data.map(item => `
                         <div class="group cursor-pointer" onclick="window.location.href='/article/?slug=${item.slug}'">
                             <span class="text-[10px] font-bold text-accent-orange uppercase tracking-widest">${item.category || 'Insight'}</span>
@@ -335,6 +358,40 @@
                 }
             } catch (e) { console.error(e); }
         }
+
+        // --- SHARE LOGIC ---
+        document.getElementById('share-facebook').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        });
+
+        document.getElementById('share-twitter').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(document.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        });
+
+        document.getElementById('share-generic').addEventListener('click', async () => {
+             if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: document.title,
+                        text: 'Check out this legal insight from RLC Advocates.',
+                        url: window.location.href
+                    });
+                } catch (err) {
+                    console.log('Error sharing:', err);
+                }
+            } else {
+                // Fallback: Copy to clipboard
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('Link copied to clipboard!');
+                } catch (err) {
+                    console.error('Failed to copy: ', err);
+                }
+            }
+        });
     </script>
 </body>
 
