@@ -1,0 +1,58 @@
+/* RLC Advocates Custom Branding */
+:root, [data-theme] {
+    --primary-color: #0047AB !important; /* Cobalt Blue */
+    --accent-color: #FD641F !important; /* Vivid Orange */
+    --company-color: #0047AB !important; /* Internal EA var */
+}
+
+/* Force override all EA styles */
+body {
+    font-family: 'Satoshi', sans-serif !important;
+}
+
+/* Primary Buttons & Elements */
+.btn-primary, .btn-success, .btn-info, 
+.ui-datepicker .ui-widget-header,
+.ui-datepicker th,
+.flatpickr-calendar .flatpickr-months,
+.flatpickr-calendar .flatpickr-day.selected,
+.flatpickr-calendar .flatpickr-day.startRange,
+.flatpickr-calendar .flatpickr-day.endRange {
+    background-color: #0047AB !important;
+    border-color: #0047AB !important;
+    color: #fff !important;
+}
+
+/* Hover States */
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active,
+.btn-success:hover, .btn-success:focus, .btn-success:active,
+.btn-info:hover, .btn-info:focus, .btn-info:active,
+.flatpickr-calendar .flatpickr-day.selected:hover {
+    background-color: #FD641F !important;
+    border-color: #FD641F !important;
+}
+
+/* Links */
+a {
+    color: #0047AB !important;
+}
+
+a:hover {
+    color: #FD641F !important;
+}
+
+/* FullCalendar Events */
+.fc-event {
+    background-color: #0047AB !important;
+    border-color: #0047AB !important;
+}
+
+/* Header Logo Sizing */
+#header-logo img {
+    max-height: 80px !important; /* Increased from 50px */
+}
+
+/* Footer & other accents */
+footer {
+    border-top: 3px solid #FD641F !important;
+}

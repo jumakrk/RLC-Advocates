@@ -311,6 +311,46 @@ header nav a:hover::after {
 
 
 
+
+/* Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 86px;
+    right: 17px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#back-to-top:hover {
+    background: var(--accent-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+#back-to-top .material-symbols-outlined {
+    font-size: 22px;
+}
+
 /* --- ThreeJS Container --- */
 #webgl-container {
     position: fixed;

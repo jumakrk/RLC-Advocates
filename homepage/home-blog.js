@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
+        articles.forEach((article, index) => {
             // Delay for animation
             const delay = index * 100;
             const aosAttr = `data-aos="fade-up" data-aos-delay="${delay}"`;

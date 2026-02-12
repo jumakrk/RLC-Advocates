@@ -12,6 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Back to Top Button ---
+    const backToTop = document.createElement('button');
+    backToTop.id = 'back-to-top';
+    backToTop.setAttribute('aria-label', 'Back to top');
+    backToTop.innerHTML = '<span class="material-symbols-outlined">arrow_upward</span>';
+    document.body.appendChild(backToTop);
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
     // --- Sticky Header on Scroll ---
     // --- Sticky Header on Scroll ---
     // --- Sticky Header on Scroll ---
@@ -270,9 +288,12 @@ document.addEventListener('DOMContentLoaded', () => {
             linesMesh.geometry.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
 
             // 2. Global Rotation & Interaction
-            // Mouse Influence
-            group.rotation.y += 0.001 + (mouseX * 0.05 - group.rotation.y) * 0.05;
-            group.rotation.x += 0.001 + (mouseY * 0.05 - group.rotation.x) * 0.05;
+            // Mouse Influence (Inverted & Faster Tracking)
+            const targetRotY = -mouseX * 0.2; // Inverted X
+            const targetRotX = mouseY * 0.2;  // Inverted Y (Positive factor for opposite movement)
+
+            group.rotation.y += 0.0005 + (targetRotY - group.rotation.y) * 0.06;
+            group.rotation.x += 0.0005 + (targetRotX - group.rotation.x) * 0.06;
 
             // Scroll Zoom / Fly-through
             camera.position.z = 100 - (scrollY * 0.02); // Move camera forward on scroll
