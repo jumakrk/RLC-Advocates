@@ -19,6 +19,16 @@ class Config
     const DB_NAME = 'rlc_appointments'; // Change to your cPanel DB name
     const DB_USERNAME = 'rlc_admin';    // Change to your cPanel DB user
     const DB_PASSWORD = 'your_password'; // Change to your cPanel DB password
+    
+    // ------------------------------------------------------------------------
+    // EMAIL SETTINGS (SMTP)
+    // ------------------------------------------------------------------------
+    
+    const SMTP_HOST = 'mail.rlcadvocates.co.ke'; // e.g., mail.yourdomain.com
+    const SMTP_USER = 'info@rlcadvocates.co.ke'; // Your email address
+    const SMTP_PASS = 'your_email_password';     // Your email password
+    const SMTP_PORT = 465;                       // Common SSL port
+    const SMTP_CRYPTO = 'ssl';                   // 'ssl' or 'tls'
 
     // ------------------------------------------------------------------------
     // GOOGLE CALENDAR SYNC
