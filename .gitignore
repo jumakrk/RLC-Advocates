@@ -9,6 +9,11 @@ jspm_packages/
 .env.test.local
 .env.production.local
 
+# Sensitive configurations and credentials
+appointments/config.php
+appointments/config_production.php
+contact/send-mail.php
+
 # Helper scripts with credentials
 optimize_images.ps1
 
