@@ -82,16 +82,16 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="space-y-2">
                                     <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Full Name</label>
-                                    <input class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all" placeholder="John Doe" required type="text" />
+                                    <input name="name" class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all" placeholder="John Doe" required type="text" />
                                 </div>
                                 <div class="space-y-2">
                                     <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Email Address</label>
-                                    <input class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all" placeholder="john@example.com" required type="email" />
+                                    <input name="email" class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all" placeholder="john@example.com" required type="email" />
                                 </div>
                             </div>
                             <div class="space-y-2">
                                 <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Subject</label>
-                                <select class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all">
+                                <select name="subject" class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all">
                                     <option>Legal Consultation</option>
                                     <option>Case Inquiry</option>
                                     <option>Corporate Services</option>
@@ -100,7 +100,7 @@
                             </div>
                             <div class="space-y-2">
                                 <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Message</label>
-                                <textarea class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all resize-none" placeholder="How can we help you?" required rows="5"></textarea>
+                                <textarea name="message" class="w-full bg-background-light dark:bg-background-dark border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 focus:ring-2 focus:ring-accent-blue focus:border-accent-blue outline-none transition-all resize-none" placeholder="How can we help you?" required rows="5"></textarea>
                             </div>
                             <button class="w-full bg-accent-orange hover:bg-orange-600 text-white font-black py-4 rounded-lg shadow-xl shadow-accent-orange/20 transition-all transform hover:-translate-y-1" type="submit">
                                 Submit Inquiry
@@ -271,8 +271,35 @@
     <script>
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message. An advocate will contact you shortly.');
-            this.reset();
+            
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = 'Sending...';
+
+            const formData = new FormData(this);
+
+            fetch('send-mail.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    this.reset();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerText = originalText;
+            });
         });
     </script>
 <!--Start of Tawk.to Script-->
