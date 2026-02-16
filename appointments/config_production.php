@@ -24,11 +24,11 @@ class Config
     // EMAIL SETTINGS (SMTP)
     // ------------------------------------------------------------------------
     
-    const SMTP_HOST = 'mail.rlcadvocates.co.ke'; // e.g., mail.yourdomain.com
-    const SMTP_USER = 'info@rlcadvocates.co.ke'; // Your email address
-    const SMTP_PASS = 'your_email_password';     // Your email password
-    const SMTP_PORT = 465;                       // Common SSL port
-    const SMTP_CRYPTO = 'ssl';                   // 'ssl' or 'tls'
+    const SMTP_HOST = 'smtp.office365.com';
+    const SMTP_USER = 'noreply@rlcadvocates.co.ke';
+    const SMTP_PASS = 'K.953614961451uf';
+    const SMTP_PORT = 587;
+    const SMTP_CRYPTO = 'tls';
 
     // ------------------------------------------------------------------------
     // GOOGLE CALENDAR SYNC

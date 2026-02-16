@@ -22,11 +22,11 @@ class Config
     // EMAIL SETTINGS (SMTP)
     // ------------------------------------------------------------------------
 
-    const SMTP_HOST = 'localhost'; 
-    const SMTP_USER = 'root';
-    const SMTP_PASS = '';
-    const SMTP_PORT = 1025;
-    const SMTP_CRYPTO = '';
+    const SMTP_HOST = 'smtp.office365.com'; 
+    const SMTP_USER = 'noreply@rlcadvocates.co.ke';
+    const SMTP_PASS = 'K.953614961451uf';
+    const SMTP_PORT = 587;
+    const SMTP_CRYPTO = 'tls';
 
     // ------------------------------------------------------------------------
     // GOOGLE CALENDAR SYNC

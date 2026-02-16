@@ -13,13 +13,10 @@ $config['smtp_pass'] = Config::SMTP_PASS;
 $config['smtp_port'] = Config::SMTP_PORT;
 $config['smtp_crypto'] = Config::SMTP_CRYPTO;
 $config['smtp_auth'] = true;       
-$config['smtp_debug'] = 0;         
+$config['smtp_debug'] = 0; // Disabled after successful diagnosis
 $config['charset'] = 'utf-8';
 $config['wordwrap'] = TRUE;
-
-// Deprecated or unused but kept for compatibility
-// $config['from_name'] = '';
-// $config['from_address'] = '';
-// $config['reply_to'] = '';
-$config['crlf'] = "\r\n";
+$config['from_address'] = Config::SMTP_USER; // Required by Office 365
+$config['from_name'] = 'RLC Advocates';
 $config['newline'] = "\r\n";
+$config['crlf'] = "\r\n";
