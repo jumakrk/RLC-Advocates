@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /appointments/application/
+Disallow: /appointments/system/
+Disallow: /appointments/vendor/
+Disallow: /cms/
+
+Sitemap: https://rlcadvocates.co.ke/sitemap.xml
