@@ -140,7 +140,7 @@ async function loadTeamGrid(container, url, baseUrl) {
 
             card.innerHTML = `
                 <div class="relative aspect-[4/5] overflow-hidden">
-                    <img src="${hasPhoto ? baseUrl + member.photo.url : '../Images/owl-ci.png'}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="${member.name}">
+                    <img src="${hasPhoto ? baseUrl + member.photo.url : '../Images/avatar-placeholder.svg'}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="${member.name}">
                     <div class="absolute bottom-4 left-4 flex gap-2">
                         <span class="bg-secondary/90 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">${roleLabel}</span>
                     </div>
@@ -255,7 +255,7 @@ async function loadTeamProfile(baseUrl) {
             img.src = `${baseUrl}${member.photo.url}`;
             img.alt = member.name;
         } else if(img) {
-            img.src = '../Images/owl-ci.png';
+            img.src = '../Images/avatar-placeholder.svg';
         }
 
         // 4. Contact Info (Email, Phone)

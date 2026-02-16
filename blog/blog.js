@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- HELPERS ---
     const formatDate = (dateString) => new Date(dateString).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-    const getImageUrl = (article) => article.cover?.url ? `${API_BASE}${article.cover.url}` : '../Images/owl-ci.png';
+    const getImageUrl = (article) => article.cover?.url ? `${API_BASE}${article.cover.url}` : '../Images/blog-placeholder.svg';
 
     const countMatches = (keyword) => {
         const lowerKey = keyword.toLowerCase();

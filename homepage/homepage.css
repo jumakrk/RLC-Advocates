@@ -6,14 +6,14 @@ body { font-family: 'Inter', sans-serif; }
 }
 
 /* Custom styles for dynamic sections to match Tailwind grid if needed */
-.team-grid, .blog-grid {
+.team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
 
 /* Ensure dynamic cards match new theme */
-.blog-card, .team-card {
+.team-card {
     background: white;
     border-radius: 0.75rem;
     overflow: hidden;
@@ -21,17 +21,17 @@ body { font-family: 'Inter', sans-serif; }
     transition: all 0.3s ease;
 }
 
-.blog-card:hover, .team-card:hover {
+.team-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     border-color: var(--secondary-color);
 }
 
-.dark .blog-card, .dark .team-card {
+.dark .team-card {
     background: #0d1e1e;
     border-color: rgba(255, 255, 255, 0.05);
 }
 
-.dark .blog-card:hover, .dark .team-card:hover {
+.dark .team-card:hover {
     border-color: #0047AB;
 }

@@ -1,0 +1,14 @@
+<svg width="400" height="500" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="500" fill="#F8FAFC"/>
+  
+  <!-- Avatar Silhouette -->
+  <!-- Head -->
+  <circle cx="200" cy="180" r="70" fill="#CBD5E1"/>
+  
+  <!-- Shoulders/Torso -->
+  <path d="M60 460C60 360 120 300 200 300C280 300 340 360 340 460" fill="#CBD5E1"/>
+  
+  <!-- Subtle Border (Optional, can remove for ultra-minimalist) -->
+  <rect x="0.5" y="0.5" width="399" height="499" fill="none" stroke="#E2E8F0" stroke-width="1"/>
+</svg>
