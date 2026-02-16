@@ -1,30 +1,61 @@
+const ROLE_ORDER_MAP: Record<string, number> = {
+  'managing partner': 10,
+  'partner': 20,
+  'head of commercial banking & transaction': 30,
+  'executive administrator': 40,
+  'executive secretary': 50,
+  'associate advocate': 60,
+  'advocate': 70,
+  'finance executive': 80,
+  'paralegal': 90,
+  'advocate trainee': 100,
+  'support staff': 110,
+};
+
+const getRoleOrder = (role: string | undefined): number => {
+  if (!role) return 999;
+  const normalized = role.trim().toLowerCase();
+  const order = ROLE_ORDER_MAP[normalized];
+  
+  if (!order) {
+    console.warn(`[Hierarchy] Unmapped role detected: "${role}" - assigning default order 999`);
+    return 999;
+  }
+  return order;
+};
+
 export default {
-  async beforeCreate(event) {
+  async beforeCreate(event: any) {
     const { data } = event.params;
 
-    if (data.name) {
-      // Regenerate slug from name using underscores
-      // This overrides the default Strapi behavior or user input if they strictly want name->slug sync
-      // If we only want to do this if slug is missing, check !data.slug. 
-      // But user implied strictly "name to be the slug with underscores", so let's enforce it to keep them synced.
-      data.slug = data.name
-        .toLowerCase()
-        .trim()
-        .replace(/[^a-z0-9\s]/g, '') // Remove special chars
-        .replace(/\s+/g, '_');       // Replace spaces with underscores
-    }
-  },
-
-  async beforeUpdate(event) {
-    const { data } = event.params;
-
-    // Only update slug if name is being updated
+    // 1. Handle Slug Generation
     if (data.name) {
       data.slug = data.name
         .toLowerCase()
         .trim()
         .replace(/[^a-z0-9\s]/g, '')
         .replace(/\s+/g, '_');
+    }
+
+    // 2. Handle Hierarchy Order
+    data.order = getRoleOrder(data.role);
+  },
+
+  async beforeUpdate(event: any) {
+    const { data } = event.params;
+
+    // 1. Handle Slug Generation
+    if (data.name) {
+      data.slug = data.name
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s]/g, '')
+        .replace(/\s+/g, '_');
+    }
+
+    // 2. Handle Hierarchy Order
+    if (data.role !== undefined) {
+      data.order = getRoleOrder(data.role);
     }
   },
 };

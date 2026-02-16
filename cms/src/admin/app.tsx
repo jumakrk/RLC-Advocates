@@ -1,9 +1,13 @@
 import type { StrapiApp } from '@strapi/strapi/admin';
 import Logo from './extensions/logo.png';
+import Favicon from './extensions/favicon.png';
 import './custom.css';
 
 export default {
     config: {
+        head: {
+            favicon: Favicon,
+        },
         auth: {
             logo: Logo,
         },
@@ -114,7 +118,41 @@ export default {
             :where(input:focus), :where(textarea:focus) {
                 box-shadow: 0 0 0 2px rgba(253, 100, 31, 0.2) !important;
             }
+            /* Force 'order' field to be read-only and hide all buttons inside its container */
+            div:has(> input[name="order"]) button,
+            div:has(> input[name="order"]) [role="button"],
+            input[name="order"] {
+                pointer-events: none !important;
+                background-color: #f3f3f7 !important;
+                cursor: not-allowed !important;
+                opacity: 0.7 !important;
+                user-select: none !important;
+                -moz-appearance: textfield !important;
+            }
+            input[name="order"]::-webkit-outer-spin-button,
+            input[name="order"]::-webkit-inner-spin-button {
+                -webkit-appearance: none !important;
+                margin: 0 !important;
+            }
+            /* Hide any sibling div that might contain spin buttons */
+            input[name="order"] + div {
+                display: none !important;
+            }
         `;
         document.head.appendChild(style);
+
+        // Persistent Poller to ensure field stays read-only during view changes
+        setInterval(() => {
+            const input = document.querySelector('input[name="order"]') as HTMLInputElement;
+            if (input && !input.disabled) {
+                input.disabled = true;
+                input.style.backgroundColor = '#f3f3f7';
+                const container = input.closest('div');
+                if (container) {
+                    const buttons = container.querySelectorAll('button');
+                    buttons.forEach(btn => btn.style.display = 'none');
+                }
+            }
+        }, 1000);
     },
 };

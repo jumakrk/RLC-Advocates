@@ -103,6 +103,11 @@ async function loadTeamGrid(container, url, baseUrl) {
         container.innerHTML = '';
 
         members.forEach(member => {
+            // Diagnostic for unmapped roles
+            if (member.order === 999) {
+                console.warn(`[SEO/Hierarchy] Team member "${member.name}" has an unmapped role: "${member.role}"`);
+            }
+
             // Get Image or Placeholder
             const hasPhoto = member.photo && member.photo.url;
             let imgContent;
