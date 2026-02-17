@@ -129,13 +129,11 @@ async function loadTeamGrid(container, url, baseUrl) {
             card.onclick = () => window.location.href = `/team/?slug=${member.slug}`;
             card.style.cursor = 'pointer';
 
-            let roleLabel = 'TEAM';
-            if (member.role.toLowerCase().includes('managing partner')) {
-                roleLabel = 'CAPTAIN';
-            } else if (member.role.includes('Partner')) {
-                roleLabel = 'PARTNER';
-            } else if (member.role.includes('Associate')) {
-                roleLabel = 'ASSOCIATE';
+            let roleLabel = member.role || 'TEAM';
+            // Optional: Handle exceptionally long roles for the small tag
+            if (roleLabel.length > 20) {
+                if (roleLabel.toLowerCase().includes('partner')) roleLabel = 'PARTNER';
+                else if (roleLabel.toLowerCase().includes('advocate')) roleLabel = 'ADVOCATE';
             }
 
             card.innerHTML = `
@@ -231,6 +229,7 @@ async function loadTeamProfile(baseUrl) {
         // Bio (Rich Text)
         const bioContent = document.getElementById('member-bio');
         if (Array.isArray(member.bio)) {
+             // Strapi 5 / Blocks format
              bioContent.innerHTML = member.bio.map(block => {
                 if (block.type === 'paragraph') {
                     return `<p>${block.children.map(child => child.text).join('')}</p>`;
@@ -317,12 +316,10 @@ async function loadTeamProfile(baseUrl) {
             const el = document.getElementById(elementId);
             if (!el) return;
             
-            if (!data) {
-                // Keep default placeholder
-                return;
-            }
+            if (!data) return;
 
             if (Array.isArray(data)) {
+                 // Blocks format
                  el.innerHTML = data.map(block => {
                     if (block.type === 'paragraph') {
                         return `<p>${block.children.map(child => child.text).join('')}</p>`;
@@ -351,39 +348,30 @@ async function loadTeamProfile(baseUrl) {
                     return '';
                  }).join('');
             } else {
-                 let raw = data;
-                 // 1. Handle Headers (### -> h3)
-                 raw = raw.replace(/^### (.*$)/gim, '<h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mt-4 mb-2">$1</h3>');
-                 
-                 // 2. Handle Bold (**text**)
-                 raw = raw.replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-primary dark:text-white">$1</strong>');
-                 
-                 // 3. Handle Italic (*text*)
-                 raw = raw.replace(/\*(.*?)\*/gim, '<em class="italic text-gray-500">$1</em>');
-
-                 // 4. Handle Lists (- item) using custom HTML for better styling
-                 if (raw.includes('- ')) {
-                    const lines = raw.split('\n');
-                    const processed = lines.map(line => {
-                        if(line.trim().startsWith('- ')) {
-                            const content = line.replace(/^- /, '').trim();
-                            return `<li class="flex gap-3 items-start">
-                                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent-orange shrink-0"></span>
-                                <span class="leading-relaxed">${content}</span>
-                            </li>`;
-                        }
-                        return line ? `<p class="mb-2">${line}</p>` : '';
-                    }).join('');
-                    
-                    // Wrap in UL if we found LIs
-                    if(processed.includes('<li')) {
+                 // Markdown or plain text
+                 if (typeof marked !== 'undefined') {
+                     el.innerHTML = marked.parse(data);
+                 } else {
+                     // Fallback manual parsing if marked is somehow missing
+                     let raw = data;
+                     raw = raw.replace(/^### (.*$)/gim, '<h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mt-4 mb-2">$1</h3>');
+                     raw = raw.replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-primary dark:text-white">$1</strong>');
+                     raw = raw.replace(/\*(.*?)\*/gim, '<em class="italic text-gray-500">$1</em>');
+                     // Simple list handling
+                     if (raw.includes('- ')) {
+                        const lines = raw.split('\n');
+                        const processed = lines.map(line => {
+                            if(line.trim().startsWith('- ')) {
+                                const content = line.replace(/^- /, '').trim();
+                                return `<li class="flex gap-3 items-start"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent-orange shrink-0"></span><span class="leading-relaxed">${content}</span></li>`;
+                            }
+                            return line ? `<p class="mb-2">${line}</p>` : '';
+                        }).join('');
                         el.innerHTML = `<ul class="space-y-3">${processed}</ul>`;
-                        return;
-                    }
+                     } else {
+                        el.innerHTML = raw.replace(/(?:\r\n|\r|\n)/g, '<br>');
+                     }
                  }
-                 
-                 // Fallback for simple newlines
-                 el.innerHTML = raw.replace(/(?:\r\n|\r|\n)/g, '<br>');
             }
         };
 
