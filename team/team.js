@@ -130,8 +130,9 @@ async function loadTeamGrid(container, url, baseUrl) {
             card.style.cursor = 'pointer';
 
             let roleLabel = member.role || 'TEAM';
-            // Optional: Handle exceptionally long roles for the small tag
-            if (roleLabel.length > 20) {
+            if (roleLabel.toLowerCase().includes('managing partner')) {
+                roleLabel = 'CAPTAIN';
+            } else if (roleLabel.length > 20) {
                 if (roleLabel.toLowerCase().includes('partner')) roleLabel = 'PARTNER';
                 else if (roleLabel.toLowerCase().includes('advocate')) roleLabel = 'ADVOCATE';
             }
