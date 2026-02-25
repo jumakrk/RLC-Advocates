@@ -8,7 +8,7 @@
 
 <div id="header">
     <div id="company-name">
-        <img src="<?= vars('company_logo') ?: base_url('assets/img/rlc-favicon.png') ?>" alt="logo" id="company-logo">
+        <img src="<?= vars('company_logo') ?: base_url('assets/img/rlc_blue_favicon.png') ?>" alt="logo" id="company-logo">
 
         <span>
             <?= e($company_name) ?>
