@@ -9,8 +9,8 @@
 
 <nav id="header" class="navbar navbar-expand-md navbar-dark">
     <div id="header-logo" class="navbar-brand">
-        <img src="<?= base_url('assets/img/rlc_blue_favicon.png') ?>" alt="logo">
-        <h6>EASY!APPOINTMENTS</h6>
+        <img src="<?= base_url('assets/img/rlc_appointments_nav.png') ?>" alt="logo">
+        <h6>RLC APPOINTMENTS BOOKING SYSTEM</h6>
         <small>Online Appointment Scheduler</small>
     </div>
 

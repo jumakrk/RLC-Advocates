@@ -9,8 +9,8 @@
 <div id="frame-footer">
     <small>
         <span class="footer-powered-by small">
-            Powered By
-            <a href="https://easyappointments.org" target="_blank">Easy!Appointments</a>
+            Copyright &copy; <?= date('Y') ?>
+            <a href="https://rlcadvocates.co.ke" target="_blank">RLC Advocates</a>
         </span>
 
         <span class="footer-options">

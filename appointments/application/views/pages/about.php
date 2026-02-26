@@ -6,7 +6,7 @@
     <div id="about" class="col-lg-8 offset-lg-2">
 
         <div class="text-center my-5">
-            <img src="<?= base_url('assets/img/rlc_blue_favicon.png') ?>" alt="Easy!Appointments Logo" class="mb-5">
+            <img src="<?= base_url('assets/img/rlc_blue_circular_favicon.png') ?>" alt="Easy!Appointments Logo" class="mb-5">
 
             <h3>
                 Easy!Appointments
