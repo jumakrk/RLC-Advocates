@@ -393,35 +393,57 @@ header nav a:hover::after {
     #mobile-menu {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2.5rem;
         background-color: #ffffff;
         color: #0d1e1e;
-        padding: 2rem;
+        padding: 1.5rem;
         
-        /* Animation States */
+        /* New Redesign: Top-Right Dropdown */
         position: fixed;
-        inset: 0;
-        z-index: 100;
+        top: 5rem; /* Below header */
+        right: 1.5rem;
+        width: 280px;
+        height: auto;
+        border-radius: 1.5rem;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        
+        z-index: 1000;
         visibility: hidden;
         opacity: 0;
-        transform: translateY(-20px);
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: scale(0.9) translateY(-10px);
+        transform-origin: top right;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         pointer-events: none;
     }
 
     #mobile-menu.active {
         visibility: visible;
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1) translateY(0);
         pointer-events: auto;
     }
 
-    #mobile-menu a {
-        font-size: 1.5rem;
+    /* internal structure */
+    .mobile-menu-header {
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.1rem;
+        color: #94a3b8;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: center;
+    }
+
+    #mobile-menu a:not(.menu-btn) {
+        font-size: 1.25rem;
         font-weight: 700;
-        transition: all 0.4s ease;
+        padding: 0.75rem 0;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid #f1f5f9;
+        transition: all 0.3s ease;
         opacity: 0;
         transform: translateY(10px);
     }
@@ -439,9 +461,35 @@ header nav a:hover::after {
     #mobile-menu.active a:nth-of-type(5) { transition-delay: 0.3s; }
     #mobile-menu.active a:nth-of-type(6) { transition-delay: 0.35s; }
 
-    #mobile-menu a:hover {
+    #mobile-menu a:not(.menu-btn):hover {
         color: var(--accent-orange);
-        transform: scale(1.05);
+        padding-left: 0.5rem;
+    }
+
+    #mobile-menu .menu-footer {
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+
+    .menu-btn {
+        display: block;
+        width: 100%;
+        background: var(--accent-orange);
+        color: white !important;
+        text-align: center;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        box-shadow: 0 10px 20px rgba(253, 100, 31, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .menu-btn:hover {
+        background: var(--accent-blue);
+        transform: translateY(-2px);
+        box-shadow: 0 15px 30px rgba(0, 71, 171, 0.2);
     }
 }
 

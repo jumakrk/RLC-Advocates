@@ -48,16 +48,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileToggles.length > 0 && mobileMenu) {
         mobileToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
+            toggle.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const isActive = mobileMenu.classList.toggle('active');
-                document.body.classList.toggle('overflow-hidden');
                 
                 // Toggle Icon
                 const icon = toggle.querySelector('.material-symbols-outlined');
                 if (icon) {
-                    icon.textContent = isActive ? 'close' : 'menu';
+                    icon.style.transform = 'scale(0)';
+                    setTimeout(() => {
+                        icon.textContent = isActive ? 'close' : 'menu';
+                        icon.style.transform = 'scale(1)';
+                    }, 150);
                 }
             });
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('active') && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                mobileToggles.forEach(toggle => {
+                    const icon = toggle.querySelector('.material-symbols-outlined');
+                    if (icon) icon.textContent = 'menu';
+                });
+            }
         });
 
         // Close when clicking a link
