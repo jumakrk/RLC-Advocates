@@ -9,7 +9,6 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="../shared/css/global.css?v=2.2">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -86,6 +85,9 @@
 
     <!-- Breadcrumb & Title -->
     <div class="max-w-[90%] mx-auto w-full px-6 py-12">
+        <div class="hidden print:flex items-center mb-8">
+            <img src="/Images/rlc-small-logo.png" alt="RLC Logo" class="h-10">
+        </div>
         <nav class="flex items-center gap-2 text-xs font-medium mb-6 uppercase tracking-wider text-gray-400 print:hidden">
             <a class="hover:text-accent-blue" href="/index.html">Home</a>
             <span class="material-symbols-outlined text-xs">chevron_right</span>
@@ -155,13 +157,10 @@
                         </nav>
                     </div>
 
-                    <div class="bg-accent-orange/5 p-6 rounded-2xl border border-accent-orange/10">
-                        <h4 class="text-[10px] font-black text-accent-orange uppercase tracking-widest mb-4">Need a copy?</h4>
-                        <button onclick="downloadPDF()" class="flex items-center gap-3 text-sm font-bold text-primary hover:underline group">
-                            <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">download</span>
-                            Download PDF
-                        </button>
-                    </div>
+                    <button onclick="window.print()" class="flex items-center gap-3 text-xs font-extrabold text-primary hover:text-accent-blue transition-colors px-4 group">
+                        <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">print</span>
+                        Print document
+                    </button>
                 </div>
             </aside>
 
@@ -520,98 +519,8 @@
         // Run once on load to set initial state
         window.addEventListener('load', onScroll);
 
-        function downloadPDF() {
-            // Create a temporary container for PDF generation
-            const container = document.createElement('div');
-            container.className = 'pdf-container bg-white text-primary';
-            // Set width to approx A4 width in px at 96dpi (794px) minus margins, 
-            // but we use a larger fixed width for better resolution and let html2pdf scale it.
-            container.style.width = '800px'; 
-            container.style.padding = '40px';
-            container.style.position = 'absolute';
-            container.style.left = '-9999px';
-            container.style.top = '0';
-            
-            // 1. Header (Logo)
-            const mainHeader = document.querySelector('header').cloneNode(true);
-            // Remove fixed/absolute positioning classes from header for PDF
-            mainHeader.classList.remove('fixed', 'sticky', 'backdrop-blur-md', 'top-0', 'left-0', 'w-full', 'z-50');
-            mainHeader.classList.add('static', 'w-full', 'mb-8', 'border-b', 'border-gray-200', 'pb-4');
-            // Hide navigation, mobile menu toggle, and buttons in header
-            const nav = mainHeader.querySelector('nav');
-            if (nav) nav.remove();
-            const buttons = mainHeader.querySelectorAll('a[href*="contact"], button');
-            buttons.forEach(btn => btn.remove());
-            
-            // 2. Page Title (Privacy Policy)
-            const pageTitle = document.getElementById('pdf-header').cloneNode(true);
-            // Clean up badge
-            const badge = pageTitle.querySelector('.print\\:hidden');
-            if (badge) badge.remove();
-            
-            // 3. Main Content
-            const content = document.getElementById('policy-content').cloneNode(true);
-            
-            // 4. Contact Info (Footer)
-            const footer = document.getElementById('pdf-footer').cloneNode(true);
-            // Style footer for PDF
-            footer.classList.remove('text-gray-400');
-            footer.classList.add('mt-12', 'pt-8', 'border-t', 'border-gray-200');
-            // Ensure Contact stays together on page break if possible
-            footer.style.pageBreakInside = 'avoid';
-
-            // Force text color adjustments
-            const footerItems = footer.querySelectorAll('*');
-            footerItems.forEach(el => {
-                if (el.classList.contains('text-gray-400') || el.classList.contains('text-white')) {
-                    el.classList.remove('text-gray-400', 'text-white');
-                    el.classList.add('text-gray-600');
-                }
-                if (el.tagName === 'H5') {
-                    el.classList.remove('text-white');
-                    el.classList.add('text-primary');
-                }
-            });
-
-            // Assemble
-            container.appendChild(mainHeader);
-            container.appendChild(pageTitle);
-            container.appendChild(content);
-            container.appendChild(footer);
-
-            // Append to body
-            document.body.appendChild(container);
-
-            // Wait a moment for layout/images
-            setTimeout(() => {
-                const opt = {
-                    margin:       [0.5, 0.5, 0.5, 0.5], // Top, Left, Bottom, Right
-                    filename:     'RLC-Advocates-Privacy-Policy.pdf',
-                    image:        { type: 'jpeg', quality: 0.98 },
-                    html2canvas:  { scale: 2, useCORS: true, logging: false, letterRendering: true },
-                    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' },
-                    pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
-                };
-
-                html2pdf().set(opt).from(container).save().then(() => {
-                    document.body.removeChild(container);
-                });
-            }, 500); // 500ms delay
-        }
+        // Printing uses the same flow as Terms: browser print dialog.
     </script>
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/698d94b5a6904d1c351635e1/1jh8gpq6e';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
 </body>
 
 </html>

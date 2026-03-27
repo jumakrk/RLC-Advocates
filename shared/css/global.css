@@ -31,6 +31,12 @@
     --font-display: 'Satoshi', sans-serif;
     --font-heading: 'Satoshi', sans-serif;
     --font-body: 'Satoshi', sans-serif;
+
+    /* Floating action buttons (bottom-right) */
+    --floating-fab-size: 58px;
+    --floating-fab-right: 17px;
+    --floating-fab-bottom: 18px;
+    --floating-fab-gap: 12px;
 }
 
 * {
@@ -57,6 +63,13 @@ body {
     line-height: 1.7;
     position: relative;
     width: 100%;
+}
+
+@media print {
+    #back-to-top,
+    #support-fab {
+        display: none !important;
+    }
 }
 
 a {
@@ -316,10 +329,10 @@ header nav a:hover::after {
 /* Back to Top Button */
 #back-to-top {
     position: fixed;
-    bottom: 86px;
-    right: 17px;
-    width: 50px;
-    height: 50px;
+    bottom: calc(var(--floating-fab-bottom) + var(--floating-fab-size) + var(--floating-fab-gap));
+    right: var(--floating-fab-right);
+    width: var(--floating-fab-size);
+    height: var(--floating-fab-size);
     border-radius: 50%;
     background: var(--accent-blue);
     color: white;
@@ -329,7 +342,7 @@ header nav a:hover::after {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    z-index: 999;
+    z-index: 1003;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
@@ -350,6 +363,104 @@ header nav a:hover::after {
 
 #back-to-top .material-symbols-outlined {
     font-size: 22px;
+}
+
+/* Support launcher: single button expands upward to chat + WhatsApp */
+.support-fab {
+    position: fixed;
+    right: var(--floating-fab-right);
+    bottom: var(--floating-fab-bottom);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--floating-fab-gap);
+    pointer-events: none; /* allow clicks through container */
+}
+
+.support-fab-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--floating-fab-gap);
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.support-fab.open .support-fab-actions {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.support-fab-action,
+.support-fab-toggle {
+    width: var(--floating-fab-size);
+    height: var(--floating-fab-size);
+    border-radius: 50%;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.support-fab-toggle {
+    background: var(--accent-orange);
+    color: #fff;
+    position: relative;
+}
+
+.support-fab-toggle:hover {
+    background: var(--accent-blue);
+}
+
+.support-fab-toggle-icon {
+    position: absolute;
+    font-size: 28px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.support-fab-close-icon {
+    opacity: 0;
+    transform: scale(0.75);
+}
+
+.support-fab.open .support-fab-open-icon {
+    opacity: 0;
+    transform: scale(0.75);
+}
+
+.support-fab.open .support-fab-close-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.support-fab-chat {
+    background: var(--accent-orange);
+    color: #fff;
+}
+
+.support-fab-chat:hover {
+    background: var(--accent-blue);
+}
+
+.support-fab-whatsapp {
+    background: #25d366;
+    color: #fff;
+    text-decoration: none;
+}
+
+.support-fab-action .material-symbols-outlined {
+    font-size: 28px;
+}
+
+.support-fab-whatsapp svg {
+    width: 28px;
+    height: 28px;
 }
 
 /* --- ThreeJS Container --- */
@@ -394,7 +505,9 @@ header nav a:hover::after {
     #mobile-menu {
         display: flex;
         flex-direction: column;
-        background-color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(40px) saturate(200%);
+        -webkit-backdrop-filter: blur(40px) saturate(200%);
         color: #0d1e1e;
         padding: 1.5rem;
         
@@ -405,8 +518,8 @@ header nav a:hover::after {
         width: 280px;
         height: auto;
         border-radius: 1.5rem;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         
         z-index: 1000;
         visibility: hidden;
@@ -509,6 +622,13 @@ header nav a:hover::after {
 }
 
 @media (max-width: 480px) {
+    :root {
+        --floating-fab-size: 54px;
+        --floating-fab-right: 14px;
+        --floating-fab-bottom: 14px;
+        --floating-fab-gap: 10px;
+    }
+
     .container {
         padding: 0 15px;
     }

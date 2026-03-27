@@ -1,4 +1,193 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const WHATSAPP_NUMBER = '254104800800';
+    const TAWK_SRC = 'https://embed.tawk.to/698d94b5a6904d1c351635e1/1jkn3tkca';
+    let tawkLoadPromise = null;
+    let tawkBubbleGuardStarted = false;
+    let supportFabElement = null;
+
+    function setSupportFabVisible(isVisible) {
+        if (!supportFabElement) return;
+        supportFabElement.style.display = isVisible ? 'flex' : 'none';
+    }
+
+    function loadTawkTo() {
+        if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
+            return Promise.resolve(window.Tawk_API);
+        }
+
+        if (tawkLoadPromise) return tawkLoadPromise;
+
+        window.Tawk_API = window.Tawk_API || {};
+        window.Tawk_LoadStart = new Date();
+
+        tawkLoadPromise = new Promise((resolve, reject) => {
+            const existingScript = document.querySelector(`script[src="${TAWK_SRC}"]`);
+            if (existingScript) {
+                // Already being/was loaded; resolve with best-effort API object.
+                resolve(window.Tawk_API);
+                return;
+            }
+
+            window.Tawk_API.onLoad = function onTawkLoad() {
+                resolve(window.Tawk_API);
+            };
+
+            const s1 = document.createElement('script');
+            const s0 = document.getElementsByTagName('script')[0];
+            s1.async = true;
+            s1.src = TAWK_SRC;
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s1.onerror = reject;
+            s0.parentNode.insertBefore(s1, s0);
+        });
+
+        return tawkLoadPromise;
+    }
+
+    function setupTawk(api) {
+        if (!api) return;
+
+        const hideNativeBubble = () => {
+            try {
+                if (typeof api.hideWidget === 'function') {
+                    api.hideWidget();
+                }
+            } catch (e) {
+                // Ignore - Tawk API may not be fully ready in some states.
+            }
+        };
+
+        const hideNativeBubbleWithRetry = () => {
+            hideNativeBubble();
+            setTimeout(hideNativeBubble, 180);
+            setTimeout(hideNativeBubble, 650);
+        };
+
+        // On initial load: hide Tawk native bubble; we control visibility via our launcher.
+        hideNativeBubbleWithRetry();
+        setSupportFabVisible(true);
+
+        // When Tawk is opened/maximized: hide our launcher.
+        api.onChatMaximized = () => setSupportFabVisible(false);
+        api.onChatStarted = () => setSupportFabVisible(false);
+
+        // When Tawk is closed/minimized: hide native bubble again + show our launcher.
+        api.onChatMinimized = () => {
+            hideNativeBubbleWithRetry();
+            setSupportFabVisible(true);
+        };
+        api.onWidgetMinimized = () => {
+            hideNativeBubbleWithRetry();
+            setSupportFabVisible(true);
+        };
+        api.onChatHidden = () => {
+            hideNativeBubbleWithRetry();
+            setSupportFabVisible(true);
+        };
+        api.onChatEnded = () => {
+            hideNativeBubbleWithRetry();
+            setSupportFabVisible(true);
+        };
+
+        // Fallback guard: if Tawk reports minimized state, force-hide bubble.
+        if (!tawkBubbleGuardStarted) {
+            tawkBubbleGuardStarted = true;
+            window.setInterval(() => {
+                try {
+                    if (
+                        api &&
+                        typeof api.isChatMinimized === 'function' &&
+                        api.isChatMinimized()
+                    ) {
+                        hideNativeBubble();
+                        setSupportFabVisible(true);
+                    }
+                } catch (e) {
+                    // Ignore.
+                }
+            }, 800);
+        }
+    }
+
+    function createSupportFab() {
+        if (document.getElementById('support-fab')) return;
+
+        const wrapper = document.createElement('div');
+        wrapper.id = 'support-fab';
+        wrapper.className = 'support-fab';
+        wrapper.innerHTML = `
+            <div class="support-fab-actions" aria-hidden="true">
+                <button type="button" class="support-fab-action support-fab-chat" aria-label="Open live chat">
+                    <span class="material-symbols-outlined">smart_toy</span>
+                </button>
+                <a
+                    class="support-fab-action support-fab-whatsapp"
+                    href="https://wa.me/${WHATSAPP_NUMBER}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open WhatsApp"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884Z" />
+                    </svg>
+                </a>
+            </div>
+            <button type="button" class="support-fab-toggle" aria-label="Open support options" aria-expanded="false">
+                <span class="material-symbols-outlined support-fab-toggle-icon support-fab-open-icon">message</span>
+                <span class="material-symbols-outlined support-fab-toggle-icon support-fab-close-icon">close</span>
+            </button>
+        `;
+
+        document.body.appendChild(wrapper);
+        supportFabElement = wrapper;
+
+        const toggleBtn = wrapper.querySelector('.support-fab-toggle');
+        const chatBtn = wrapper.querySelector('.support-fab-chat');
+
+        const closeFab = () => {
+            wrapper.classList.remove('open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        };
+
+        toggleBtn.addEventListener('click', () => {
+            const isOpen = wrapper.classList.toggle('open');
+            toggleBtn.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        chatBtn.addEventListener('click', async () => {
+            closeFab();
+            try {
+                const api = await loadTawkTo();
+                setupTawk(api);
+                if (typeof api.showWidget === 'function') {
+                    api.showWidget();
+                }
+                if (typeof api.maximize === 'function') {
+                    api.maximize();
+                }
+                setSupportFabVisible(false);
+            } catch (error) {
+                // eslint-disable-next-line no-console
+                console.error('Failed to load Tawk widget.', error);
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!wrapper.contains(event.target)) {
+                closeFab();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeFab();
+        });
+    }
+
+    createSupportFab();
+    loadTawkTo()
+        .then((api) => setupTawk(api))
+        .catch(() => {});
 
     // --- Unregister Service Workers & Clear Caches ---
     if ('serviceWorker' in navigator) {
