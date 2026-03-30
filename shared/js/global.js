@@ -10,6 +10,38 @@ document.addEventListener('DOMContentLoaded', () => {
         supportFabElement.style.display = isVisible ? 'flex' : 'none';
     }
 
+    function positionBackToTopForFabState(isFabOpen) {
+        const backToTop = document.getElementById('back-to-top');
+        if (!backToTop) return;
+
+        // Default CSS already positions it above the WhatsApp icon (menu closed).
+        // When menu is open, move it up above the chat/bot icon.
+        if (isFabOpen) {
+            // With the menu open, the vertical stack is:
+            // toggle (bottom), whatsapp, bot (top). Bot button bottom equals:
+            // fab-bottom + size*2 + gap*2. We place back-to-top above the bot by:
+            // adding bot size + an extra gap.
+            backToTop.style.bottom =
+                'calc(var(--floating-fab-bottom) + (var(--floating-fab-size) * 3) + (var(--floating-fab-gap) * 3))';
+        } else {
+            backToTop.style.bottom = '';
+        }
+    }
+
+    // If Tawk is already present (e.g. bfcache/back-forward), prevent the minimized bubble from flashing.
+    function hideTawkBubbleIfReady() {
+        try {
+            const api = window.Tawk_API;
+            if (api && typeof api.hideWidget === 'function') {
+                api.hideWidget();
+                setTimeout(() => api.hideWidget && api.hideWidget(), 180);
+                setTimeout(() => api.hideWidget && api.hideWidget(), 650);
+            }
+        } catch (e) {
+            // Ignore.
+        }
+    }
+
     function loadTawkTo() {
         if (window.Tawk_API && typeof window.Tawk_API.maximize === 'function') {
             return Promise.resolve(window.Tawk_API);
@@ -153,10 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleBtn.addEventListener('click', () => {
             const isOpen = wrapper.classList.toggle('open');
             toggleBtn.setAttribute('aria-expanded', String(isOpen));
+            positionBackToTopForFabState(isOpen);
         });
 
         chatBtn.addEventListener('click', async () => {
             closeFab();
+            setSupportFabVisible(false);
             try {
                 const api = await loadTawkTo();
                 setupTawk(api);
@@ -185,9 +219,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     createSupportFab();
-    loadTawkTo()
-        .then((api) => setupTawk(api))
-        .catch(() => {});
+
+    hideTawkBubbleIfReady();
+    // Tawk script should only load when the chat/bot button is clicked.
+    // This prevents the native Tawk widget bubble from flashing on page navigation/load.
 
     // --- Unregister Service Workers & Clear Caches ---
     if ('serviceWorker' in navigator) {
