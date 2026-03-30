@@ -108,20 +108,50 @@ async function loadTeamGrid(container, url, baseUrl) {
 
         const memberCards = [];
 
-        const parseFocusAreas = (value) => {
+        // Strapi may return focus_areas as:
+        // - string: "Corporate Law, Dispute Resolution"
+        // - array of strings
+        // - array of objects: [{ name: "Corporate Law" }, ...]
+        const extractAreaStrings = (value) => {
             if (!value) return [];
-            if (Array.isArray(value)) return value.map(v => String(v).trim()).filter(Boolean);
-            return String(value)
-                .split(/[,;]+/)
-                .map(a => a.trim())
-                .filter(Boolean);
+
+            const pickFromObject = (obj) => {
+                if (!obj || typeof obj !== 'object') return null;
+                return obj.name || obj.title || obj.label || obj.value || obj.area || obj.focus_area || obj.slug || null;
+            };
+
+            if (Array.isArray(value)) {
+                return value
+                    .map(item => {
+                        if (!item) return null;
+                        if (typeof item === 'string') return item;
+                        const picked = pickFromObject(item);
+                        return picked;
+                    })
+                    .map(v => (v ? String(v).trim() : null))
+                    .filter(Boolean);
+            }
+
+            if (typeof value === 'string') {
+                return value
+                    .split(/[,;]+/)
+                    .map(a => a.trim())
+                    .filter(Boolean);
+            }
+
+            // single object
+            const picked = pickFromObject(value);
+            if (picked) return [String(picked).trim()].filter(Boolean);
+
+            return [];
         };
 
-        const normalizeArea = (area) => String(area).trim().toLowerCase();
+        const normalizeArea = (area) =>
+            String(area).trim().toLowerCase().replace(/\s+/g, ' ');
 
         const uniqueAreas = new Map(); // normalized -> display
         members.forEach(member => {
-            const areas = parseFocusAreas(member.focus_areas);
+            const areas = extractAreaStrings(member.focus_areas);
             areas.forEach(area => {
                 const norm = normalizeArea(area);
                 if (!norm) return;
@@ -141,28 +171,45 @@ async function loadTeamGrid(container, url, baseUrl) {
         };
 
         let deptButtons = [];
-        if (filterButtonsContainer && areaEntries.length > 0) {
-            filterButtonsContainer.innerHTML = '';
-            deptButtons = areaEntries.map(([norm, label]) => {
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = INACTIVE_BTN_CLASS;
-                btn.textContent = label;
-                btn.dataset.deptNorm = norm;
-                btn.addEventListener('click', () => {
-                    // Active styles
-                    if (filterAllBtn) filterAllBtn.className = INACTIVE_BTN_CLASS;
-                    deptButtons.forEach(b => {
-                        b.className = b === btn ? ACTIVE_BTN_CLASS : INACTIVE_BTN_CLASS;
+        if (filterButtonsContainer) {
+            // Remove any existing placeholder buttons if we have real departments from Strapi.
+            if (areaEntries.length > 0) {
+                filterButtonsContainer.innerHTML = '';
+                deptButtons = areaEntries.map(([norm, label]) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = INACTIVE_BTN_CLASS;
+                    btn.textContent = label;
+                    btn.dataset.deptNorm = norm;
+                    btn.addEventListener('click', () => {
+                        if (filterAllBtn) filterAllBtn.className = INACTIVE_BTN_CLASS;
+                        deptButtons.forEach(b => {
+                            b.className = b === btn ? ACTIVE_BTN_CLASS : INACTIVE_BTN_CLASS;
+                        });
+                        applyDepartmentFilter(norm);
                     });
-
-                    applyDepartmentFilter(norm);
+                    filterButtonsContainer.appendChild(btn);
+                    return btn;
                 });
-                filterButtonsContainer.appendChild(btn);
-                return btn;
-            });
+            } else {
+                // Fallback: use whatever buttons already exist in the HTML.
+                deptButtons = Array.from(filterButtonsContainer.querySelectorAll('button'));
+                deptButtons.forEach(btn => {
+                    const norm = normalizeArea(btn.textContent);
+                    btn.dataset.deptNorm = norm;
+                    btn.className = INACTIVE_BTN_CLASS;
+                    btn.addEventListener('click', () => {
+                        if (filterAllBtn) filterAllBtn.className = INACTIVE_BTN_CLASS;
+                        deptButtons.forEach(b => {
+                            b.className = b === btn ? ACTIVE_BTN_CLASS : INACTIVE_BTN_CLASS;
+                        });
+                        applyDepartmentFilter(norm);
+                    });
+                });
+            }
 
             if (filterAllBtn) {
+                filterAllBtn.className = ACTIVE_BTN_CLASS; // make sure initial state looks selected
                 filterAllBtn.addEventListener('click', () => {
                     filterAllBtn.className = ACTIVE_BTN_CLASS;
                     deptButtons.forEach(b => (b.className = INACTIVE_BTN_CLASS));
@@ -231,7 +278,7 @@ async function loadTeamGrid(container, url, baseUrl) {
             `;
 
             // Save normalized focus areas for filtering
-            const areasNorm = parseFocusAreas(member.focus_areas).map(normalizeArea);
+            const areasNorm = extractAreaStrings(member.focus_areas).map(normalizeArea);
             card.dataset.focusAreasNorm = areasNorm.join(',');
 
             memberCards.push(card);
