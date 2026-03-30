@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeFab = () => {
             wrapper.classList.remove('open');
             toggleBtn.setAttribute('aria-expanded', 'false');
+            positionBackToTopForFabState(false);
         };
 
         toggleBtn.addEventListener('click', () => {
