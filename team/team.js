@@ -99,6 +99,78 @@ async function loadTeamGrid(container, url, baseUrl) {
              return;
         }
 
+        // --- Department filter (based on Strapi focus_areas) ---
+        const filterAllBtn = document.getElementById('department-filter-all');
+        const filterButtonsContainer = document.getElementById('department-filter-buttons');
+
+        const ACTIVE_BTN_CLASS = 'text-sm font-bold text-accent-orange border-b-2 border-accent-orange pb-1';
+        const INACTIVE_BTN_CLASS = 'text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors';
+
+        const memberCards = [];
+
+        const parseFocusAreas = (value) => {
+            if (!value) return [];
+            if (Array.isArray(value)) return value.map(v => String(v).trim()).filter(Boolean);
+            return String(value)
+                .split(/[,;]+/)
+                .map(a => a.trim())
+                .filter(Boolean);
+        };
+
+        const normalizeArea = (area) => String(area).trim().toLowerCase();
+
+        const uniqueAreas = new Map(); // normalized -> display
+        members.forEach(member => {
+            const areas = parseFocusAreas(member.focus_areas);
+            areas.forEach(area => {
+                const norm = normalizeArea(area);
+                if (!norm) return;
+                if (!uniqueAreas.has(norm)) uniqueAreas.set(norm, area);
+            });
+        });
+
+        const areaEntries = Array.from(uniqueAreas.entries())
+            .sort((a, b) => a[1].localeCompare(b[1]));
+
+        const applyDepartmentFilter = (deptNorm) => {
+            memberCards.forEach(card => {
+                const areasNorm = (card.dataset.focusAreasNorm || '').split(',').filter(Boolean);
+                const shouldShow = deptNorm === 'all' || areasNorm.includes(deptNorm);
+                card.classList.toggle('hidden', !shouldShow);
+            });
+        };
+
+        let deptButtons = [];
+        if (filterButtonsContainer && areaEntries.length > 0) {
+            filterButtonsContainer.innerHTML = '';
+            deptButtons = areaEntries.map(([norm, label]) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = INACTIVE_BTN_CLASS;
+                btn.textContent = label;
+                btn.dataset.deptNorm = norm;
+                btn.addEventListener('click', () => {
+                    // Active styles
+                    if (filterAllBtn) filterAllBtn.className = INACTIVE_BTN_CLASS;
+                    deptButtons.forEach(b => {
+                        b.className = b === btn ? ACTIVE_BTN_CLASS : INACTIVE_BTN_CLASS;
+                    });
+
+                    applyDepartmentFilter(norm);
+                });
+                filterButtonsContainer.appendChild(btn);
+                return btn;
+            });
+
+            if (filterAllBtn) {
+                filterAllBtn.addEventListener('click', () => {
+                    filterAllBtn.className = ACTIVE_BTN_CLASS;
+                    deptButtons.forEach(b => (b.className = INACTIVE_BTN_CLASS));
+                    applyDepartmentFilter('all');
+                });
+            }
+        }
+
         // Clear existing static content if any (optional, or we append)
         container.innerHTML = '';
 
@@ -119,7 +191,7 @@ async function loadTeamGrid(container, url, baseUrl) {
             }
             
             const card = document.createElement('div');
-            card.className = 'group flex flex-col bg-white dark:bg-background-dark border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300';
+            card.className = 'team-member-card group flex flex-col bg-white dark:bg-background-dark border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300';
             
             if (typeof AOS !== 'undefined') {
                 card.setAttribute('data-aos', 'fade-up');
@@ -157,8 +229,17 @@ async function loadTeamGrid(container, url, baseUrl) {
                     </div>
                 </div>
             `;
+
+            // Save normalized focus areas for filtering
+            const areasNorm = parseFocusAreas(member.focus_areas).map(normalizeArea);
+            card.dataset.focusAreasNorm = areasNorm.join(',');
+
+            memberCards.push(card);
             container.appendChild(card);
         });
+
+        // Initial filter state: show all
+        applyDepartmentFilter('all');
         
         if (typeof AOS !== 'undefined') {
             setTimeout(() => AOS.refresh(), 100);
