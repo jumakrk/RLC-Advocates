@@ -99,125 +99,6 @@ async function loadTeamGrid(container, url, baseUrl) {
              return;
         }
 
-        // --- Department filter (based on Strapi focus_areas) ---
-        const filterAllBtn = document.getElementById('department-filter-all');
-        const filterButtonsContainer = document.getElementById('department-filter-buttons');
-
-        const ACTIVE_BTN_CLASS = 'text-sm font-bold text-accent-orange border-b-2 border-accent-orange pb-1';
-        const INACTIVE_BTN_CLASS = 'text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors';
-
-        const memberCards = [];
-
-        // Strapi may return focus_areas as:
-        // - string: "Corporate Law, Dispute Resolution"
-        // - array of strings
-        // - array of objects: [{ name: "Corporate Law" }, ...]
-        const extractAreaStrings = (value) => {
-            if (!value) return [];
-
-            const pickFromObject = (obj) => {
-                if (!obj || typeof obj !== 'object') return null;
-                return obj.name || obj.title || obj.label || obj.value || obj.area || obj.focus_area || obj.slug || null;
-            };
-
-            if (Array.isArray(value)) {
-                return value
-                    .map(item => {
-                        if (!item) return null;
-                        if (typeof item === 'string') return item;
-                        const picked = pickFromObject(item);
-                        return picked;
-                    })
-                    .map(v => (v ? String(v).trim() : null))
-                    .filter(Boolean);
-            }
-
-            if (typeof value === 'string') {
-                return value
-                    .split(/[,;]+/)
-                    .map(a => a.trim())
-                    .filter(Boolean);
-            }
-
-            // single object
-            const picked = pickFromObject(value);
-            if (picked) return [String(picked).trim()].filter(Boolean);
-
-            return [];
-        };
-
-        const normalizeArea = (area) =>
-            String(area).trim().toLowerCase().replace(/\s+/g, ' ');
-
-        const uniqueAreas = new Map(); // normalized -> display
-        members.forEach(member => {
-            const areas = extractAreaStrings(member.focus_areas);
-            areas.forEach(area => {
-                const norm = normalizeArea(area);
-                if (!norm) return;
-                if (!uniqueAreas.has(norm)) uniqueAreas.set(norm, area);
-            });
-        });
-
-        const areaEntries = Array.from(uniqueAreas.entries())
-            .sort((a, b) => a[1].localeCompare(b[1]));
-
-        const applyDepartmentFilter = (deptNorm) => {
-            memberCards.forEach(card => {
-                const areasNorm = (card.dataset.focusAreasNorm || '').split(',').filter(Boolean);
-                const shouldShow = deptNorm === 'all' || areasNorm.includes(deptNorm);
-                card.classList.toggle('hidden', !shouldShow);
-            });
-        };
-
-        let deptButtons = [];
-        if (filterButtonsContainer) {
-            // Remove any existing placeholder buttons if we have real departments from Strapi.
-            if (areaEntries.length > 0) {
-                filterButtonsContainer.innerHTML = '';
-                deptButtons = areaEntries.map(([norm, label]) => {
-                    const btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.className = INACTIVE_BTN_CLASS;
-                    btn.textContent = label;
-                    btn.dataset.deptNorm = norm;
-                    btn.addEventListener('click', () => {
-                        if (filterAllBtn) filterAllBtn.className = INACTIVE_BTN_CLASS;
-                        deptButtons.forEach(b => {
-                            b.className = b === btn ? ACTIVE_BTN_CLASS : INACTIVE_BTN_CLASS;
-                        });
-                        applyDepartmentFilter(norm);
-                    });
-                    filterButtonsContainer.appendChild(btn);
-                    return btn;
-                });
-            } else {
-                // Fallback: use whatever buttons already exist in the HTML.
-                deptButtons = Array.from(filterButtonsContainer.querySelectorAll('button'));
-                deptButtons.forEach(btn => {
-                    const norm = normalizeArea(btn.textContent);
-                    btn.dataset.deptNorm = norm;
-                    btn.className = INACTIVE_BTN_CLASS;
-                    btn.addEventListener('click', () => {
-                        if (filterAllBtn) filterAllBtn.className = INACTIVE_BTN_CLASS;
-                        deptButtons.forEach(b => {
-                            b.className = b === btn ? ACTIVE_BTN_CLASS : INACTIVE_BTN_CLASS;
-                        });
-                        applyDepartmentFilter(norm);
-                    });
-                });
-            }
-
-            if (filterAllBtn) {
-                filterAllBtn.className = ACTIVE_BTN_CLASS; // make sure initial state looks selected
-                filterAllBtn.addEventListener('click', () => {
-                    filterAllBtn.className = ACTIVE_BTN_CLASS;
-                    deptButtons.forEach(b => (b.className = INACTIVE_BTN_CLASS));
-                    applyDepartmentFilter('all');
-                });
-            }
-        }
-
         // Clear existing static content if any (optional, or we append)
         container.innerHTML = '';
 
@@ -238,7 +119,7 @@ async function loadTeamGrid(container, url, baseUrl) {
             }
             
             const card = document.createElement('div');
-            card.className = 'team-member-card group flex flex-col bg-white dark:bg-background-dark border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300';
+            card.className = 'group flex flex-col bg-white dark:bg-background-dark border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300';
             
             if (typeof AOS !== 'undefined') {
                 card.setAttribute('data-aos', 'fade-up');
@@ -276,17 +157,8 @@ async function loadTeamGrid(container, url, baseUrl) {
                     </div>
                 </div>
             `;
-
-            // Save normalized focus areas for filtering
-            const areasNorm = extractAreaStrings(member.focus_areas).map(normalizeArea);
-            card.dataset.focusAreasNorm = areasNorm.join(',');
-
-            memberCards.push(card);
             container.appendChild(card);
         });
-
-        // Initial filter state: show all
-        applyDepartmentFilter('all');
         
         if (typeof AOS !== 'undefined') {
             setTimeout(() => AOS.refresh(), 100);
