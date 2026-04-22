@@ -11,21 +11,22 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rlcadvocates.co.ke/practice/">
     <meta property="og:title" content="Practice Areas | RLC Advocates">
-    <meta property="og:description" content="Explore our wide range of legal practice areas, from corporate law to dispute resolution, handled by our expert advocates.">
+    <meta property="og:description" content="Explore our wide range of legal practice areas, from corporate to dispute resolution, handled by our expert advocates.">
     <meta property="og:image" content="https://rlcadvocates.co.ke/Images/rlc-small-logo.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://rlcadvocates.co.ke/practice/">
     <meta property="twitter:title" content="Practice Areas | RLC Advocates">
-    <meta property="twitter:description" content="Explore our wide range of legal practice areas, from corporate law to dispute resolution, handled by our expert advocates.">
+    <meta property="twitter:description" content="Explore our wide range of legal practice areas, from corporate to dispute resolution, handled by our expert advocates.">
     <meta property="twitter:image" content="https://rlcadvocates.co.ke/Images/rlc-small-logo.png">
 
     <!-- Scripts & Styles -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="../shared/js/tailwind-config.js?v=2.2"></script>
     <link rel="stylesheet" href="../shared/css/global.css?v=2.2" />
-    <link rel="stylesheet" href="practice.css?v=2.2" />
+    <link rel="stylesheet" href="practice.css?v=2.3" />
+    <script src="practice.js?v=2.3" defer></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -119,21 +120,43 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Corporate Law -->
-                    <div
+                    <!-- Corporate -->
+                    <div data-practice="corporate"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
                             <span
                                 class="material-symbols-outlined text-3xl text-accent-blue group-hover:text-white">corporate_fare</span>
                         </div>
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Corporate Law</h3>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Corporate</h3>
                         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Strategic legal guidance for
                             businesses of all sizes, from startups to global corporations, covering mergers,
                             acquisitions, and compliance.</p>
+                        
+                        <!-- Always There Content -->
+                        <div class="card-details-content hidden">
+                            <p class="description-text text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl">Strategic legal guidance for businesses of all sizes, from high-growth startups to established global corporations.</p>
+                            <div class="detail-grid">
+                                <div class="detail-section">
+                                    <h4>Core Competencies</h4>
+                                    <p>Our corporate practice provides end-to-end support for business lifecycle management, ensuring regulatory compliance and strategic growth.</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Key Services</h4>
+                                    <ul class="detail-list">
+                                        <li>Mergers & Acquisitions (M&A)</li>
+                                        <li>Venture Capital & Startup Advisory</li>
+                                        <li>Corporate Governance & Compliance</li>
+                                        <li>Private Equity Transactions</li>
+                                        <li>Commercial Contracts & Licensing</li>
+                                        <li>Joint Ventures & Strategic Alliances</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- Litigation -->
-                    <div
+                    <div data-practice="dispute-resolution"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -143,9 +166,31 @@
                         <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Dispute Resolution</h3>
                         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Expert representation in complex
                             civil and commercial disputes, arbitration, and mediation to protect your interests.</p>
+
+                        <!-- Always There Content -->
+                        <div class="card-details-content hidden">
+                            <p class="description-text text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl">Expert representation in complex civil and commercial disputes, arbitration, and mediation.</p>
+                            <div class="detail-grid">
+                                <div class="detail-section">
+                                    <h4>Our Approach</h4>
+                                    <p>We prioritize efficient, strategic resolution to minimize business disruption while vigorously protecting our clients' interests in court.</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Key Services</h4>
+                                    <ul class="detail-list">
+                                        <li>Commercial Litigation</li>
+                                        <li>International & Domestic Arbitration</li>
+                                        <li>Alternative Dispute Resolution (ADR)</li>
+                                        <li>Employment Disputes</li>
+                                        <li>Real Estate Litigation</li>
+                                        <li>Banking & Finance Disputes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- Real Estate -->
-                    <div
+                    <div data-practice="real-estate"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -156,22 +201,66 @@
                         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Comprehensive advice on property
                             transactions, development, lease agreements, and regulatory compliance for commercial and
                             residential sectors.</p>
+
+                        <!-- Always There Content -->
+                        <div class="card-details-content hidden">
+                            <p class="description-text text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl">Comprehensive advice on property transactions, development, and regulatory compliance.</p>
+                            <div class="detail-grid">
+                                <div class="detail-section">
+                                    <h4>Strategic Assets</h4>
+                                    <p>We assist developers and investors in navigating the complexities of property law in Kenya and the broader region.</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Key Services</h4>
+                                    <ul class="detail-list">
+                                        <li>Property Acquisition & Disposal</li>
+                                        <li>Real Estate Development Projects</li>
+                                        <li>Commercial Leasing</li>
+                                        <li>Conveyancing & Titling</li>
+                                        <li>Real Estate Financing</li>
+                                        <li>Zoning Compliance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Family Law -->
-                    <div data-aos="fade-up"
+                    <!-- Private Wealth -->
+                    <div data-practice="private-wealth" data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
                             <span
-                                class="material-symbols-outlined text-3xl text-accent-blue group-hover:text-white">family_restroom</span>
+                                class="material-symbols-outlined text-3xl text-accent-blue group-hover:text-white">payments</span>
                         </div>
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Family Law</h3>
-                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Compassionate and professional
-                            handling of divorce, child custody, matrimonial matters, and estate planning with
-                            sensitivity and care.</p>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Private Wealth</h3>
+                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Bespoke legal strategies for
+                            high-net-worth individuals and families, focusing on asset protection, trusts, and seamless
+                            legacy succession.</p>
+
+                        <!-- Always There Content -->
+                        <div class="card-details-content hidden">
+                            <p class="description-text text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl">Bespoke legal strategies for high-net-worth individuals and families.</p>
+                            <div class="detail-grid">
+                                <div class="detail-section">
+                                    <h4>Legacy Preservation</h4>
+                                    <p>Sophisticated advice on asset protection, estate planning, and tax optimization for seamless succession.</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Key Services</h4>
+                                    <ul class="detail-list">
+                                        <li>Trusts & Estate Planning</li>
+                                        <li>Wills & Succession</li>
+                                        <li>Asset Protection Strategies</li>
+                                        <li>Family Office Advisory</li>
+                                        <li>Charitable Foundations</li>
+                                        <li>Cross-border Tax Planning</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- Intellectual Property -->
-                    <div data-aos="fade-up"
+                    <div data-practice="ip" data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
@@ -182,79 +271,166 @@
                         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Protecting your innovations,
                             trademarks, and brand identity through robust IP strategy, registration, and litigation
                             enforcement.</p>
-                    </div>
-                    <!-- Legal Consulting -->
-                    <div data-aos="fade-up"
-                        class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
-                        <div
-                            class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
-                            <span
-                                class="material-symbols-outlined text-3xl text-accent-blue group-hover:text-white">business_center</span>
+
+                        <!-- Always There Content -->
+                        <div class="card-details-content hidden">
+                            <p class="description-text text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl">Protecting your innovations, trademarks, and brand identity through robust strategy.</p>
+                            <div class="detail-grid">
+                                <div class="detail-section">
+                                    <h4>Innovation Protection</h4>
+                                    <p>Your intellectual assets are your most valuable currency. We help you register, manage, and defend your rights globally.</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Key Services</h4>
+                                    <ul class="detail-list">
+                                        <li>Trademark Registration</li>
+                                        <li>Patent Filing & Advisory</li>
+                                        <li>Copyright Enforcement</li>
+                                        <li>IP Licensing</li>
+                                        <li>Anti-Counterfeiting</li>
+                                        <li>Trade Secret Protection</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Legal Consulting</h3>
-                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Expert legal advice to navigate
-                            complex regulatory environments, mitigate risks, and support strategic business decisions.</p>
                     </div>
-                    <!-- IT Law -->
-                    <div data-aos="fade-up"
+                    <!-- Technology & Digital -->
+                    <div data-practice="technology" data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
                             <span
                                 class="material-symbols-outlined text-3xl text-accent-blue group-hover:text-white">devices</span>
                         </div>
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">IT Law</h3>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Technology & Digital</h3>
                         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Specialized guidance on data
                             privacy, software licensing, cybersecurity compliance, and digital rights management.</p>
+
+                        <!-- Always There Content -->
+                        <div class="card-details-content hidden">
+                            <p class="description-text text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl">Specialized guidance on privacy, software licensing, and digital rights.</p>
+                            <div class="detail-grid">
+                                <div class="detail-section">
+                                    <h4>Future-Proofing</h4>
+                                    <p>Bridging the gap between evolving tech and legal frameworks, helping clients navigate AI and Blockchain regulations.</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Key Services</h4>
+                                    <ul class="detail-list">
+                                        <li>Data Privacy & GDPR Compliance</li>
+                                        <li>Software Development Contracts</li>
+                                        <li>E-commerce Advisory</li>
+                                        <li>Cybersecurity Incident Response</li>
+                                        <li>AI Governance</li>
+                                        <li>FinTech Regulation</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Labour & Employment Law -->
-                    <div data-aos="fade-up"
+                    <!-- Labour & Employment -->
+                    <div data-practice="labour" data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
                             <span
                                 class="material-symbols-outlined text-3xl text-accent-blue group-hover:text-white">groups</span>
                         </div>
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Labour & Employment Law</h3>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Labour & Employment</h3>
                         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Advising on employment contracts,
                             workplace policies, dispute resolution, and regulatory compliance for employers and employees.</p>
+
+                        <!-- Always There Content -->
+                        <div class="card-details-content hidden">
+                            <p class="description-text text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl">Advising on employment contracts, policies, and regulatory compliance.</p>
+                            <div class="detail-grid">
+                                <div class="detail-section">
+                                    <h4>Workforce Strategy</h4>
+                                    <p>Helping organizations build healthy workplace environments through sound legal frameworks.</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Key Services</h4>
+                                    <ul class="detail-list">
+                                        <li>Employment Contracts</li>
+                                        <li>Workplace Policies</li>
+                                        <li>Redundancy & Reorganization</li>
+                                        <li>Pension & Benefits Advisory</li>
+                                        <li>Expatriate & Immigration</li>
+                                        <li>Collective Bargaining</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Notary Law -->
-                    <div data-aos="fade-up"
+                    <!-- Value-Add Services -->
+                    <div data-practice="value-add" data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
                             <span
                                 class="material-symbols-outlined text-3xl text-accent-blue group-hover:text-white">verified</span>
                         </div>
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Notary Law</h3>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Value-Add Services</h3>
                         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Official authentication of
                             documents, administration of oaths, and witnessing of signatures for legal validity.</p>
+
+                        <!-- Always There Content -->
+                        <div class="card-details-content hidden">
+                            <p class="description-text text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl">Official authentication of documents, administration of oaths, and witnessing of signatures.</p>
+                            <div class="detail-grid">
+                                <div class="detail-section">
+                                    <h4>Certification</h4>
+                                    <p>Essential notary services to validate documents for international and domestic use.</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Key Services</h4>
+                                    <ul class="detail-list">
+                                        <li>Notarization of Documents</li>
+                                        <li>Commissioning of Oaths</li>
+                                        <li>Certification of Copies</li>
+                                        <li>Power of Attorney Authentication</li>
+                                        <li>Affidavits</li>
+                                        <li>Legalization Support</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Tax Law -->
-                    <div data-aos="fade-up"
+                    <!-- Tax -->
+                    <div data-practice="tax" data-aos="fade-up"
                         class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
                         <div
                             class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
                             <span
                                 class="material-symbols-outlined text-3xl text-accent-blue group-hover:text-white">account_balance</span>
                         </div>
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Tax Law</h3>
+                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Tax</h3>
                         <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Comprehensive tax advisory
                             services including compliance, planning, and dispute resolution with tax authorities.</p>
-                    </div>
-                    <!-- Wills Planning Law -->
-                    <div data-aos="fade-up"
-                        class="service-card group bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300">
-                        <div
-                            class="w-14 h-14 rounded-lg bg-background-light dark:bg-gray-800 flex items-center justify-center mb-6 group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
-                            <span
-                                class="material-symbols-outlined text-3xl text-accent-blue group-hover:text-white">history_edu</span>
+
+                        <!-- Always There Content -->
+                        <div class="card-details-content hidden">
+                            <p class="description-text text-xl text-gray-500 dark:text-gray-400 mb-10 max-w-2xl">Comprehensive tax advisory including compliance, planning, and dispute resolution.</p>
+                            <div class="detail-grid">
+                                <div class="detail-section">
+                                    <h4>Fiscal Management</h4>
+                                    <p>Expert guidance to optimize tax positions while ensuring full compliance with international laws.</p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Key Services</h4>
+                                    <ul class="detail-list">
+                                        <li>Corporate Tax Advisory</li>
+                                        <li>Tax Compliance & Returns</li>
+                                        <li>KRA Dispute Resolution</li>
+                                        <li>VAT & Customs Advisory</li>
+                                        <li>Transfer Pricing</li>
+                                        <li>Tax Due Diligence</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Wills Planning Law</h3>
-                        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Assistance with drafting wills,
-                            establishing trusts, and managing estate succession to secure your legacy.</p>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -272,11 +448,11 @@
                             <div
                                 class="absolute -bottom-6 -right-6 bg-accent-orange text-white p-6 rounded-xl shadow-lg hidden md:flex items-center gap-4">
                                 <div class="p-3 bg-white/20 rounded-full">
-                                    <span class="material-symbols-outlined text-3xl">verified</span>
+                                    <span class="material-symbols-outlined text-3xl">verified_user</span>
                                 </div>
                                 <div>
-                                    <p class="text-xl font-black">Proven</p>
-                                    <p class="text-xs font-bold uppercase tracking-widest">Success</p>
+                                    <p class="text-xl font-black">Expert</p>
+                                    <p class="text-xs font-bold uppercase tracking-widest">Counsel</p>
                                 </div>
                             </div>
                         </div>
@@ -340,20 +516,15 @@
                         class="absolute bottom-0 left-0 w-48 h-48 bg-accent-blue opacity-10 rounded-full -ml-24 -mb-24">
                     </div>
                     <div class="relative z-10 max-w-2xl mx-auto">
-                        <h2 class="text-3xl lg:text-4xl font-extrabold text-white mb-6 tracking-tight">Ready to Discuss
-                            Your Case?</h2>
+                        <h2 class="text-3xl lg:text-4xl font-extrabold text-white mb-6 tracking-tight">Stay Ahead with Expert <span class="text-accent-orange">Legal Insights</span></h2>
                         <p class="text-gray-400 text-lg mb-10 leading-relaxed">
-                            Connect with our team of experts today for a confidential assessment of your legal
-                            situation. We are here to listen and help.
+                            Explore our latest analysis and perspectives on Kenya's evolving legal landscape. We translate complex legal shifts into actionable intelligence for the doers.
                         </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="/appointments/"
-                                class="bg-accent-orange hover:bg-accent-blue hover:ease-in-out duration-300 text-white font-bold py-4 px-10 rounded-lg transition-all transform hover:scale-105 shadow-xl shadow-accent-orange/20 hover:shadow-accent-blue/20 flex items-center justify-center">
-                                Book Appointment
-                            </a>
-                            <a href="tel:+254207800800"
-                                class="bg-white/10 hover:bg-white/20 text-white font-bold py-4 px-10 rounded-lg backdrop-blur-sm transition-all border border-white/10 flex items-center justify-center">
-                                Call Us Directly
+                        <div class="flex justify-center">
+                            <a href="/blog/index.html"
+                                class="bg-accent-orange hover:bg-accent-blue hover:ease-in-out duration-300 text-white font-bold py-4 px-10 rounded-lg transition-all transform hover:scale-105 shadow-xl shadow-accent-orange/20 hover:shadow-accent-blue/20 flex items-center justify-center gap-2 group">
+                                <span class="material-symbols-outlined transition-transform duration-300 group-hover:scale-110">article</span>
+                                Explore Our Insights
                             </a>
                         </div>
                     </div>
@@ -421,11 +592,9 @@
                 <div>
                     <h5 class="text-lg font-bold mb-6">Practice Areas</h5>
                     <ul class="space-y-4 text-gray-400 text-sm">
-                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Corporate
-                                Law</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Corporate</a></li>
 
-                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Family
-                                Law</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Private Wealth</a></li>
                         <li><a class="hover:text-accent-orange transition-colors"
                                 href="/practice/index.html">Intellectual Property</a></li>
                         <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Real

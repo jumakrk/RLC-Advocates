@@ -26,7 +26,7 @@
     <!-- Reading Progress Bar -->
     <div id="progress-bar" class="fixed top-0 left-0 w-0 h-1 z-[60] bg-accent-blue transition-all duration-100"></div>
 
-    <div class="relative flex min-h-screen flex-col overflow-x-hidden pt-[80px]">
+    <div class="relative flex min-h-screen flex-col pt-[80px]">
     <header class="fixed top-0 left-0 z-50 w-full bg-white/95 border-b border-gray-100 px-6 lg:px-20 py-4 backdrop-blur-md">
         <div class="max-w-[90%] mx-auto flex items-center justify-between">
             <a href="/index.html" class="flex items-center">
@@ -89,7 +89,7 @@
                         </div>
                         <div>
                             <p id="article-author" class="text-lg font-bold text-primary dark:text-white leading-none">RLC Team</p>
-                            <p class="text-sm text-gray-500 mt-1"><span id="article-date">Oct 24, 2026</span> • <span id="read-time">5 min read</span></p>
+                            <p class="text-sm text-gray-500 mt-1"><span id="article-date">Oct 24, 2026</span></p>
                             <div class="flex gap-2 mt-2">
                                 <span id="article-category-badge" class="bg-accent-blue/10 text-accent-blue text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">LEGAL</span>
                             </div>
@@ -142,7 +142,7 @@
                 </article>
 
                 <!-- Sidebar -->
-                <aside data-aos="fade-left" class="lg:col-span-4 space-y-12">
+                <aside data-aos="fade-left" class="lg:col-span-4 space-y-12 lg:sticky lg:top-32 self-start lg:disable-aos">
 
                     <!-- Related Insights Card (Static Template for UI) -->
                     <div class="bg-white dark:bg-gray-900 p-8 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
@@ -235,9 +235,9 @@
                 <div>
                     <h5 class="text-lg font-bold mb-6">Practice Areas</h5>
                     <ul class="space-y-4 text-gray-400 text-sm">
-                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Corporate Law</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Corporate</a></li>
 
-                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Family Law</a></li>
+                        <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Private Wealth</a></li>
                         <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Intellectual Property</a></li>
                         <li><a class="hover:text-accent-orange transition-colors" href="/practice/index.html">Real Estate</a></li>
                         <li class="pt-2">
@@ -404,7 +404,7 @@
                         <div class="group cursor-pointer" onclick="window.location.href='/article/?slug=${item.slug}'">
                             <span class="text-[10px] font-bold text-accent-orange uppercase tracking-widest">${item.category || 'Insight'}</span>
                             <h5 class="font-bold text-primary dark:text-white group-hover:text-accent-blue transition-colors mt-1 leading-tight">${item.title}</h5>
-                            <p class="text-xs text-gray-500 mt-2">5 min read • By ${item.author || 'RLC Team'}</p>
+                            <p class="text-xs text-gray-500 mt-2">By ${item.author || 'RLC Team'}</p>
                         </div>
                     `).join('');
                 }

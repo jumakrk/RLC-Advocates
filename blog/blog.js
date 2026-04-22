@@ -117,31 +117,57 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         CATEGORIES.forEach(cat => {
             const count = countMatches(cat);
-            // Only show categories with articles? Or show all with 0? showing all for now.
+            const isConnected = allArticles.length > 0;
             const isActive = activeFilter === cat;
-            const activeClass = isActive ? 'bg-accent-orange text-white' : 'text-gray-600 dark:text-gray-400 group-hover:text-accent-blue';
-            const badgeClass = isActive ? 'bg-white/20 text-white' : 'bg-gray-100 dark:bg-white/10 text-gray-500';
-            const containerClass = isActive ? 'bg-accent-orange rounded-lg shadow-md -mx-2 px-2 py-1' : 'group';
+
+            let activeClass = 'text-gray-600 dark:text-gray-400 group-hover:text-accent-blue';
+            let badgeClass = 'bg-gray-100 dark:bg-white/10 text-gray-500';
+            let containerClass = 'group cursor-pointer transition-all';
+            let hrefAttr = '';
+            let badgeHtml = '';
+
+            if (!isConnected) {
+                // Backend not connected or no articles
+                hrefAttr = 'href="/practice/index.html"';
+            } else {
+                // Backend is connected
+                badgeHtml = `<span class="text-xs px-2 py-1 rounded-full ${badgeClass} transition-colors">${count}</span>`;
+                
+                if (count === 0) {
+                    // Category has 0 posts: grey out and make unclickable
+                    activeClass = 'text-gray-400 dark:text-gray-600';
+                    badgeClass = 'bg-gray-50 dark:bg-white/5 text-gray-400';
+                    containerClass = 'group cursor-not-allowed opacity-60';
+                } else if (isActive) {
+                    activeClass = 'bg-accent-orange text-white';
+                    badgeClass = 'bg-white/20 text-white';
+                    containerClass = 'bg-accent-orange rounded-lg shadow-md -mx-2 px-2 py-1 cursor-pointer transition-all';
+                }
+            }
 
             const li = document.createElement('li');
             li.innerHTML = `
-                <a class="flex items-center justify-between ${containerClass} cursor-pointer transition-all">
+                <a class="flex items-center justify-between ${containerClass}" ${hrefAttr}>
                     <span class="${activeClass} transition-colors font-medium">${cat}</span>
-                    <span class="text-xs px-2 py-1 rounded-full ${badgeClass} transition-colors">${count}</span>
+                    ${badgeHtml}
                 </a>
             `;
             
-            li.addEventListener('click', (e) => {
-                e.preventDefault();
-                if (activeFilter === cat) {
-                    activeFilter = null; // Toggle off
-                } else {
-                    activeFilter = cat; // Toggle on
-                }
-                currentPage = 0; // Reset pagination
-                renderRecentGrid();
-                renderSidebarCategories(); // Re-render to update active styling
-            });
+            if (isConnected && count > 0) {
+                li.querySelector('a').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (activeFilter === cat) {
+                        activeFilter = null; // Toggle off
+                        if (featuredContainer) featuredContainer.style.display = 'block';
+                    } else {
+                        activeFilter = cat; // Toggle on
+                        if (featuredContainer) featuredContainer.style.display = 'none';
+                    }
+                    currentPage = 0; // Reset pagination
+                    renderRecentGrid();
+                    renderSidebarCategories(); // Re-render to update active styling
+                });
+            }
 
             sidebarList.appendChild(li);
         });
@@ -158,7 +184,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         featuredContainer.innerHTML = `
             <div class="group relative overflow-hidden rounded-xl bg-white dark:bg-white/5 shadow-sm border border-gray-200 dark:border-gray-800 hover:shadow-xl hover:border-accent-blue/30 transition-all duration-300 cursor-pointer" onclick="window.location.href='/article/?slug=${article.slug}'" ${aosAttr}>
-                <div class="relative h-96 overflow-hidden">
+                <div class="relative h-[28rem] lg:h-[38rem] overflow-hidden">
                     <img src="${imageUrl}" alt="${article.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                     
@@ -176,10 +202,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <h2 class="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight group-hover:text-accent-blue transition-colors">
                             ${article.title}
                         </h2>
-                        <div class="flex items-center text-gray-300 text-sm gap-6">
-                            <span class="flex items-center gap-2"><span class="material-symbols-outlined text-lg">calendar_today</span> ${formatDate(article.date || article.publishedAt)}</span>
-                            <span class="flex items-center gap-2"><span class="material-symbols-outlined text-lg">person</span> ${article.author || 'RLC Team'}</span>
-                            <span class="flex items-center gap-2"><span class="material-symbols-outlined text-lg">schedule</span> 5 min read</span>
+                        <div class="flex flex-wrap items-center text-gray-300 text-xs sm:text-sm gap-y-3 gap-x-4 md:gap-6">
+                            <span class="flex items-center gap-1.5 md:gap-2 whitespace-nowrap"><span class="material-symbols-outlined text-base md:text-lg">calendar_today</span> ${formatDate(article.date || article.publishedAt)}</span>
+                            <span class="flex items-center gap-1.5 md:gap-2 whitespace-nowrap"><span class="material-symbols-outlined text-base md:text-lg">person</span> ${article.author || 'RLC Team'}</span>
                         </div>
                     </div>
                 </div>
@@ -223,7 +248,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const html = `
                 <article class="flex flex-col h-full bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden hover:border-accent-blue/50 transition-colors group cursor-pointer" onclick="window.location.href='/article/?slug=${article.slug}'" ${aosAttr}>
-                    <div class="relative h-56 overflow-hidden">
+                    <div class="relative h-72 overflow-hidden">
                         <img src="${imageUrl}" alt="${article.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-4 left-4">
                             <span class="px-3 py-1 rounded bg-accent-orange text-white text-[10px] font-bold uppercase tracking-wide shadow-sm">
@@ -232,10 +257,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div>
                     <div class="flex flex-col flex-grow p-8">
-                        <div class="flex items-center gap-2 mb-4 text-xs text-gray-500 dark:text-gray-400 font-medium">
-                            <span>${formatDate(article.date || article.publishedAt)}</span>
-                            <span class="w-1 h-1 rounded-full bg-gray-400"></span>
-                            <span>By ${article.author || 'RLC Team'}</span>
+                        <div class="flex flex-wrap items-center gap-2 mb-4 text-xs text-gray-500 dark:text-gray-400 font-medium">
+                            <span class="whitespace-nowrap">${formatDate(article.date || article.publishedAt)}</span>
+                            <span class="w-1 h-1 rounded-full bg-gray-400 shrink-0"></span>
+                            <span class="whitespace-nowrap">By ${article.author || 'RLC Team'}</span>
                         </div>
                         <h3 class="text-xl font-bold text-primary dark:text-white mb-4 leading-snug group-hover:text-accent-blue transition-colors">
                             ${article.title}
@@ -321,7 +346,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error fetching articles:', error);
         if(featuredContainer) featuredContainer.innerHTML = '<p style="color: #ff6b6b;">Unable to load insights. Please check connection.</p>';
-        console.log(error)
+        console.log(error);
+        renderSidebarCategories(); // Render sidebar with no numbers and valid links when backend fails
     } finally {
         await hideLoader(loaderStartTime);
     }

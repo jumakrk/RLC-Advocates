@@ -34,3 +34,26 @@
 .animate-pulse-orange {
     animation: pulse-orange 2s infinite;
 }
+.author-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 99px;
+    width: fit-content;
+}
+
+/* Material Icons Scaling */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Disable AOS on desktop for sticky sidebar */
+@media (min-width: 1024px) {
+    .lg\:disable-aos[data-aos] {
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}

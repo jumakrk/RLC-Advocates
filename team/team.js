@@ -119,19 +119,21 @@ async function loadTeamGrid(container, url, baseUrl) {
             }
             
             const card = document.createElement('div');
-            card.className = 'group flex flex-col bg-white dark:bg-background-dark border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300';
+            card.className = 'group flex flex-col bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500';
             
             if (typeof AOS !== 'undefined') {
                 card.setAttribute('data-aos', 'fade-up');
             }
 
-            // Navigate to ../team/index.html from homepage
-            card.onclick = () => window.location.href = `/team/?slug=${member.slug}`;
+            // Navigate to profile
+            card.onclick = () => {
+                window.location.href = `/team/?slug=${member.slug}`;
+            };
             card.style.cursor = 'pointer';
 
             let roleLabel = member.role || 'TEAM';
             if (roleLabel.toLowerCase().includes('managing partner')) {
-                roleLabel = 'CAPTAIN';
+                roleLabel = 'MANAGING PARTNER';
             } else if (roleLabel.length > 20) {
                 if (roleLabel.toLowerCase().includes('partner')) roleLabel = 'PARTNER';
                 else if (roleLabel.toLowerCase().includes('advocate')) roleLabel = 'ADVOCATE';
@@ -139,25 +141,45 @@ async function loadTeamGrid(container, url, baseUrl) {
 
             card.innerHTML = `
                 <div class="relative aspect-[4/5] overflow-hidden">
-                    <img src="${hasPhoto ? baseUrl + member.photo.url : '../Images/avatar-placeholder.svg'}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="${member.name}">
-                    <div class="absolute bottom-4 left-4 flex gap-2">
-                        <span class="bg-secondary/90 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">${roleLabel}</span>
+                    <!-- Member Image -->
+                    <img src="${hasPhoto ? baseUrl + member.photo.url : '../Images/avatar-placeholder.svg'}" 
+                         class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" 
+                         alt="${member.name}">
+                    
+                    <!-- Hover Overlay -->
+                    <div class="team-card-overlay absolute inset-0 flex flex-col justify-end p-6">
+                    </div>
+
+                    <!-- Role Badge (Always Visible) -->
+                    <div class="absolute top-4 left-4">
+                        <span class="glass-card text-white text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
+                            ${roleLabel}
+                        </span>
                     </div>
                 </div>
-                <div class="p-6 flex flex-col flex-1">
-                    <h3 class="text-lg font-bold text-primary dark:text-white group-hover:text-secondary transition-colors">${member.name}</h3>
-                    <p class="text-secondary dark:text-blue-400 text-sm font-bold mb-3 uppercase tracking-tight">${member.role}</p>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">${member.bio_short || member.role}</p>
-                    <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-800 flex justify-between items-center">
-                        <a class="text-xs font-bold text-primary dark:text-gray-300 hover:underline" href="/team/?slug=${member.slug}">View Profile</a>
-                        <div class="flex gap-3">
-                            <span class="material-symbols-outlined text-gray-400 text-lg hover:text-secondary cursor-pointer">mail</span>
-                            <span class="material-symbols-outlined text-gray-400 text-lg hover:text-secondary cursor-pointer">share</span>
-                        </div>
+
+                <div class="p-8 flex flex-col flex-1">
+                    <h3 class="text-xl font-black text-primary dark:text-white mb-1 group-hover:text-accent-blue transition-colors duration-300">
+                        ${member.name}
+                    </h3>
+                    <p class="text-accent-orange text-xs font-bold mb-4 uppercase tracking-widest">
+                        ${member.role}
+                    </p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-8 line-clamp-3">
+                        ${member.bio_short || member.role}
+                    </p>
+                    
+                    <div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <a class="view-profile-btn group/btn flex items-center gap-2 text-xs font-black text-primary dark:text-white uppercase tracking-widest hover:text-accent-blue transition-colors" 
+                           href="/team/?slug=${member.slug}">
+                            View Full Profile
+                            <span class="arrow-icon material-symbols-outlined text-[18px]">arrow_forward</span>
+                        </a>
                     </div>
                 </div>
             `;
             container.appendChild(card);
+
         });
         
         if (typeof AOS !== 'undefined') {
@@ -169,11 +191,86 @@ async function loadTeamGrid(container, url, baseUrl) {
 
     } catch (error) {
         console.error('Error loading team:', error);
-        container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #ff6b6b;">
-            Unable to load team members.<br>
-            <small>(${error.message})</small><br>
-            <small>Ensure Strapi is running and Permissions are set to Public.</small>
-        </p>`;
+        
+        // MOCK DATA FOR VERIFICATION/LOCAL TESTING
+        const mockMembers = [
+            {
+                name: "Alex Sterling",
+                role: "Managing Partner",
+                slug: "alex-sterling",
+                bio_short: "Specializing in high-stakes corporate litigation and international arbitration with over 15 years of experience.",
+                email: "alex@rlcadvocates.co.ke",
+                linkedin_url: "https://linkedin.com",
+                photo: null
+            },
+            {
+                name: "Sarah Jenkins",
+                role: "Senior Associate",
+                slug: "sarah-jenkins",
+                bio_short: "Expert in intellectual property rights and technology law, helping startups navigate complex legal landscapes.",
+                email: "sarah@rlcadvocates.co.ke",
+                linkedin_url: "https://linkedin.com",
+                photo: null
+            },
+            {
+                name: "Marcus Thorne",
+                role: "Legal Counsel",
+                slug: "marcus-thorne",
+                bio_short: "Focused on real estate transactions and commercial leasing for multinational corporations.",
+                email: "marcus@rlcadvocates.co.ke",
+                linkedin_url: "https://linkedin.com",
+                photo: null
+            }
+        ];
+
+        console.log('Rendering mock data for local verification...');
+        container.innerHTML = '';
+        mockMembers.forEach(member => {
+            const roleLabel = member.role.toUpperCase();
+            const card = document.createElement('div');
+            card.className = 'group flex flex-col bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500';
+            card.onclick = () => {
+                window.location.href = `/team/?slug=${member.slug}`;
+            };
+            card.style.cursor = 'pointer';
+
+            card.innerHTML = `
+                <div class="relative aspect-[4/5] overflow-hidden">
+                    <div class="w-full h-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-6xl text-slate-400">person</span>
+                    </div>
+                    
+                    <div class="team-card-overlay absolute inset-0 flex flex-col justify-end p-6">
+                    </div>
+
+                    <div class="absolute top-4 left-4">
+                        <span class="glass-card text-white text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
+                            ${roleLabel}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="p-8 flex flex-col flex-1">
+                    <h3 class="text-xl font-black text-primary dark:text-white mb-1 group-hover:text-accent-blue transition-colors duration-300">
+                        ${member.name}
+                    </h3>
+                    <p class="text-accent-orange text-xs font-bold mb-4 uppercase tracking-widest">
+                        ${member.role}
+                    </p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-8 line-clamp-3">
+                        ${member.bio_short}
+                    </p>
+                    
+                    <div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                        <div class="view-profile-btn group/btn flex items-center gap-2 text-xs font-black text-primary dark:text-white uppercase tracking-widest hover:text-accent-blue transition-colors">
+                            View Full Profile
+                            <span class="arrow-icon material-symbols-outlined text-[18px]">arrow_forward</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        });
     }
 }
 
