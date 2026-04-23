@@ -102,8 +102,55 @@
                 <!-- Team Grid (Dynamic) -->
                 <section class="container mx-auto px-6 md:px-10 lg:px-20 pt-0 pb-20">
                     <div class="team-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                        <!-- Loaded Dynamically via team.js -->
-                        <p class="text-center text-gray-500 col-span-full">Loading Team Members...</p>
+                        <!-- Skeleton Loading State -->
+                        <div class="skeleton-card flex flex-col bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm h-full animate-pulse">
+                            <div class="aspect-[4/5] bg-gray-200 dark:bg-slate-800 skeleton"></div>
+                            <div class="p-8 space-y-4">
+                                <div class="h-6 bg-gray-200 dark:bg-slate-800 rounded w-3/4 skeleton"></div>
+                                <div class="h-4 bg-gray-200 dark:bg-slate-800 rounded w-1/2 skeleton"></div>
+                                <div class="space-y-2 pt-4">
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded skeleton"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded skeleton"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded w-5/6 skeleton"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skeleton-card hidden sm:flex flex-col bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm h-full animate-pulse">
+                            <div class="aspect-[4/5] bg-gray-200 dark:bg-slate-800 skeleton"></div>
+                            <div class="p-8 space-y-4">
+                                <div class="h-6 bg-gray-200 dark:bg-slate-800 rounded w-3/4 skeleton"></div>
+                                <div class="h-4 bg-gray-200 dark:bg-slate-800 rounded w-1/2 skeleton"></div>
+                                <div class="space-y-2 pt-4">
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded skeleton"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded skeleton"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded w-5/6 skeleton"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skeleton-card hidden lg:flex flex-col bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm h-full animate-pulse">
+                            <div class="aspect-[4/5] bg-gray-200 dark:bg-slate-800 skeleton"></div>
+                            <div class="p-8 space-y-4">
+                                <div class="h-6 bg-gray-200 dark:bg-slate-800 rounded w-3/4 skeleton"></div>
+                                <div class="h-4 bg-gray-200 dark:bg-slate-800 rounded w-1/2 skeleton"></div>
+                                <div class="space-y-2 pt-4">
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded skeleton"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded skeleton"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded w-5/6 skeleton"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skeleton-card hidden xl:flex flex-col bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm h-full animate-pulse">
+                            <div class="aspect-[4/5] bg-gray-200 dark:bg-slate-800 skeleton"></div>
+                            <div class="p-8 space-y-4">
+                                <div class="h-6 bg-gray-200 dark:bg-slate-800 rounded w-3/4 skeleton"></div>
+                                <div class="h-4 bg-gray-200 dark:bg-slate-800 rounded w-1/2 skeleton"></div>
+                                <div class="space-y-2 pt-4">
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded skeleton"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded skeleton"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-slate-800 rounded w-5/6 skeleton"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
