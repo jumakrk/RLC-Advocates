@@ -93,3 +93,14 @@
         transform: translateX(100%);
     }
 }
+
+/* View State Management (Prevent Flash) */
+.is-profile-view #team-grid-view,
+.is-profile-view #team-cta {
+    display: none !important;
+}
+
+.is-profile-view #profile-view {
+    display: block !important;
+    opacity: 1 !important;
+}
