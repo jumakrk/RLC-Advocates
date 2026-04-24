@@ -118,37 +118,24 @@ async function loadTeamGrid(container, url, baseUrl) {
     } catch (error) {
         console.error('Error loading team:', error);
         
-        // MOCK DATA FOR VERIFICATION/LOCAL TESTING
-        const mockMembers = [
-            {
-                name: "Alex Sterling",
-                role: "Managing Partner",
-                slug: "alex-sterling",
-                focus_areas: "Corporate, International Arbitration",
-                bio_short: "Specializing in high-stakes corporate litigation and international arbitration with over 15 years of experience.",
-                photo: null
-            },
-            {
-                name: "Sarah Jenkins",
-                role: "Senior Associate",
-                slug: "sarah-jenkins",
-                focus_areas: "Intellectual Property, Technology",
-                bio_short: "Expert in intellectual property rights and technology law, helping startups navigate complex legal landscapes.",
-                photo: null
-            },
-            {
-                name: "Marcus Thorne",
-                role: "Legal Counsel",
-                slug: "marcus-thorne",
-                focus_areas: "Real Estate, Commercial Leasing",
-                bio_short: "Focused on real estate transactions and commercial leasing for multinational corporations.",
-                photo: null
-            }
-        ];
-
-        console.log('Rendering mock data for local verification...');
-        allMembers = mockMembers; // Populate for filtering
-        renderMembers(container, mockMembers, baseUrl);
+        container.innerHTML = `
+            <div class="col-span-full py-24 flex flex-col items-center justify-center text-center" data-aos="fade-up">
+                <div class="w-24 h-24 bg-slate-50 dark:bg-slate-800/50 rounded-full flex items-center justify-center mb-8 relative">
+                    <span class="material-symbols-outlined text-5xl text-slate-300 dark:text-slate-600">database_off</span>
+                    <div class="absolute -top-1 -right-1 w-6 h-6 bg-accent-orange rounded-full flex items-center justify-center border-4 border-white dark:border-slate-900">
+                        <span class="material-symbols-outlined text-[14px] text-white font-bold">priority_high</span>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-black text-primary dark:text-white mb-4">Content Unavailable</h3>
+                <p class="text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-10 leading-relaxed">
+                    We're currently experiencing a connection issue with our secure database. Our team is working to restore access to our professional directory.
+                </p>
+                <button onclick="window.location.reload()" class="group flex items-center gap-3 bg-primary dark:bg-white text-white dark:text-primary px-10 py-4 rounded-xl font-black text-sm uppercase tracking-widest hover:bg-accent-blue hover:text-white transition-all shadow-xl shadow-primary/10">
+                    <span class="material-symbols-outlined text-xl group-hover:rotate-180 transition-transform duration-500">refresh</span>
+                    Retry Connection
+                </button>
+            </div>
+        `;
     }
 }
 

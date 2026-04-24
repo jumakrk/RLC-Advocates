@@ -345,9 +345,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     } catch (error) {
         console.error('Error fetching articles:', error);
-        if(featuredContainer) featuredContainer.innerHTML = '<p style="color: #ff6b6b;">Unable to load insights. Please check connection.</p>';
-        console.log(error);
-        renderSidebarCategories(); // Render sidebar with no numbers and valid links when backend fails
+        if(featuredContainer) {
+            featuredContainer.innerHTML = `
+                <div class="col-span-full py-20 flex flex-col items-center justify-center text-center bg-white dark:bg-white/5 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm" data-aos="fade-up">
+                    <div class="w-20 h-20 bg-slate-50 dark:bg-slate-800/50 rounded-full flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-4xl text-slate-300 dark:text-slate-600">wifi_off</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary dark:text-white mb-3">Unable to Load Insights</h3>
+                    <p class="text-gray-500 dark:text-gray-400 max-w-sm mx-auto mb-8 leading-relaxed">
+                        We're having trouble reaching our content server. Please check your connection or try again.
+                    </p>
+                    <button onclick="window.location.reload()" class="group flex items-center gap-2 bg-primary dark:bg-white text-white dark:text-primary px-8 py-3 rounded-lg font-bold text-sm hover:bg-accent-blue hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-lg group-hover:rotate-180 transition-transform duration-500">refresh</span>
+                        Retry
+                    </button>
+                </div>
+            `;
+        }
+        renderSidebarCategories(); 
     } finally {
         await hideLoader(loaderStartTime);
     }
