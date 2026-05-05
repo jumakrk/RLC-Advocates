@@ -137,9 +137,9 @@
                         <div class="absolute -top-10 -right-10 w-32 h-32 bg-accent-blue/20 rounded-full blur-2xl"></div>
                         <h4 class="text-lg font-bold text-white mb-2 relative z-10">Legal Briefing</h4>
                         <p class="text-gray-300 text-sm mb-4 relative z-10">Get the latest legal updates and firm news delivered to your inbox monthly.</p>
-                        <form class="space-y-3 relative z-10">
-                            <input class="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-transparent" placeholder="Your email address" type="email"/>
-                            <button class="w-full bg-accent-orange hover:bg-accent-blue hover:ease-in-out duration-300 text-white font-bold py-2.5 rounded-lg transition-colors" type="button">
+                        <form class="newsletter-form space-y-3 relative z-10">
+                            <input class="w-full px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent-orange focus:border-transparent" placeholder="Your email address" type="email" name="EMAIL" required />
+                            <button class="w-full bg-accent-orange hover:bg-accent-blue hover:ease-in-out duration-300 text-white font-bold py-2.5 rounded-lg transition-colors" type="submit">
                                 Subscribe
                             </button>
                         </form>
@@ -275,10 +275,10 @@
                 <div>
                     <h5 class="text-lg font-bold mb-6">Newsletter</h5>
                     <p class="text-gray-400 text-sm mb-4">Stay updated with legal news and firm insights.</p>
-                    <div class="flex flex-col gap-2">
-                        <input class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-accent-blue transition-colors" placeholder="Your Email" type="email" />
-                        <button class="bg-accent-orange hover:bg-accent-blue ease-in-out duration-300 text-white font-bold py-2 rounded-lg text-sm transition-colors">Subscribe</button>
-                    </div>
+                    <form class="newsletter-form flex flex-col gap-2">
+                        <input class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-accent-blue transition-colors" placeholder="Your Email" type="email" name="EMAIL" required />
+                        <button class="bg-accent-orange hover:bg-accent-blue ease-in-out duration-300 text-white font-bold py-2 rounded-lg text-sm transition-colors" type="submit">Subscribe</button>
+                    </form>
                 </div>
             </div>
             <!-- Bottom Bar -->

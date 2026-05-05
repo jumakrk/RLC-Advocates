@@ -58,17 +58,26 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="expanded-content-body">
                 ${detailsContainer.innerHTML}
             </div>
-            <div class="expanded-cta">Explore Insights <span class="material-symbols-outlined">arrow_forward</span></div>
+            <div class="expanded-cta-group">
+                <div class="expanded-cta btn-team"><span class="material-symbols-outlined">group</span> <span class="hide-on-mobile">Meet Our&nbsp;</span>Team</div>
+                <div class="expanded-cta btn-insights"><span class="hide-on-mobile">Explore&nbsp;</span>Insights <span class="material-symbols-outlined">arrow_forward</span></div>
+            </div>
         `;
 
         expanded.style.visibility = 'hidden';
         document.body.appendChild(expanded);
         
         // Setup CTA functionality
-        const cta = expanded.querySelector('.expanded-cta');
-        cta.onclick = (e) => {
+        const btnInsights = expanded.querySelector('.btn-insights');
+        btnInsights.onclick = (e) => {
             e.stopPropagation();
             window.location.href = '../blog/index.html';
+        };
+
+        const btnTeam = expanded.querySelector('.btn-team');
+        btnTeam.onclick = (e) => {
+            e.stopPropagation();
+            window.location.href = '../team/index.html';
         };
         
         await new Promise(r => setTimeout(r, 20)); // Force layout
@@ -76,11 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const lastCardBounds = expanded.getBoundingClientRect();
         const lastIcon = expanded.querySelector('.detail-icon');
         const lastTitle = expanded.querySelector('.detail-title');
-        const lastCTA = expanded.querySelector('.expanded-cta');
         
         const lastIconBounds = lastIcon.getBoundingClientRect();
         const lastTitleBounds = lastTitle.getBoundingClientRect();
-        const lastCTABounds = lastCTA.getBoundingClientRect();
 
         // 3. PLAY: Transition
         expanded.style.visibility = 'visible';
@@ -126,15 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { transform: 'translate(0, 0) scale(1)', transformOrigin: 'top left' }
         ], { duration, easing: spring, fill: 'both' });
 
-        // Hint to CTA Morph
-        if (lastCTA) {
-            const ctaEasing = 'cubic-bezier(0.34, 1.1, 0.64, 1)'; // Even more minimal for the CTA link
-            
-            lastCTA.animate([
-                { transform: `translate(${hintBounds.left - lastCTABounds.left}px, ${hintBounds.top - lastCTABounds.top}px) scale(0.6)`, opacity: 0 },
-                { transform: 'translate(0, 0) scale(1)', opacity: 1 }
-            ], { duration: duration * 0.9, easing: ctaEasing, fill: 'both' });
-        }
+        // CTAs fade in via CSS when .ready is added
 
         expanded.onfinish = () => {
             expanded.classList.add('ready');
@@ -178,5 +177,20 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.addEventListener('click', closeExpanded);
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeExpanded();
+    });
+
+    // Accordion Toggle Logic
+    document.addEventListener('click', (e) => {
+        const accordion = e.target.closest('.service-accordion');
+        if (accordion) {
+            const parentList = accordion.closest('.detail-list');
+            if (parentList) {
+                const siblings = parentList.querySelectorAll('.service-accordion.is-open');
+                siblings.forEach(sib => {
+                    if (sib !== accordion) sib.classList.remove('is-open');
+                });
+            }
+            accordion.classList.toggle('is-open');
+        }
     });
 });
