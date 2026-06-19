@@ -1,0 +1,44 @@
+/* Custom Animations & Properties for Digital Business Card */
+
+body {
+    background-color: #f3f4f6 !important; /* matches bg-gray-100 */
+    background-image: none !important;
+}
+
+/* Perspective & 3D Transforms */
+.perspective {
+    perspective: 1500px;
+}
+
+.preserve-3d {
+    transform-style: preserve-3d;
+}
+
+.backface-hidden {
+    backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
+
+/* Flips the card */
+.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* Smooth transition for the wrapper */
+#business-card {
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* QR Code styling */
+#qrcode {
+    position: relative;
+    overflow: hidden;
+}
+#qrcode img, #qrcode canvas {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}

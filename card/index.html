@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Business Card - RLC Advocates</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Digital Business Card for James Rimui, MCIArb - Founder & Managing Partner at RLC Advocates. Save contact details and connect instantly.">
+    <link rel="icon" type="image/png" href="../Images/rlc_blue_circular_favicon.png">
+
+    <!-- CSS Framework and Fonts -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="../shared/js/tailwind-config.js?v=2.2"></script>
+    <link rel="stylesheet" href="../shared/css/global.css?v=2.2" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="card.css" />
+
+    <!-- QRCode Generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <!-- Three.js for Background Particles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- DOM to Image (html2canvas) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body class="bg-gray-100 text-primary min-h-screen flex flex-col items-center justify-center py-10 px-4 font-sans overflow-x-hidden">
+    <!-- Particle Background Container -->
+    <div id="webgl-container" class="fixed inset-0 z-[-1] pointer-events-none"></div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-gray-100 z-50 flex flex-col items-center justify-center transition-opacity duration-500">
+        <div class="w-12 h-12 border-4 border-[#f97316] border-t-transparent rounded-full animate-spin"></div>
+        <div class="mt-4 text-gray-500 font-medium tracking-widest text-sm uppercase">Loading Profile</div>
+    </div>
+
+    <!-- The Card Container -->
+    <div class="relative w-full max-w-[340px] perspective opacity-0 transition-opacity duration-500" id="card-wrapper">
+        <div id="business-card" class="w-full relative preserve-3d">
+            
+            <!-- Front Face -->
+            <div class="w-full bg-white rounded-[2rem] overflow-hidden shadow-2xl border border-gray-200 backface-hidden" id="card-front">
+        <!-- Top Image Section -->
+        <div class="relative w-full h-[360px]">
+            <!-- Share Profile Button (Top Left) -->
+            <button id="btn-share-profile" class="hidden absolute top-5 left-5 z-20 flex items-center justify-center hover:scale-110 hover:text-[#f97316] transition-all text-white drop-shadow-md" title="Share Profile">
+                <span class="material-symbols-outlined text-[24px]">share</span>
+            </button>
+
+            <!-- Portrait photo -->
+            <img id="card-photo" src="../Images/avatar-placeholder.svg" alt="Team Member" class="w-full h-full object-cover object-top">
+            
+            <!-- White fade gradient at the bottom (full height to avoid html2canvas 1px box artifacts) -->
+            <div class="absolute inset-0 w-full h-full pointer-events-none" style="background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.85) 15%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 100%);"></div>
+            
+            <!-- RLC Logo on the right -->
+            <div class="absolute bottom-5 right-5 w-24 pointer-events-none">
+                <img src="../Images/rlc-small-logo.png" alt="RLC Advocates" class="w-full h-auto drop-shadow-md">
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="px-6 pb-6 relative -mt-4">
+            
+            <!-- Identity & QR Code Row -->
+            <div class="mb-6 flex justify-between items-end gap-2">
+                <div>
+                    <h1 id="card-name" class="text-[26px] font-bold text-gray-900 leading-tight flex items-baseline gap-2">
+                        Loading...
+                    </h1>
+                    <div id="card-role" class="text-[16px] text-gray-700 mt-0.5">Role</div>
+                    <div class="text-[14px] text-gray-500 italic">RLC Advocates LLP</div>
+                </div>
+                
+                <!-- QR Code (Smaller, now scannable because it's a simple URL) -->
+                <div id="qr-block" class="bg-white p-1.5 rounded-xl shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition-all shrink-0 mb-1" title="Tap to copy link">
+                    <div id="qrcode" class="w-[72px] h-[72px] relative z-10"></div>
+                </div>
+            </div>
+
+            <!-- Contact Details List -->
+            <div class="flex flex-col gap-4 relative z-10">
+                
+                <!-- Email -->
+                <div id="container-email" class="flex items-center gap-4 hidden">
+                    <div class="w-9 h-9 rounded-full bg-[#f97316] flex items-center justify-center text-white shrink-0">
+                        <svg viewBox="0 0 24 24" class="w-[18px] h-[18px] fill-current block"><path d="M4 20q-.825 0-1.412-.587T2 18V6q0-.825.588-1.412T4 4h16q.825 0 1.413.588T22 6v12q0 .825-.587 1.413T20 20H4Zm8-7L4 8v10h16V8l-8 5Zm0-2 8-5H4l8 5Z"/></svg>
+                    </div>
+                    <span id="card-email" class="text-[14px] text-gray-700 break-all leading-tight"></span>
+                </div>
+
+                <!-- Mobile Phone -->
+                <div id="container-phone" class="flex items-center gap-4 hidden">
+                    <div class="w-9 h-9 rounded-full bg-[#f97316] flex items-center justify-center text-white shrink-0">
+                        <svg viewBox="0 0 24 24" class="w-[18px] h-[18px] fill-current block"><path d="M7 23q-.825 0-1.412-.587T5 21V3q0-.825.588-1.412T7 1h10q.825 0 1.413.588T19 3v18q0 .825-.587 1.413T17 23H7Zm0-3h10V4H7v16Zm5 2q.425 0 .713-.288T13 21q0-.425-.288-.712T12 20q-.425 0-.712.288T11 21q0 .425.288.713T12 22Z"/></svg>
+                    </div>
+                    <span id="card-phone" class="text-[14px] text-gray-700 leading-tight"></span>
+                </div>
+
+                <!-- Office Numbers -->
+                <div id="container-office-phone" class="flex items-center gap-4 hidden">
+                    <div class="w-9 h-9 rounded-full bg-[#f97316] flex items-center justify-center text-white shrink-0">
+                        <svg viewBox="0 0 24 24" class="w-[18px] h-[18px] fill-current block"><path d="M19.95 21q-3.125 0-6.175-1.362t-5.55-3.863q-2.5-2.5-3.862-5.55T3 4.05q0-.45.3-.75t.75-.3H8.1q.35 0 .625.225t.325.575l.65 3.5q.05.35-.012.638T9.4 8.4L6.975 10.9q1.05 1.8 2.625 3.375T13.1 16.9l2.35-2.35q.225-.225.588-.337t.712-.063l3.45.7q.35.075.575.338T21 15.9v4.05q0 .45-.3.75t-.75.3Z"/></svg>
+                    </div>
+                    <span id="card-office-phone" class="text-[14px] text-gray-700 leading-tight"></span>
+                </div>
+
+                <!-- Office Address -->
+                <div id="container-office-location" class="flex items-center gap-4 hidden">
+                    <div class="w-9 h-9 rounded-full bg-[#f97316] flex items-center justify-center text-white shrink-0">
+                        <svg viewBox="0 0 24 24" class="w-[18px] h-[18px] fill-current block"><path d="M12 12q.825 0 1.413-.587T14 10q0-.825-.587-1.412T12 8q-.825 0-1.412.588T10 10q0 .825.588 1.413T12 12Zm0 7.35q3.05-2.8 4.525-5.088T18 10.2q0-2.725-1.737-4.462T12 4Q9.275 4 7.537 5.738T5.8 10.2q0 1.775 1.475 4.062T12 19.35ZM12 22q-4.025-3.425-6.012-6.362T4 10.2q0-3.75 2.413-5.975T12 2q3.175 0 5.588 2.225T20 10.2q0 2.5-1.987 5.438T12 22Z"/></svg>
+                    </div>
+                    <span id="card-office-location" class="text-[13px] text-gray-700 leading-tight"></span>
+                </div>
+
+                <!-- Website (Hidden on live site, shown only in PNG download) -->
+                <div id="container-card-website" class="hidden items-center gap-4">
+                    <div class="w-9 h-9 rounded-full bg-[#f97316] flex items-center justify-center text-white shrink-0">
+                        <svg viewBox="0 0 24 24" class="w-[18px] h-[18px] fill-current block"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm1.63 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
+                    </div>
+                    <span id="card-website-text" class="text-[14px] text-gray-700 leading-tight">rlcadvocates.co.ke</span>
+                </div>
+            </div>
+
+            <!-- Save Contact Button -->
+            <button id="btn-save-contact" class="hidden w-full mt-6 bg-[#f97316] text-white font-bold py-3 rounded-xl shadow-md hover:bg-[#0047AB] hover:shadow-lg hover:-translate-y-0.5 transition-all flex justify-center items-center gap-2">
+                <span class="material-symbols-outlined text-[20px]">person_add</span>
+                Save to Contacts
+            </button>
+            
+            <!-- Social Links -->
+            <div id="social-links-container" class="hidden flex justify-center gap-4 mt-6 w-full border-t border-gray-100 pt-5">
+                <!-- LinkedIn -->
+                <a id="social-linkedin" href="#" target="_blank" class="hidden w-10 h-10 bg-gray-50 border border-gray-100 rounded-[12px] shadow-sm flex items-center justify-center hover:shadow-md hover:-translate-y-0.5 hover:text-[#0047AB] transition-all text-slate-600">
+                    <svg class="w-[16px] h-[16px] fill-current" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                </a>
+                
+                <!-- X (Twitter) -->
+                <a id="social-twitter" href="#" target="_blank" class="hidden w-10 h-10 bg-gray-50 border border-gray-100 rounded-[12px] shadow-sm flex items-center justify-center hover:shadow-md hover:-translate-y-0.5 hover:text-gray-900 transition-all text-slate-600">
+                    <svg class="w-[14px] h-[14px] fill-current" viewBox="0 0 24 24">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                </a>
+
+                <!-- WhatsApp -->
+                <a id="social-whatsapp" href="#" target="_blank" class="hidden w-10 h-10 bg-gray-50 border border-gray-100 rounded-[12px] shadow-sm flex items-center justify-center hover:shadow-md hover:-translate-y-0.5 hover:text-emerald-600 transition-all text-slate-600">
+                    <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                    </svg>
+                </a>
+
+                <!-- Website -->
+                <a id="social-website" href="#" target="_blank" class="w-10 h-10 bg-gray-50 border border-gray-100 rounded-[12px] shadow-sm flex items-center justify-center hover:shadow-md hover:-translate-y-0.5 hover:text-[#f97316] transition-all text-slate-600" title="Visit Website">
+                    <span class="material-symbols-outlined text-[18px]">language</span>
+                </a>
+
+                <!-- Download PNG -->
+                <button id="btn-download-png" class="w-10 h-10 bg-gray-50 border border-gray-100 rounded-[12px] shadow-sm flex items-center justify-center hover:shadow-md hover:-translate-y-0.5 hover:text-[#f97316] transition-all text-slate-600" title="Download card">
+                    <span class="material-symbols-outlined text-[18px]">download</span>
+                </button>
+            </div>
+
+            <!-- Flip to Scan Button -->
+            <button id="btn-flip-to-back" class="w-full mt-4 pb-2 text-gray-400 font-medium text-sm hover:text-[#f97316] transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+                In-person? Scan to save
+            </button>
+        </div>
+        </div>
+
+        <!-- Back Face (Raw vCard QR) -->
+        <div class="absolute inset-0 w-full h-full bg-white rounded-[2rem] overflow-hidden shadow-2xl border border-gray-200 backface-hidden rotate-y-180 flex flex-col items-center justify-center p-8 pointer-events-none" id="card-back">
+            <div class="text-center mb-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-1">Scan to Save</h2>
+                <p class="text-[13px] text-gray-500 leading-tight">Point your phone camera here to instantly add me to your contacts.</p>
+            </div>
+            
+            <!-- Giant QR Code -->
+            <div class="w-full aspect-square bg-white rounded-2xl flex items-center justify-center p-2 mb-8 relative z-20">
+                <div id="qrcode-back" class="w-full h-full flex items-center justify-center">
+                    <div class="w-8 h-8 border-4 border-[#f97316] border-t-transparent rounded-full animate-spin"></div>
+                </div>
+            </div>
+
+            <button id="btn-flip-to-front" class="relative z-50 w-full py-3 bg-gray-100 text-gray-700 font-bold rounded-xl shadow-sm hover:bg-gray-200 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                <span class="material-symbols-outlined text-[18px]">undo</span>
+                Back to Profile
+            </button>
+            
+            <!-- Grey RLC Logo -->
+            <div class="absolute bottom-6 w-full flex justify-center pointer-events-none opacity-20">
+                <img src="../Images/rlc-small-logo.png" alt="RLC Advocates" class="h-6 w-auto grayscale">
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Custom Script File -->
+    <script src="card.js"></script>
+    <script src="particles.js"></script>
+</body>
+</html>
